@@ -1,0 +1,6 @@
+#!/bin/sh
+# . 指令为source，表示不产生新的shell，在当前shell下执行命令，共享上下文，类似将两个文件拼接到一起
+# 执行 .husky/_/husky.sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx lint-staged
