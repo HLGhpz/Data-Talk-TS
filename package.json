@@ -1,6 +1,6 @@
 {
   "name": "data-talk-ts",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "author": {
     "name": "hpz",
@@ -18,7 +18,8 @@
     "lint": "eslint src --ext .js,.ts,.vue --fix",
     "prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "format": "prettier --write src",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "pushVersion": "git push --follow-tags origin main"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
