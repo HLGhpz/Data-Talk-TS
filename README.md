@@ -1,11 +1,12 @@
 # DATA-TALK-TS ![](https://img.shields.io/badge/license-MIT-blue) ![](https://img.shields.io/badge/DATA-TALK-brightgreen)
 
-![](@img/data-talk.png)
+![](https://github.com/HLGhpz/Data-Talk-TS/blob/main/src/assets/img/data-talk.png)
 
-DATA-TALK旨在通过数据讲述世界
-+ 使用vue3作为前端框架
-+ 使用vite作为脚手架
-+ 通过axios请求后端数据
+DATA-TALK 旨在通过数据讲述世界
+DATA-TALK-TS 是 DATA-TALK 的 TypeScript 版本。
++ 使用 vue3 作为前端框架
++ 使用 vite 作为脚手架
++ 通过 axios 请求后端数据
 
 ## Installation
 ```

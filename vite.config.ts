@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import components from 'unplugin-vue-components/vite'
 import banner from 'vite-plugin-banner'
 import pkg from './package.json'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 const resolve = (dir: string): string => path.resolve(__dirname, dir)
 
 // https://vitejs.dev/config/
@@ -71,15 +71,14 @@ export default defineConfig({
       '@libs': resolve('src/libs'),
       '@cp': resolve('src/components'),
       '@views': resolve('src/views'),
-      '@charts': resolve('src/charts'),
       // 兼容webpack的静态资源
       '~@': resolve('src'),
       '~@img': resolve('src/assets/img'),
       '~@less': resolve('src/assets/less'),
       '~@libs': resolve('src/libs'),
       '~@cp': resolve('src/components'),
-      '~@views': resolve('src/views')
-    }
+      '~@views': resolve('src/views'),
+    },
   },
 
   css: {
@@ -111,10 +110,10 @@ export default defineConfig({
         javascriptEnabled: true,
         modifyVars: {
           'primary-color': '#1890ff',
-          hack: `true; @import '@less/config.less'`
-        }
-      }
-    }
+          hack: `true; @import '@less/config.less'`,
+        },
+      },
+    },
   },
 
   plugins: [
@@ -128,8 +127,8 @@ export default defineConfig({
       dirs: [resolve('src/components')],
       extensions: ['vue', 'ts'],
       deep: true,
-      dts: true,
-      resolvers: [AntDesignVueResolver()]
+      dts: false,
+      resolvers: [NaiveUiResolver()]
     }),
 
     /**
@@ -138,6 +137,6 @@ export default defineConfig({
      */
     banner(
       `/**\n * name: ${pkg.name}\n * version: v${pkg.version}\n * description: v${pkg.description}\n * author: ${pkg.author}\n */`
-    )
-  ]
+    ),
+  ],
 })

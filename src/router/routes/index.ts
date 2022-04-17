@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-12 16:10:04
+ * @LastEditTime: 2022-04-17 13:39:27
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -10,8 +10,6 @@
 import chartRoutes from './chartRoutes'
 
 import type { RouteRecordRaw } from 'vue-router'
-
-console.log('chartRoutes', chartRoutes)
 
 /**
  * 路由配置
@@ -30,10 +28,26 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/table',
+    name: 'table',
+    component: () => import('@views/Table/index.vue'),
+    meta: {
+      title: 'Table'
+    }
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: () => import('@views/Test/index.vue'),
+    meta: {
+      title: 'Test'
+    }
+  },
+  {
     path: '/chart',
     name: 'chart',
     component: () =>
-      import(/* webpackChunkName: "chart" */ '@charts/lineChart/index.vue'),
+      import(/* webpackChunkName: "chart" */ '@/charts/lineChart/index.vue'),
     meta: {
       title: 'Chart'
     },

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-11 20:52:01
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-12 16:01:40
+ * @LastEditTime: 2022-04-13 15:18:17
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,12 +17,12 @@
 
 <script setup lang="ts">
 import * as echarts from 'echarts'
-import { EChartsOption } from 'echarts/types/dist/shared'
+import { EChartsOption } from 'echarts'
 import { ref, onMounted, onBeforeMount } from 'vue'
 
 let chartDom = ref(null)
 let chartHeight = ref(0)
-let lineChart = ref(null)
+let lineChart = null
 
 const initOption: EChartsOption = {
   xAxis: {
@@ -48,7 +48,7 @@ const initOption: EChartsOption = {
 function initChart(option: EChartsOption) {
   chartHeight.value = window.innerHeight
   lineChart = echarts.init(chartDom.value)
-  lineChart.value.setOption(option)
+  lineChart.setOption(option)
 }
 
 /**
@@ -58,8 +58,8 @@ function initChart(option: EChartsOption) {
  */
 function screenAdapter() {
   chartHeight.value = window.innerHeight
-  if (lineChart.value) {
-    lineChart.value.resize()
+  if (lineChart) {
+    lineChart.resize()
   }
 }
 

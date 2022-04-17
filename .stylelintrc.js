@@ -1,12 +1,3 @@
-/*
- * @Author: HLGhpz
- * @Date: 2022-04-13 11:27:27
- * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-13 11:27:28
- * @Description:
- *
- * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
- */
 module.exports = {
   root: true,
   plugins: ['stylelint-order'],
