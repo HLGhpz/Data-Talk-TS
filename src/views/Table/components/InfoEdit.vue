@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 18:59:02
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-17 14:40:32
+ * @LastEditTime: 2022-04-18 22:27:18
  * @Description: 表格编辑
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -51,7 +51,7 @@ import { storeToRefs } from 'pinia'
 const statuStore = useStatuStore()
 const todoInfoStore = useTodoInfoStore()
 const todoStore = useTodoStore()
-const { modelState } = storeToRefs(statuStore)
+const { editModel } = storeToRefs(statuStore)
 
 const model = ref({} as TodoInfo)
 
@@ -83,14 +83,14 @@ let tagOptions = Object.keys(TagEnum)
 
 function handleSubmit() {
   if (model.value.type == OperationEnum.Create) {
-    console.log('create')
+    todoStore.create(model.value)
   } else if (model.value.type == OperationEnum.Update) {
     todoStore.update(model.value)
   }
-  modelState.value = false
+  editModel.value = false
 }
 function handleCancel() {
-  modelState.value = false
+  editModel.value = false
 }
 
 onMounted(() => {

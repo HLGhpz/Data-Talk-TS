@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-13 20:38:48
+ * @LastEditTime: 2022-04-18 20:59:16
  * @Description: 入口文件
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -11,7 +11,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from '@/App.vue'
 import router from '@/router'
-import '../mock/index'
+// import '../mock/index'
 
 // 全局样式
 import '@less/global.less'

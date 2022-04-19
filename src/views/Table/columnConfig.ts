@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 15:54:49
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-16 15:57:47
+ * @LastEditTime: 2022-04-18 23:11:43
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -12,15 +12,32 @@ import { h } from 'vue'
 import { NTag, NIcon } from 'naive-ui'
 import { NotepadEdit20Regular } from '@vicons/fluent'
 import { TagEnum, TagColorEnum, OperationEnum } from '@/enums'
-import { useTodoInfoStore } from '@/stores'
+import { useTodoInfoStore, useStatuStore } from '@/stores'
 
 const todoInfoStore = useTodoInfoStore()
+const stateStore = useStatuStore()
 
-const createColumn = (showModal) => {
+const createColumn = () => {
   return [
     {
       title: 'ID',
-      key: 'id'
+      key: 'id',
+      render(row) {
+        return h(
+          'h3',
+          {
+            ondblclick: (res) => {
+              stateStore.onStatu('deleteModel')
+              todoInfoStore.$state = {
+                id: row.id,
+                title: row.title,
+                type: OperationEnum.Delete
+              }
+            }
+          },
+          { default: () => row.id }
+        )
+      }
     },
     {
       title: '标题',
@@ -51,9 +68,9 @@ const createColumn = (showModal) => {
     },
     {
       title: '更新时间',
-      key: 'updateTime',
+      key: 'updatedAt',
       sorter: (a, b) =>
-        new Date(a.updateTime).getTime() - new Date(b.updateTime).getTime()
+        new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
     },
     {
       title: '修改',
@@ -67,7 +84,7 @@ const createColumn = (showModal) => {
               cursor: 'pointer'
             },
             onClick: (res) => {
-              showModal.value = true
+              stateStore.onStatu('editModel')
               todoInfoStore.$state = {
                 id: row.id,
                 title: row.title,

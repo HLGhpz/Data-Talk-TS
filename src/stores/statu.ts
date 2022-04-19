@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 21:20:02
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-16 15:46:53
+ * @LastEditTime: 2022-04-18 23:41:56
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -11,19 +11,30 @@
 import { defineStore } from 'pinia'
 
 interface state {
-  modelState: Boolean
+  editModel: Boolean
+  deleteModel: Boolean
 }
 
 export const useStatuStore = defineStore('statu', {
   state: (): state => ({
-    modelState: false
+    editModel: false,
+    deleteModel: false
   }),
   actions: {
-    onStatu() {
-      this.modelState = false
+    onStatu(stateName: 'editModel' | 'deleteModel') {
+      console.log('stateName', stateName)
+      if (stateName == 'editModel') {
+        this.editModel = true
+      } else if (stateName == 'deleteModel') {
+        this.deleteModel = true
+      }
     },
-    offStatu() {
-      this.modelState = true
+    offStatu(stateName: 'editModel' | 'deleteModel') {
+      if (stateName == 'editModel') {
+        this.editModel = false
+      } else if (stateName == 'deleteModel') {
+        this.deleteModel = false
+      }
     }
   }
 })

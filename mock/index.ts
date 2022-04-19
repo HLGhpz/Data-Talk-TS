@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-13 14:35:43
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-15 17:08:29
+ * @LastEditTime: 2022-04-18 21:06:22
  * @Description: 模拟项目数据。
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,8 +17,8 @@ let targetList = Mock.mock({
       title: '@cname',
       abstract: '@word(2,4)',
       'tag|1': ['Project', 'Collect', 'Make', 'Achieve', 'Pause', 'Abolish'],
-      createTime: '@datetime',
-      updateTime: '@datetime'
+      createdAt: '@datetime',
+      updateAt: '@datetime'
     }
   ]
 })
