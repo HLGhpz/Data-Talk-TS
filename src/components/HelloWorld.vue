@@ -2,23 +2,26 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-13 11:39:46
+ * @LastEditTime: 2022-04-19 20:40:19
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
 -->
 <template>
-  <h1>{{ msg }}</h1>
+  <h1>
+    <router-link :to="{ name: 'table' }">Info Data</router-link>
+  </h1>
   <ul>
     <li>
       <router-link :to="{ name: 'lineChart' }">Line Chart</router-link>
     </li>
+    <li>
+      <router-link :to="{ name: 'candleStick' }">CandleStick Chart</router-link>
+    </li>
   </ul>
 </template>
 
-<script setup lang="ts">
-defineProps<{ msg: string }>()
-</script>
+<script setup lang="ts"></script>
 
 <style lang="less" scoped>
 ul {

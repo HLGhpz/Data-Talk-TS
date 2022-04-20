@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-19 11:19:36
+ * @LastEditTime: 2022-04-20 23:33:12
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,8 +17,15 @@ export const useTodoStore = defineStore('todos', {
     todos: [] as Todo[]
   }),
   getters: {
+    makeTodos(state) {
+      return state.todos.filter((todo: Todo) => {
+        return ['Project', 'Collect', 'Make', 'Pause'].includes(todo.tag)
+      })
+    },
     finishedTodos(state) {
-      return state.todos.filter((todo: Todo) => todo.tag === TagEnum.Achieve)
+      return state.todos.filter((todo: Todo) => {
+        return ['Achieve', 'Abolish'].includes(todo.tag)
+      })
     }
   },
   actions: {

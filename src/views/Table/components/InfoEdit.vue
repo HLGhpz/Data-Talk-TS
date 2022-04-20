@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 18:59:02
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-18 22:27:18
+ * @LastEditTime: 2022-04-20 23:30:03
  * @Description: 表格编辑
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -23,10 +23,20 @@
         }"
       />
     </n-form-item>
-
+    <n-form-item label="数据来源">
+      <n-input v-model:value="model.dataLink" placeholder="数据来源" />
+    </n-form-item>
+    <n-form-item label="图表类型">
+      <n-select
+        v-model:value="model.chartTypes"
+        :options="chartOptions"
+        multiple
+      />
+    </n-form-item>
     <n-form-item label="进度" path="tag">
       <n-select v-model:value="model.tag" :options="tagOptions" />
     </n-form-item>
+
     <n-space justify="space-around" style="padding-top: 20px">
       <n-button
         type="primary"
@@ -43,7 +53,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { TagEnum, OperationEnum } from '@/enums'
+import { TagEnum, ChartTypeEnum, OperationEnum } from '@/enums'
 import { TodoInfo } from '@/types/store'
 import { useStatuStore, useTodoStore, useTodoInfoStore } from '@/stores'
 import { storeToRefs } from 'pinia'
@@ -81,7 +91,15 @@ let tagOptions = Object.keys(TagEnum)
     label: TagEnum[key]
   }))
 
+let chartOptions = Object.keys(ChartTypeEnum)
+  .filter((key) => isNaN(Number(ChartTypeEnum[key])))
+  .map((key) => ({
+    value: ChartTypeEnum[key],
+    label: ChartTypeEnum[key]
+  }))
+
 function handleSubmit() {
+  model.value.chartType = model.value.chartTypes?.join('&')
   if (model.value.type == OperationEnum.Create) {
     todoStore.create(model.value)
   } else if (model.value.type == OperationEnum.Update) {

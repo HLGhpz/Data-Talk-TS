@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-13 21:47:48
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-18 23:24:09
+ * @LastEditTime: 2022-04-20 11:04:42
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -13,7 +13,7 @@
     <n-data-table
       :bordered="true"
       :columns="columns"
-      :data="todos"
+      :data="makeTodos"
       :pagination="pagination"
     >
     </n-data-table>
@@ -33,7 +33,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 // import { selectTodo } from '@/api/crud'
-import { createColumn } from './columnConfig'
+import { makeColumn } from './makeConfig'
 import { useStatuStore, useTodoStore } from '@/stores'
 import { InfoEdit, InfoDelete, EditBall } from './components'
 import { storeToRefs } from 'pinia'
@@ -42,8 +42,8 @@ import { storeToRefs } from 'pinia'
 const statuStore = useStatuStore()
 const todoStore = useTodoStore()
 const { editModel, deleteModel } = storeToRefs(statuStore)
-const { todos } = storeToRefs(todoStore)
-const columns = createColumn()
+const { makeTodos, finishedTodos } = storeToRefs(todoStore)
+const columns = makeColumn()
 
 const pagination = {
   pageSize: 10

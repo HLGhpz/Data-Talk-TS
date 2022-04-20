@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-18 21:56:30
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-19 11:17:16
+ * @LastEditTime: 2022-04-19 17:20:21
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -25,9 +25,11 @@ function showModal() {
   const todoInfoStore = useTodoInfoStore()
   statuStore.editModel = true
   todoInfoStore.$state = {
-    title: '',
-    abstract: '',
+    title: undefined,
+    abstract: undefined,
     tag: undefined,
+    dataLink: undefined,
+    chartLink: undefined,
     type: OperationEnum.Create
   }
 }

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-17 13:39:27
+ * @LastEditTime: 2022-04-19 20:39:04
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -47,13 +47,7 @@ const routes: RouteRecordRaw[] = [
     path: '/chart',
     name: 'chart',
     component: () =>
-      import(/* webpackChunkName: "chart" */ '@/charts/lineChart/index.vue'),
-    meta: {
-      title: 'Chart'
-    },
-    redirect: {
-      name: 'lineChart'
-    },
+      import(/* webpackChunkName: "chart" */ '@/charts/index.vue'),
     children: [...chartRoutes]
   }
 ]
