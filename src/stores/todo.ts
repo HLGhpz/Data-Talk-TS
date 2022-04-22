@@ -2,14 +2,13 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-20 23:33:12
+ * @LastEditTime: 2022-04-21 18:06:50
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
 import { defineStore } from 'pinia'
 import { selectTodo, updateTodo, createTodo, deleteTodo } from '@/api/crud'
-import { TagEnum } from '@/enums'
 import { Todo, TodoInfo } from '@/types/store'
 
 export const useTodoStore = defineStore('todos', {
@@ -18,14 +17,16 @@ export const useTodoStore = defineStore('todos', {
   }),
   getters: {
     makeTodos(state) {
-      return state.todos.filter((todo: Todo) => {
-        return ['Project', 'Collect', 'Make', 'Pause'].includes(todo.tag)
-      })
+      return state.todos.filter((todo: Todo) =>
+        ['Project', 'Collect', 'Make', 'Pause'].includes(
+          todo.tag as unknown as string
+        )
+      )
     },
     finishedTodos(state) {
-      return state.todos.filter((todo: Todo) => {
-        return ['Achieve', 'Abolish'].includes(todo.tag)
-      })
+      return state.todos.filter((todo: Todo) =>
+        ['Achieve', 'Abolish'].includes(todo.tag as unknown as string)
+      )
     }
   },
   actions: {

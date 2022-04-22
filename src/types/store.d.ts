@@ -2,13 +2,13 @@
  * @Author: HLGhpz
  * @Date: 2022-04-16 18:09:56
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-20 23:25:28
+ * @LastEditTime: 2022-04-21 17:39:37
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
 
-import { OperationEnum, TagEnum } from '@/enums'
+import { TagEnum, ChartTypeEnum, DataTypeEnum } from '@/enums'
 
 export interface Todo {
   readonly id: number
@@ -16,6 +16,7 @@ export interface Todo {
   abstract: string
   tag: TagEnum | undefined
   dataLink: string | undefined
+  dataType: DataTypeEnum | undefined
   chartLink: string | undefined
   chartType: string | undefined
   createdAt: string
@@ -26,10 +27,10 @@ export interface TodoInfo {
   id?: number
   title?: string
   abstract?: string
+  tag?: TagEnum | undefined
   dataLink?: string | undefined
+  dataType?: DataTypeEnum | undefined
   chartLink?: string | undefined
   chartType?: string | undefined
-  chartTypes?: Object | undefined
-  tag?: TagEnum | undefined
-  type: OperationEnum | undefined
+  chartTypes?: ChartTypeEnum[] | undefined
 }

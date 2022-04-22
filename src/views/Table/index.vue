@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-13 21:47:48
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-20 11:04:42
+ * @LastEditTime: 2022-04-21 17:47:01
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -15,6 +15,7 @@
       :columns="columns"
       :data="makeTodos"
       :pagination="pagination"
+      class="text-wrapper"
     >
     </n-data-table>
   </n-space>
@@ -31,18 +32,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 // import { selectTodo } from '@/api/crud'
 import { makeColumn } from './makeConfig'
-import { useStatuStore, useTodoStore } from '@/stores'
+import { useStateStore, useTodoStore } from '@/stores'
 import { InfoEdit, InfoDelete, EditBall } from './components'
 import { storeToRefs } from 'pinia'
 
 // const todoPath = 'api/todo'
-const statuStore = useStatuStore()
+const stateStore = useStateStore()
 const todoStore = useTodoStore()
-const { editModel, deleteModel } = storeToRefs(statuStore)
-const { makeTodos, finishedTodos } = storeToRefs(todoStore)
+const { editModel, deleteModel } = storeToRefs(stateStore)
+const { makeTodos } = storeToRefs(todoStore)
 const columns = makeColumn()
 
 const pagination = {
@@ -51,11 +52,16 @@ const pagination = {
 
 onMounted(async () => {
   await todoStore.select()
+  console.log(makeTodos.value)
 })
 </script>
 
 <style scoped>
 .data-table {
   padding: 24px 24px 24px 24px;
+}
+
+.text-wrapper {
+  white-space: pre-wrap;
 }
 </style>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-19 19:52:02
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-20 22:05:37
+ * @LastEditTime: 2022-04-21 17:49:08
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,13 +21,13 @@ import { getData } from '@/api/request'
 import * as echarts from 'echarts'
 import { EChartsOption } from 'echarts'
 import { ref, watch, onMounted, onBeforeMount } from 'vue'
-import { useStatuStore } from '@/stores'
+import { useStateStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 
 const dataPath = './api/data'
 const fileName = 'CNY_JPY'
-const statuStore = useStatuStore()
-let { showChart } = storeToRefs(statuStore)
+const stateStore = useStateStore()
+let { showChart } = storeToRefs(stateStore)
 
 let chartDom = ref(null)
 let chartHeight = ref(0)
@@ -43,7 +43,7 @@ let chartData = [] as any[]
  */
 function initChart() {
   chartHeight.value = window.innerHeight
-  chart = echarts.init(chartDom.value)
+  chart = echarts.init(chartDom.value as unknown as HTMLDivElement)
   const initOption: EChartsOption = {
     xAxis: {
       type: 'category',
@@ -108,7 +108,7 @@ function screenAdapter() {
 }
 
 // 更新数据
-watch(startIndex, (newValue, oldValue) => {
+watch(startIndex, (newValue) => {
   let showData = []
   if (newValue < 20) {
     showData = chartData.slice(0, newValue)
@@ -136,7 +136,7 @@ watch(startIndex, (newValue, oldValue) => {
 })
 
 // 监听图表实现
-watch(showChart, (newValue, oldValue) => {
+watch(showChart, (newValue) => {
   if (newValue) {
     chartInterval = setInterval(() => {
       startIndex.value++

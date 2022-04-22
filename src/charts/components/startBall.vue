@@ -17,10 +17,10 @@
 <script setup lang="ts">
 import { FloatBall } from '@/components'
 import { ChartMultiple20Filled } from '@vicons/fluent'
-import { useStatuStore } from '@/stores'
+import { useStateStore } from '@/stores'
 import { storeToRefs } from 'pinia'
-const statuStore = useStatuStore()
-const { showChart } = storeToRefs(statuStore)
+const stateStore = useStateStore()
+const { showChart } = storeToRefs(stateStore)
 </script>
 
 <style scoped></style>

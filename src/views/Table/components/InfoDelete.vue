@@ -1,3 +1,12 @@
+<!--
+ * @Author: HLGhpz
+ * @Date: 2022-04-18 22:47:17
+ * @LastEditors: HLGhpz
+ * @LastEditTime: 2022-04-21 17:43:20
+ * @Description:
+ *
+ * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
+-->
 <template>
   <h1>{{ todoInfoStore.title }}</h1>
   <n-space justify="space-around" style="padding-top: 20px">
@@ -8,21 +17,21 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { TagEnum, OperationEnum } from '@/enums'
+import { OperationEnum } from '@/enums'
 import { TodoInfo } from '@/types/store'
-import { useStatuStore, useTodoStore, useTodoInfoStore } from '@/stores'
+import { useStateStore, useTodoStore, useTodoInfoStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 
-const statuStore = useStatuStore()
+const stateStore = useStateStore()
 const todoInfoStore = useTodoInfoStore()
 const todoStore = useTodoStore()
-const { deleteModel } = storeToRefs(statuStore)
+const { deleteModel } = storeToRefs(stateStore)
 
 const model = ref({} as TodoInfo)
 
 function handleDelete() {
-  if (model.value.type == OperationEnum.Delete) {
-    todoStore.delete(model.value.id)
+  if (stateStore.editType == OperationEnum.Delete) {
+    todoStore.delete(model.value.id as number)
   }
   deleteModel.value = false
 }

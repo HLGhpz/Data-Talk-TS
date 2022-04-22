@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 18:59:02
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-20 23:30:03
+ * @LastEditTime: 2022-04-21 17:44:04
  * @Description: 表格编辑
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -18,17 +18,33 @@
         placeholder="简介"
         type="textarea"
         :autosize="{
-          minRows: 3,
-          maxRows: 5
+          minRows: 2,
+          maxRows: 3
         }"
       />
     </n-form-item>
     <n-form-item label="数据来源">
-      <n-input v-model:value="model.dataLink" placeholder="数据来源" />
+      <n-input
+        v-model:value="model.dataLink"
+        placeholder="数据来源"
+        type="textarea"
+        :autosize="{
+          minRows: 2,
+          maxRows: 3
+        }"
+      />
+    </n-form-item>
+    <n-form-item label="数据类型">
+      <n-select
+        v-model:value="model.dataType"
+        placeholder="数据类型"
+        :options="dataOptions"
+      />
     </n-form-item>
     <n-form-item label="图表类型">
       <n-select
         v-model:value="model.chartTypes"
+        placeholder="图表类型"
         :options="chartOptions"
         multiple
       />
@@ -53,15 +69,15 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { TagEnum, ChartTypeEnum, OperationEnum } from '@/enums'
+import { TagEnum, ChartTypeEnum, OperationEnum, DataTypeEnum } from '@/enums'
 import { TodoInfo } from '@/types/store'
-import { useStatuStore, useTodoStore, useTodoInfoStore } from '@/stores'
+import { useStateStore, useTodoStore, useTodoInfoStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 
-const statuStore = useStatuStore()
+const stateStore = useStateStore()
 const todoInfoStore = useTodoInfoStore()
 const todoStore = useTodoStore()
-const { editModel } = storeToRefs(statuStore)
+const { editModel } = storeToRefs(stateStore)
 
 const model = ref({} as TodoInfo)
 
@@ -98,11 +114,18 @@ let chartOptions = Object.keys(ChartTypeEnum)
     label: ChartTypeEnum[key]
   }))
 
+let dataOptions = Object.keys(DataTypeEnum)
+  .filter((key) => isNaN(Number(DataTypeEnum[key])))
+  .map((key) => ({
+    value: DataTypeEnum[key],
+    label: DataTypeEnum[key]
+  }))
+
 function handleSubmit() {
-  model.value.chartType = model.value.chartTypes?.join('&')
-  if (model.value.type == OperationEnum.Create) {
+  model.value.chartType = model.value.chartTypes?.join('&') as string
+  if (stateStore.editType === OperationEnum.Create) {
     todoStore.create(model.value)
-  } else if (model.value.type == OperationEnum.Update) {
+  } else if (stateStore.editType == OperationEnum.Update) {
     todoStore.update(model.value)
   }
   editModel.value = false

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 15:54:49
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-20 23:33:08
+ * @LastEditTime: 2022-04-21 17:46:00
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -13,11 +13,11 @@ import { NTag, NIcon } from 'naive-ui'
 import dayjs from 'dayjs'
 import { NotepadEdit20Regular } from '@vicons/fluent'
 import { Todo } from '@/types/store'
-import { TagEnum, TagColorEnum, OperationEnum } from '@/enums'
-import { useTodoInfoStore, useStatuStore } from '@/stores'
+import { TagColorEnum, OperationEnum, ChartTypeEnum } from '@/enums'
+import { useTodoInfoStore, useStateStore } from '@/stores'
 
 const todoInfoStore = useTodoInfoStore()
-const stateStore = useStatuStore()
+const stateStore = useStateStore()
 
 const makeColumn = () => {
   return [
@@ -30,10 +30,10 @@ const makeColumn = () => {
           {
             ondblclick: () => {
               stateStore.deleteModel = true
+              stateStore.editType = OperationEnum.Delete
               todoInfoStore.$state = {
                 id: row.id,
-                title: row.title,
-                type: OperationEnum.Delete
+                title: row.title
               }
             }
           },
@@ -47,19 +47,40 @@ const makeColumn = () => {
     },
     {
       title: '简介',
-      key: 'abstract'
+      key: 'abstract',
+      width: '25%'
     },
     {
       title: '数据来源',
       key: 'dataLink',
       render(row: Todo) {
+        const dataLinks = row.dataLink?.split('\n').map((link) => {
+          return h(
+            'a',
+            {
+              href: link,
+              target: '_blank',
+              style: {
+                display: 'block'
+              }
+            },
+            { default: () => link }
+          )
+        })
+        return dataLinks
+      }
+    },
+    {
+      title: '数据类型',
+      key: 'dataType',
+      render(row: Todo) {
         return h(
-          'a',
+          NTag,
           {
-            href: row.dataLink,
-            target: '_blank'
+            bordered: true,
+            round: true
           },
-          { default: () => row.dataLink }
+          { default: () => row.dataType }
         )
       }
     },
@@ -84,6 +105,7 @@ const makeColumn = () => {
         return chartTypes
       }
     },
+
     {
       title: '进度',
       key: 'tag',
@@ -94,7 +116,7 @@ const makeColumn = () => {
           {
             bordered: true,
             style: {
-              backgroundColor: TagColorEnum[row.tag],
+              backgroundColor: TagColorEnum[row.tag as number],
               color: '#000'
             },
             round: true
@@ -103,7 +125,6 @@ const makeColumn = () => {
         )
       }
     },
-
     {
       title: '更新时间',
       key: 'updatedAt',
@@ -142,15 +163,18 @@ const makeColumn = () => {
             },
             onClick: () => {
               stateStore.editModel = true
+              console.log('编辑', row)
               todoInfoStore.$state = {
                 id: row.id,
                 title: row.title,
                 abstract: row.abstract,
                 dataLink: row.dataLink,
+                dataType: row.dataType,
                 chartLink: row.chartLink,
-                chartTypes: row.chartType?.split('&'),
-                tag: row.tag,
-                type: OperationEnum.Update
+                chartTypes: row.chartType?.split(
+                  '&'
+                ) as unknown as ChartTypeEnum[],
+                tag: row.tag
               }
             }
           },

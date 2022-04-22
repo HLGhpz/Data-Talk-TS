@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-18 21:56:30
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-19 17:20:21
+ * @LastEditTime: 2022-04-21 17:30:03
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,21 +17,15 @@
 <script setup lang="ts">
 import { FloatBall } from '@/components'
 import { Apps28Regular } from '@vicons/fluent'
-import { useStatuStore, useTodoInfoStore } from '@/stores'
+import { useStateStore, useTodoInfoStore } from '@/stores'
 import { OperationEnum } from '@/enums'
 
 function showModal() {
-  const statuStore = useStatuStore()
+  const stateStore = useStateStore()
   const todoInfoStore = useTodoInfoStore()
-  statuStore.editModel = true
-  todoInfoStore.$state = {
-    title: undefined,
-    abstract: undefined,
-    tag: undefined,
-    dataLink: undefined,
-    chartLink: undefined,
-    type: OperationEnum.Create
-  }
+  stateStore.editModel = true
+  stateStore.editType = OperationEnum.Create
+  todoInfoStore.$reset()
 }
 </script>
 

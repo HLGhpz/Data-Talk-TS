@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { onMounted, toRefs, ref, isRef, isReactive } from 'vue'
-import { useStatuStore, useTodoInfoStore } from '@/stores'
+import { useStateStore, useTodoInfoStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 
 const TodoInfoStore = useTodoInfoStore()

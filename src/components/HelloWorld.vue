@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-19 20:40:19
+ * @LastEditTime: 2022-04-21 21:03:38
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,6 +17,11 @@
     </li>
     <li>
       <router-link :to="{ name: 'candleStick' }">CandleStick Chart</router-link>
+    </li>
+    <li>
+      <router-link :to="{ name: 'collegeGraduates' }"
+        >CollegeGraduates</router-link
+      >
     </li>
   </ul>
 </template>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-15 11:13:20
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-20 23:01:34
+ * @LastEditTime: 2022-04-21 17:39:19
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,10 +17,10 @@ export const useTodoInfoStore = defineStore('todoInfo', {
     title: undefined,
     abstract: undefined,
     dataLink: undefined,
+    dataType: undefined,
     chartLink: undefined,
     chartType: undefined,
     chartTypes: undefined,
-    tag: undefined,
-    type: undefined
+    tag: undefined
   })
 })
