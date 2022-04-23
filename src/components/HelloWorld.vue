@@ -19,8 +19,8 @@
       <router-link :to="{ name: 'candleStick' }">CandleStick Chart</router-link>
     </li>
     <li>
-      <router-link :to="{ name: 'collegeGraduates' }"
-        >CollegeGraduates</router-link
+      <router-link :to="{ name: 'collegeGraduate' }"
+        >collegeGraduate</router-link
       >
     </li>
   </ul>

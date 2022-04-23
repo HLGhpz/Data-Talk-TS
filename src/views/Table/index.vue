@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-13 21:47:48
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-21 17:47:01
+ * @LastEditTime: 2022-04-23 22:15:19
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -52,7 +52,6 @@ const pagination = {
 
 onMounted(async () => {
   await todoStore.select()
-  console.log(makeTodos.value)
 })
 </script>
 

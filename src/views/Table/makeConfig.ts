@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 15:54:49
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-21 17:46:00
+ * @LastEditTime: 2022-04-23 22:17:25
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -163,7 +163,7 @@ const makeColumn = () => {
             },
             onClick: () => {
               stateStore.editModel = true
-              console.log('编辑', row)
+              stateStore.editType = OperationEnum.Update
               todoInfoStore.$state = {
                 id: row.id,
                 title: row.title,

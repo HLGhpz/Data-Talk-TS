@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-21 20:59:05
+ * @LastEditTime: 2022-04-23 21:22:14
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -31,11 +31,11 @@ const chartRoutes: RouteRecordRaw[] = [
     }
   },
   {
-    path: 'collegeGraduates',
-    name: 'collegeGraduates',
-    component: () => import('@/charts/pictorialBar/collegeGraduates.vue'),
+    path: 'collegeGraduate',
+    name: 'collegeGraduate',
+    component: () => import('@/charts/collegeGraduate/index.vue'),
     meta: {
-      title: 'CollegeGraduates'
+      title: 'collegeGraduate'
     }
   }
 ]

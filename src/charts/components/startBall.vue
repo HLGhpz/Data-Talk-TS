@@ -9,7 +9,7 @@
 -->
 
 <template>
-  <FloatBall @click="showChart = !showChart">
+  <FloatBall @click="showDataChange = !showDataChange">
     <chart-multiple20-filled />
   </FloatBall>
 </template>
@@ -20,7 +20,7 @@ import { ChartMultiple20Filled } from '@vicons/fluent'
 import { useStateStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 const stateStore = useStateStore()
-const { showChart } = storeToRefs(stateStore)
+const { showDataChange } = storeToRefs(stateStore)
 </script>
 
 <style scoped></style>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 21:20:02
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-21 17:28:32
+ * @LastEditTime: 2022-04-23 15:41:16
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -13,16 +13,20 @@ import { defineStore } from 'pinia'
 
 interface state {
   editModel: Boolean
+  // 编辑当前的todo
   deleteModel: Boolean
-  showChart: Boolean
+  // 删除当前的todo
+  showDataChange: Boolean
+  // 图表数据继续变化
   editType: OperationEnum | undefined
+  //编辑todo的类型
 }
 
 export const useStateStore = defineStore('state', {
   state: (): state => ({
     editModel: false,
     deleteModel: false,
-    showChart: false,
+    showDataChange: false,
     editType: undefined
   })
 })
