@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-26 15:38:43
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 19:45:40
+ * @LastEditTime: 2022-04-26 20:21:08
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -23,13 +23,14 @@ const initOption: EChartsOption = {
         top: 'center',
         style: {
           text: 'HLG   DATA',
-          fontSize: 120,
+          fontSize: 150,
           fontWeight: 'bold',
           lineDash: [0, 200],
           lineDashOffset: 0,
           fill: 'transparent',
           stroke: '#000',
-          lineWidth: 1
+          lineWidth: 1,
+          fontStyle: 'italic'
         },
         keyframeAnimation: {
           duration: 4000,

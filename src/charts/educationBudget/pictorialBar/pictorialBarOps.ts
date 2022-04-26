@@ -20,15 +20,16 @@ const labelSetting = {
   show: true,
   position: 'right',
   offset: [10, 0],
-  fontSize: 20,
+  fontSize: 30,
   formatter: (params: any) => {
-    return `${params.data['2020Budget']} 亿元`
+    return `${params.data['2022Budget']} 亿元`
   }
 }
 
 // 初始化配置
 const initOption: EChartsOption = {
   grid: {
+    top: '13%',
     left: '15%'
   },
   xAxis: {
@@ -101,7 +102,7 @@ function updateChart() {
           style: {
             text: `${latestData.value.School}：${latestData.value['2022Budget']} 亿元`,
             font: 'bold 60px Microsoft YaHei',
-            fill: 'rgba(100,100,100,0.5)'
+            fill: 'rgba(100,100,100,1)'
           }
         },
         {
@@ -111,7 +112,7 @@ function updateChart() {
           style: {
             text: `排名：${latestData.value.Index}`,
             font: 'bold 60px Microsoft YaHei',
-            fill: 'rgba(241,147,156,0.5)'
+            fill: 'rgba(241,147,156,1)'
           }
         }
       ]
@@ -133,17 +134,20 @@ function adapterChart() {
   const adapterOption: EChartsOption = {
     title: {
       textStyle: {
-        fontSize: titleFontSize
+        fontSize: titleFontSize,
+        fontWeight: 'bold'
       }
     },
     xAxis: {
       axisLabel: {
-        fontSize: titleFontSize * scaleSize
+        fontSize: titleFontSize * scaleSize,
+        fontWeight: 'bold'
       }
     },
     yAxis: {
       axisLabel: {
-        fontSize: titleFontSize * scaleSize
+        fontSize: titleFontSize * scaleSize,
+        fontWeight: 'bold'
       }
     }
   }

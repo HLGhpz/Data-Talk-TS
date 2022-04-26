@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 21:07:34
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-25 15:35:23
+ * @LastEditTime: 2022-04-26 20:47:32
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -26,9 +26,9 @@ let chartInterval: any = null
 watch(showDataChange, (newValue) => {
   if (newValue) {
     chartInterval = setInterval(() => {
-      dataIndex++
       chartDataStore.changeShowData(dataIndex, showDataLength)
       updatePictorialBarChart()
+      dataIndex++
       // updateLineChart()
     }, 1000)
   } else {
