@@ -35,7 +35,15 @@ const chartRoutes: RouteRecordRaw[] = [
     name: 'collegeGraduate',
     component: () => import('@/charts/collegeGraduate/index.vue'),
     meta: {
-      title: 'collegeGraduate'
+      title: 'CollegeGraduate'
+    }
+  },
+  {
+    path: 'educationBudget',
+    name: 'educationBudget',
+    component: () => import('@/charts/educationBudget/index.vue'),
+    meta: {
+      title: 'EducationBudget'
     }
   }
 ]

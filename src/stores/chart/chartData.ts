@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 15:06:38
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-23 19:44:42
+ * @LastEditTime: 2022-04-24 10:55:55
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -15,7 +15,8 @@ import { useStateStore } from '../state'
 export const useChartDataStore = defineStore('chartData', {
   state: () => ({
     rowData: [],
-    showData: []
+    startToEndData: [],
+    zeroToEndData: []
   }),
   getters: {},
   actions: {
@@ -23,20 +24,26 @@ export const useChartDataStore = defineStore('chartData', {
       const rowData = (await getData('api/data', fileName)).data
       this.rowData = rowData
     },
-    changeShowData(startIndex: number, showDataLength: number) {
+    changeShowData(dataIndex: number, showDataLength: number) {
       const stateStore = useStateStore()
-      let showData = []
+      let startToEndData = []
       let rowLength = this.rowData.length
-      if (startIndex < showDataLength) {
-        showData = this.rowData.slice(0, startIndex)
-      } else if (startIndex >= showDataLength && startIndex <= rowLength) {
-        showData = this.rowData.slice(startIndex - showDataLength, startIndex)
+      if (dataIndex < showDataLength) {
+        startToEndData = this.rowData.slice(0, dataIndex)
+      } else if (dataIndex >= showDataLength && dataIndex <= rowLength) {
+        startToEndData = this.rowData.slice(
+          dataIndex - showDataLength,
+          dataIndex
+        )
       } else {
-        showData = this.rowData.slice(rowLength - showDataLength, rowLength)
+        startToEndData = this.rowData.slice(
+          rowLength - showDataLength,
+          rowLength
+        )
         stateStore.showDataChange = false
       }
-      this.showData = showData
-      return showData
+      this.zeroToEndData = this.rowData.slice(0, dataIndex)
+      this.startToEndData = startToEndData
     }
   }
 })

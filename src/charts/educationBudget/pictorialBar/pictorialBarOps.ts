@@ -1,17 +1,8 @@
-/*
- * @Author: HLGhpz
- * @Date: 2022-04-23 18:27:15
- * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-24 14:36:55
- * @Description:
- *
- * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
- */
-
 import { EChartsOption } from 'echarts'
 import { useChartDataStore, useChartStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import * as echarts from 'echarts'
+import Funding from '@/assets/icons/Funding.png'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -23,9 +14,7 @@ let chart: any = null
 
 // 柱状图图标
 const pathSymbols = {
-  CollegeStudent: 'image://../../../src/assets/icons/CollegeStudent.png',
-  PostGraduateStudent:
-    'image://../../../src/assets/icons/PostGraduateStudent.png'
+  Funding: `image://${Funding}`
 }
 
 // 标签配置
@@ -33,13 +22,19 @@ const labelSetting = {
   show: true,
   position: 'right',
   offset: [10, 0],
-  fontSize: 20
+  fontSize: 20,
+  formatter: (params: any) => {
+    console.log('params', params)
+  }
 }
 
 // 初始化配置
 const initOption: EChartsOption = {
+  grid: {
+    left: '15%'
+  },
   xAxis: {
-    max: 1200,
+    max: 370,
     splitLine: { show: false },
     axisLabel: { show: false },
     axisTick: { show: false },
@@ -52,29 +47,19 @@ const initOption: EChartsOption = {
     axisTick: { show: false },
     axisLine: { show: false },
     axisLabel: {
-      margin: 30
+      margin: 15
     }
   },
   series: [
     {
-      name: '应届毕业人数',
+      name: '预算经费',
       type: 'pictorialBar',
       label: labelSetting as any,
-      symbol: pathSymbols.CollegeStudent,
+      symbol: pathSymbols.Funding,
       symbolRepeat: true,
-      symbolSize: [40, 40],
-      barWidth: 40
-    },
-    {
-      name: '考研人数',
-      type: 'pictorialBar',
-      label: labelSetting as any,
-      symbol: pathSymbols.PostGraduateStudent,
-      symbolRepeat: true,
-      symbolSize: [40, 40],
-      barWidth: 40,
-      barGap: '8%',
-      barCategoryGap: '100%'
+      symbolClip: true,
+      symbolSize: [30, 30],
+      barWidth: 30
     }
   ]
 }
@@ -87,6 +72,7 @@ const initOption: EChartsOption = {
 function initChart(chartDom: HTMLDivElement) {
   chart = echarts.init(chartDom)
   chart.setOption(initOption)
+  console.log('initChart', chart.getOption())
 }
 
 /**
@@ -103,14 +89,8 @@ function updateChart() {
     series: [
       {
         encode: {
-          x: 1,
-          y: 0
-        }
-      },
-      {
-        encode: {
-          x: 2,
-          y: 0
+          x: 4,
+          y: 1
         }
       }
     ]
@@ -126,7 +106,7 @@ function updateChart() {
 function adapterChart() {
   winHeight.value = window.innerHeight
   let titleFontSize = (winHeight.value / 100) * 3.6
-  let scaleSize = 1
+  let scaleSize = 0.6
   // 屏幕自适应配置
   const adapterOption: EChartsOption = {
     title: {

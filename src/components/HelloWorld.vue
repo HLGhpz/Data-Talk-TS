@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-21 21:03:38
+ * @LastEditTime: 2022-04-25 12:15:19
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,6 +21,11 @@
     <li>
       <router-link :to="{ name: 'collegeGraduate' }"
         >collegeGraduate</router-link
+      >
+    </li>
+    <li>
+      <router-link :to="{ name: 'educationBudget' }"
+        >educationBudget</router-link
       >
     </li>
   </ul>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 18:27:15
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-24 14:36:55
+ * @LastEditTime: 2022-04-24 14:45:00
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,37 +16,21 @@ import * as echarts from 'echarts'
 // 全局变量
 const chartDataStore = useChartDataStore()
 const chartStore = useChartStore()
-const { startToEndData } = storeToRefs(chartDataStore)
+const { zeroToEndData } = storeToRefs(chartDataStore)
 const { winHeight } = storeToRefs(chartStore)
 
 let chart: any = null
 
-// 柱状图图标
-const pathSymbols = {
-  CollegeStudent: 'image://../../../src/assets/icons/CollegeStudent.png',
-  PostGraduateStudent:
-    'image://../../../src/assets/icons/PostGraduateStudent.png'
-}
-
-// 标签配置
-const labelSetting = {
-  show: true,
-  position: 'right',
-  offset: [10, 0],
-  fontSize: 20
-}
-
 // 初始化配置
 const initOption: EChartsOption = {
   xAxis: {
-    max: 1200,
+    type: 'category',
     splitLine: { show: false },
-    axisLabel: { show: false },
     axisTick: { show: false },
     axisLine: { show: false }
   },
   yAxis: {
-    type: 'category',
+    type: 'value',
     // inverse: true,
     splitLine: { show: false },
     axisTick: { show: false },
@@ -57,24 +41,50 @@ const initOption: EChartsOption = {
   },
   series: [
     {
-      name: '应届毕业人数',
-      type: 'pictorialBar',
-      label: labelSetting as any,
-      symbol: pathSymbols.CollegeStudent,
-      symbolRepeat: true,
-      symbolSize: [40, 40],
-      barWidth: 40
+      name: '考研人数',
+      type: 'line',
+      smooth: true,
+      stack: 'tiled',
+      lineStyle: {
+        width: 0
+      },
+      showSymbol: false,
+      areaStyle: {
+        opacity: 0.8,
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          {
+            offset: 0,
+            color: 'rgb(0, 221, 255)'
+          },
+          {
+            offset: 1,
+            color: 'rgb(77, 119, 255)'
+          }
+        ])
+      }
     },
     {
-      name: '考研人数',
-      type: 'pictorialBar',
-      label: labelSetting as any,
-      symbol: pathSymbols.PostGraduateStudent,
-      symbolRepeat: true,
-      symbolSize: [40, 40],
-      barWidth: 40,
-      barGap: '8%',
-      barCategoryGap: '100%'
+      name: '应届毕业人数',
+      type: 'line',
+      smooth: true,
+      stack: 'tiled',
+      lineStyle: {
+        width: 0
+      },
+      showSymbol: false,
+      areaStyle: {
+        opacity: 0.8,
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          {
+            offset: 0,
+            color: 'rgb(255, 0, 135)'
+          },
+          {
+            offset: 1,
+            color: 'rgb(135, 0, 157)'
+          }
+        ])
+      }
     }
   ]
 }
@@ -98,19 +108,19 @@ function updateChart() {
   // 数据配置
   const dataOption: EChartsOption = {
     dataset: {
-      source: startToEndData.value
+      source: zeroToEndData.value
     },
     series: [
       {
         encode: {
-          x: 1,
-          y: 0
+          x: 0,
+          y: 2
         }
       },
       {
         encode: {
-          x: 2,
-          y: 0
+          x: 0,
+          y: 1
         }
       }
     ]
