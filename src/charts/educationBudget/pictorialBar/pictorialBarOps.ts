@@ -1,14 +1,12 @@
 import { EChartsOption } from 'echarts'
-import { useChartDataStore, useChartStore } from '@/stores'
+import { useChartDataStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import * as echarts from 'echarts'
 import Funding from '@/assets/icons/Funding.png'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
-const chartStore = useChartStore()
-const { startToEndData } = storeToRefs(chartDataStore)
-const { winHeight } = storeToRefs(chartStore)
+const { startToEndData, latestData } = storeToRefs(chartDataStore)
 
 let chart: any = null
 
@@ -24,7 +22,7 @@ const labelSetting = {
   offset: [10, 0],
   fontSize: 20,
   formatter: (params: any) => {
-    console.log('params', params)
+    return `${params.data['2020Budget']} 亿元`
   }
 }
 
@@ -72,7 +70,7 @@ const initOption: EChartsOption = {
 function initChart(chartDom: HTMLDivElement) {
   chart = echarts.init(chartDom)
   chart.setOption(initOption)
-  console.log('initChart', chart.getOption())
+  console.log('初始化图表', chart.getOption())
 }
 
 /**
@@ -89,11 +87,35 @@ function updateChart() {
     series: [
       {
         encode: {
-          x: 4,
-          y: 1
+          x: '2022Budget',
+          y: 'School'
         }
       }
-    ]
+    ],
+    graphic: {
+      elements: [
+        {
+          type: 'text',
+          right: 200,
+          bottom: 250,
+          style: {
+            text: `${latestData.value.School}：${latestData.value['2022Budget']} 亿元`,
+            font: 'bold 60px Microsoft YaHei',
+            fill: 'rgba(100,100,100,0.5)'
+          }
+        },
+        {
+          type: 'text',
+          right: 200,
+          bottom: 100,
+          style: {
+            text: `排名：${latestData.value.Index}`,
+            font: 'bold 60px Microsoft YaHei',
+            fill: 'rgba(241,147,156,0.5)'
+          }
+        }
+      ]
+    }
   }
   chart.setOption(dataOption)
 }
@@ -104,8 +126,8 @@ function updateChart() {
  * @return {*}
  */
 function adapterChart() {
-  winHeight.value = window.innerHeight
-  let titleFontSize = (winHeight.value / 100) * 3.6
+  let winHeight = window.innerHeight
+  let titleFontSize = (winHeight / 100) * 3.6
   let scaleSize = 0.6
   // 屏幕自适应配置
   const adapterOption: EChartsOption = {

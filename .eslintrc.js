@@ -1,3 +1,12 @@
+/*
+ * @Author: HLGhpz
+ * @Date: 2022-04-17 16:45:42
+ * @LastEditors: HLGhpz
+ * @LastEditTime: 2022-04-26 19:57:30
+ * @Description:
+ *
+ * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
+ */
 module.exports = {
   root: true,
   env: {
@@ -26,4 +35,10 @@ module.exports = {
     defineExpose: 'readonly',
     withDefaults: 'readonly'
   }
+  // "prettier/prettier": [
+  //   'error',
+  //   {
+  //     endOfLine: 'auto',
+  //   }
+  // ]
 }

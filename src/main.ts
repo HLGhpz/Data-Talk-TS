@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-18 20:59:16
+ * @LastEditTime: 2022-04-26 19:33:21
  * @Description: 入口文件
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -14,7 +14,7 @@ import router from '@/router'
 // import '../mock/index'
 
 // 全局样式
-import '@less/global.less'
+import './styles/global.css'
 
 createApp(App)
   .use(createPinia()) // 启用 Pinia

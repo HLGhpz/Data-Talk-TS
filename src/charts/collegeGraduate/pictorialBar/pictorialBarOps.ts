@@ -2,22 +2,20 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 18:27:15
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-24 14:36:55
+ * @LastEditTime: 2022-04-26 19:44:07
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
 
 import { EChartsOption } from 'echarts'
-import { useChartDataStore, useChartStore } from '@/stores'
+import { useChartDataStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import * as echarts from 'echarts'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
-const chartStore = useChartStore()
 const { startToEndData } = storeToRefs(chartDataStore)
-const { winHeight } = storeToRefs(chartStore)
 
 let chart: any = null
 
@@ -124,8 +122,8 @@ function updateChart() {
  * @return {*}
  */
 function adapterChart() {
-  winHeight.value = window.innerHeight
-  let titleFontSize = (winHeight.value / 100) * 3.6
+  let winHeight = window.innerHeight
+  let titleFontSize = (winHeight / 100) * 3.6
   let scaleSize = 1
   // 屏幕自适应配置
   const adapterOption: EChartsOption = {

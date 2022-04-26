@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-19 20:39:04
+ * @LastEditTime: 2022-04-26 19:34:53
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -36,11 +36,11 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
-    path: '/test',
-    name: 'test',
-    component: () => import('@views/Test/index.vue'),
+    path: '/animation',
+    name: 'animation',
+    component: () => import('@views/Animation/index.vue'),
     meta: {
-      title: 'Test'
+      title: 'Animation'
     }
   },
   {

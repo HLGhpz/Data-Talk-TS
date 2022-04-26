@@ -1,8 +1,8 @@
 <!--
  * @Author: HLGhpz
- * @Date: 2022-04-21 20:44:09
+ * @Date: 2022-04-25 11:38:52
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 19:57:16
+ * @LastEditTime: 2022-04-26 19:45:02
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -14,8 +14,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { initChart, adapterChart } from './textStrokeOps'
 
-import { initChart, adapterChart } from './lineOps'
+// 父组件参数
+const props = defineProps(['msg'])
 
 // 固定变量
 const chartDom = ref(null)
@@ -29,11 +31,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  width: 300px;
-  height: 300px;
-  position: fixed;
-  right: 100px;
-  bottom: 0px;
-  z-index: 99999;
+  background-color: rgba(241, 147, 156, 0.6);
 }
 </style>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-23 21:22:14
+ * @LastEditTime: 2022-04-26 10:23:45
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -15,19 +15,11 @@ import type { RouteRecordRaw } from 'vue-router'
  */
 const chartRoutes: RouteRecordRaw[] = [
   {
-    path: 'lineChart',
-    name: 'lineChart',
-    component: () => import('@/charts/lineChart/index.vue'),
+    path: 'CNY_JPY',
+    name: 'CNY_JPY',
+    component: () => import('@/charts/CNY_JPY/index.vue'),
     meta: {
-      title: 'LineChart'
-    }
-  },
-  {
-    path: 'candleStick',
-    name: 'candleStick',
-    component: () => import('@/charts/candleStick/index.vue'),
-    meta: {
-      title: 'CandleStick'
+      title: 'CNY_JPY'
     }
   },
   {

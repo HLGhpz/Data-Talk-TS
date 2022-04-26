@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 15:06:38
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-24 10:55:55
+ * @LastEditTime: 2022-04-26 10:58:53
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,7 +16,8 @@ export const useChartDataStore = defineStore('chartData', {
   state: () => ({
     rowData: [],
     startToEndData: [],
-    zeroToEndData: []
+    zeroToEndData: [],
+    latestData: {} as any
   }),
   getters: {},
   actions: {
@@ -44,6 +45,7 @@ export const useChartDataStore = defineStore('chartData', {
       }
       this.zeroToEndData = this.rowData.slice(0, dataIndex)
       this.startToEndData = startToEndData
+      this.latestData = this.rowData[dataIndex]
     }
   }
 })
