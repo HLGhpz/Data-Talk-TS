@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 10:23:45
+ * @LastEditTime: 2022-04-27 16:02:08
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -11,7 +11,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 /**
  * 路由配置
- * @description 所有路由都在这里集中管理
+ * @description 所有图表路由都在这里集中管理
  */
 const chartRoutes: RouteRecordRaw[] = [
   {

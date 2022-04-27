@@ -2,31 +2,13 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 19:38:56
+ * @LastEditTime: 2022-04-27 16:45:33
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
 -->
 <template>
-  <h1><router-link :to="{ name: 'table' }">Info Data</router-link></h1>
-  <ul>
-    <li>
-      <router-link :to="{ name: 'animation' }">Animation</router-link>
-    </li>
-    <li>
-      <router-link :to="{ name: 'CNY_JPY' }">CNY_JPY</router-link>
-    </li>
-    <li>
-      <router-link :to="{ name: 'collegeGraduate' }"
-        >CollegeGraduate</router-link
-      >
-    </li>
-    <li>
-      <router-link :to="{ name: 'educationBudget' }"
-        >EducationBudget</router-link
-      >
-    </li>
-  </ul>
+  <h1><router-link :to="{ name: 'animation' }">Animation</router-link></h1>
 </template>
 
 <script setup lang="ts"></script>

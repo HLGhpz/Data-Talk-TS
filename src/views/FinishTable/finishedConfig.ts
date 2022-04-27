@@ -1,20 +1,22 @@
 /*
  * @Author: HLGhpz
- * @Date: 2022-04-14 15:54:49
+ * @Date: 2022-04-19 18:25:53
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-23 22:17:25
+ * @LastEditTime: 2022-04-27 21:11:00
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
 
 import { h } from 'vue'
-import { NTag, NIcon } from 'naive-ui'
-import dayjs from 'dayjs'
-import { NotepadEdit20Regular } from '@vicons/fluent'
+import { NTag } from 'naive-ui'
+import { Icon } from '@/components'
 import { Todo } from '@/types/store'
 import { TagColorEnum, OperationEnum, ChartTypeEnum } from '@/enums'
 import { useTodoInfoStore, useStateStore } from '@/stores'
+import dayjs from 'dayjs'
+
+import { Coin, Like, Star } from '@/assets/icons'
 
 const todoInfoStore = useTodoInfoStore()
 const stateStore = useStateStore()
@@ -25,50 +27,12 @@ const makeColumn = () => {
       title: 'ID',
       key: 'id',
       render(row: Todo) {
-        return h(
-          'h3',
-          {
-            ondblclick: () => {
-              stateStore.deleteModel = true
-              stateStore.editType = OperationEnum.Delete
-              todoInfoStore.$state = {
-                id: row.id,
-                title: row.title
-              }
-            }
-          },
-          { default: () => row.id }
-        )
+        return h('h3', {}, { default: () => row.id })
       }
     },
     {
       title: '标题',
       key: 'title'
-    },
-    {
-      title: '简介',
-      key: 'abstract',
-      width: '25%'
-    },
-    {
-      title: '数据来源',
-      key: 'dataLink',
-      render(row: Todo) {
-        const dataLinks = row.dataLink?.split('\n').map((link) => {
-          return h(
-            'a',
-            {
-              href: link,
-              target: '_blank',
-              style: {
-                display: 'block'
-              }
-            },
-            { default: () => link }
-          )
-        })
-        return dataLinks
-      }
     },
     {
       title: '数据类型',
@@ -105,7 +69,6 @@ const makeColumn = () => {
         return chartTypes
       }
     },
-
     {
       title: '进度',
       key: 'tag',
@@ -126,7 +89,7 @@ const makeColumn = () => {
       }
     },
     {
-      title: '更新时间',
+      title: '完成时间',
       key: 'updatedAt',
       sorter: (a: Todo, b: Todo) =>
         new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime(),
@@ -134,19 +97,49 @@ const makeColumn = () => {
         return h(
           'h3',
           {},
-          { default: () => dayjs(row.updatedAt).format('YY-MM-DD HH:mm') }
+          { default: () => dayjs(row.updatedAt).format('YY-MM-DD') }
         )
       }
     },
     {
-      title: '创建天数',
-      key: 'createdDays',
-      sorter: (a: Todo, b: Todo) => dayjs(a.createdAt).diff(dayjs(b.createdAt)),
-      render(row: Todo) {
+      key: 'like',
+      title(column) {
         return h(
-          'h3',
-          {},
-          { default: () => dayjs().diff(row.createdAt, 'day') + 1 }
+          'img',
+          {
+            src: Like,
+            color: 'rgb(0,181,229)',
+            height: 20
+          },
+          {}
+        )
+      }
+    },
+    {
+      key: 'coin',
+      title(column) {
+        return h(
+          'img',
+          {
+            src: Coin,
+            color: 'rgb(0,181,229)',
+            height: 20
+          },
+          {}
+        )
+      }
+    },
+    {
+      key: 'star',
+      title(column) {
+        return h(
+          'img',
+          {
+            src: Star,
+            color: 'rgb(0,181,229)',
+            height: 20
+          },
+          {}
         )
       }
     },
@@ -155,9 +148,10 @@ const makeColumn = () => {
       key: 'action',
       render(row: Todo) {
         return h(
-          NIcon,
+          Icon,
           {
             size: '25',
+            type: 'NoteEdit',
             style: {
               cursor: 'pointer'
             },
@@ -178,7 +172,7 @@ const makeColumn = () => {
               }
             }
           },
-          { default: () => h(NotepadEdit20Regular) }
+          {}
         )
       }
     }

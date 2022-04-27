@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-16 18:09:56
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-21 17:39:37
+ * @LastEditTime: 2022-04-27 21:16:20
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,6 +21,9 @@ export interface Todo {
   chartType: string | undefined
   createdAt: string
   updatedAt: string
+  like: number | undefined
+  coin: number | undefined
+  star: number | undefined
 }
 
 export interface TodoInfo {
@@ -33,4 +36,7 @@ export interface TodoInfo {
   chartLink?: string | undefined
   chartType?: string | undefined
   chartTypes?: ChartTypeEnum[] | undefined
+  like?: number
+  coin?: number
+  star?: number
 }

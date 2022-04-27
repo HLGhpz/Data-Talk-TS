@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-15 11:13:20
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-21 17:39:19
+ * @LastEditTime: 2022-04-27 21:14:19
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,6 +21,9 @@ export const useTodoInfoStore = defineStore('todoInfo', {
     chartLink: undefined,
     chartType: undefined,
     chartTypes: undefined,
+    like: undefined,
+    coin: undefined,
+    star: undefined,
     tag: undefined
   })
 })

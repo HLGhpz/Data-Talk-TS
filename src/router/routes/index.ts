@@ -2,12 +2,13 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 19:34:53
+ * @LastEditTime: 2022-04-27 17:28:51
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
 import chartRoutes from './chartRoutes'
+import mainRoutes from './mainRoutes'
 
 import type { RouteRecordRaw } from 'vue-router'
 
@@ -21,27 +22,10 @@ const routes: RouteRecordRaw[] = [
    */
   {
     path: '/',
-    name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ '@views/home.vue'),
-    meta: {
-      title: 'Home'
-    }
-  },
-  {
-    path: '/table',
-    name: 'table',
-    component: () => import('@views/Table/index.vue'),
-    meta: {
-      title: 'Table'
-    }
-  },
-  {
-    path: '/animation',
-    name: 'animation',
-    component: () => import('@views/Animation/index.vue'),
-    meta: {
-      title: 'Animation'
-    }
+    name: 'layout',
+    component: () => import('@/layout/index.vue'),
+    children: [...mainRoutes],
+    redirect: '/home'
   },
   {
     path: '/chart',
@@ -49,6 +33,11 @@ const routes: RouteRecordRaw[] = [
     component: () =>
       import(/* webpackChunkName: "chart" */ '@/charts/index.vue'),
     children: [...chartRoutes]
+  },
+  {
+    path: '/animation',
+    name: 'animation',
+    component: () => import('@/views/Animation/index.vue')
   }
 ]
 
