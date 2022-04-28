@@ -2,26 +2,32 @@
  * @Author: HLGhpz
  * @Date: 2022-04-19 18:25:53
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-27 21:11:00
+ * @LastEditTime: 2022-04-28 11:03:34
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
 
+// 引入函数
+import dayjs from 'dayjs'
 import { h } from 'vue'
+
+// 引入组件
 import { NTag } from 'naive-ui'
 import { Icon } from '@/components'
+
+// 引入数据
 import { Todo } from '@/types/store'
 import { TagColorEnum, OperationEnum, ChartTypeEnum } from '@/enums'
 import { useTodoInfoStore, useStateStore } from '@/stores'
-import dayjs from 'dayjs'
 
+// 引入图标
 import { Coin, Like, Star } from '@/assets/icons'
 
 const todoInfoStore = useTodoInfoStore()
 const stateStore = useStateStore()
 
-const makeColumn = () => {
+function makeColumn() {
   return [
     {
       title: 'ID',

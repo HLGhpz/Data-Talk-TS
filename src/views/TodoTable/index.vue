@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-13 21:47:48
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-27 22:30:30
+ * @LastEditTime: 2022-04-28 10:57:17
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -33,17 +33,22 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
-// import { selectTodo } from '@/api/crud'
-import { makeColumn } from './makeConfig'
-import { useStateStore, useTodoStore } from '@/stores'
-import { InfoEdit, InfoDelete, EditBall } from './components'
 import { storeToRefs } from 'pinia'
 
-// const todoPath = 'api/todo'
+// 引入组件
+import { InfoEdit, InfoDelete, EditBall } from './components'
+
+// 引入表格
+import { makeColumn } from './makeConfig'
+
+// 引入全局变量
+import { useStateStore, useTodoStore } from '@/stores'
+
 const stateStore = useStateStore()
 const todoStore = useTodoStore()
 const { editModel, deleteModel } = storeToRefs(stateStore)
 const { makeTodos } = storeToRefs(todoStore)
+console.log('setup')
 const columns = makeColumn()
 
 const pagination = {
@@ -51,6 +56,7 @@ const pagination = {
 }
 
 onMounted(async () => {
+  console.log('onMounted TodoTable')
   await todoStore.select()
 })
 </script>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-25 11:38:52
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 19:58:09
+ * @LastEditTime: 2022-04-28 11:10:50
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -26,6 +26,7 @@ const fileName = 'EducationBudget'
 const chartDataStore = useChartDataStore()
 
 onMounted(async () => {
+  console.log('onMounted EducationBudget')
   await chartDataStore.getChartData(fileName)
 })
 </script>

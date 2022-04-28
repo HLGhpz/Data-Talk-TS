@@ -2,27 +2,30 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 15:54:49
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-27 23:00:26
+ * @LastEditTime: 2022-04-28 11:08:39
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
 
+// 引入函数
+import dayjs from 'dayjs'
 import { h } from 'vue'
-import { NTag, NIcon } from 'naive-ui'
-import { NotepadEdit20Regular } from '@vicons/fluent'
+import { useRouter } from 'vue-router'
+
+//引入组件
+import { NTag } from 'naive-ui'
+import { Icon } from '@/components'
+
+// 引入数据
 import { Todo } from '@/types/store'
 import { TagColorEnum, OperationEnum, ChartTypeEnum } from '@/enums'
 import { useTodoInfoStore, useStateStore } from '@/stores'
-import dayjs from 'dayjs'
-import { useRouter } from 'vue-router'
 
 const todoInfoStore = useTodoInfoStore()
 const stateStore = useStateStore()
-const router = useRouter()
-// console.log('init router', router)
-
-const makeColumn = () => {
+function makeColumn() {
+  const router = useRouter()
   return [
     {
       title: 'ID',
@@ -177,9 +180,10 @@ const makeColumn = () => {
       key: 'action',
       render(row: Todo) {
         return h(
-          NIcon,
+          Icon,
           {
             size: '25',
+            type: 'NoteEdit',
             style: {
               cursor: 'pointer'
             },
@@ -200,7 +204,7 @@ const makeColumn = () => {
               }
             }
           },
-          { default: () => h(NotepadEdit20Regular) }
+          {}
         )
       }
     }
