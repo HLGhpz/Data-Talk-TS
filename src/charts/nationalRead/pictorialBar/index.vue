@@ -28,6 +28,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/backGround-pink.png);
+  background-image: url(@/assets/img/backGround-orange.png);
 }
 </style>

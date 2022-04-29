@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 10:23:45
+ * @LastEditTime: 2022-04-29 11:19:35
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -36,6 +36,22 @@ const chartRoutes: RouteRecordRaw[] = [
     component: () => import('@/charts/educationBudget/index.vue'),
     meta: {
       title: 'EducationBudget'
+    }
+  },
+  {
+    path: 'birthPopulation',
+    name: 'birthPopulation',
+    component: () => import('@/charts/birthPopulation/index.vue'),
+    meta: {
+      title: 'BirthPopulation'
+    }
+  },
+  {
+    path: 'nationalRead',
+    name: 'nationalRead',
+    component: () => import('@/charts/nationalRead/index.vue'),
+    meta: {
+      title: 'NationalRead'
     }
   }
 ]

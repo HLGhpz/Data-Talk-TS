@@ -1,30 +1,26 @@
 <!--
  * @Author: HLGhpz
- * @Date: 2022-04-21 20:44:17
+ * @Date: 2022-04-25 11:38:52
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-28 20:17:26
+ * @LastEditTime: 2022-04-26 19:58:09
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
 -->
 
 <template>
-  <!-- <Line></Line>
-  <PictorialBar></PictorialBar> -->
-  <PicBarAndLine></PicBarAndLine>
+  <PictorialBar></PictorialBar>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useChartDataStore } from '@/stores'
-import { Line } from './line'
 import { PictorialBar } from './pictorialBar'
-import { PicBarAndLine } from './picBarAndLine'
 
 import './watchDataChange'
 
 // 图表数据
-const fileName = 'CollegeGraduates'
+const fileName = 'EducationBudget'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -34,8 +30,4 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped>
-.chart-wrapper {
-  background-image: url(@/assets/img/backGround-blue.png);
-}
-</style>
+<style scoped></style>

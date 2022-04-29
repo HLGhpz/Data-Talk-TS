@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 18:59:02
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 20:16:42
+ * @LastEditTime: 2022-04-27 22:00:35
  * @Description: 表格编辑
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -33,6 +33,9 @@
           maxRows: 3
         }"
       />
+    </n-form-item>
+    <n-form-item label="图表跳转">
+      <n-input v-model:value="model.chartLink" placeholder="图表名" />
     </n-form-item>
     <n-form-item label="数据类型">
       <n-select

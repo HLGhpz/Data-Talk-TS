@@ -2,24 +2,30 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 15:54:49
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-23 22:17:25
+ * @LastEditTime: 2022-04-28 16:14:58
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
 
-import { h } from 'vue'
-import { NTag, NIcon } from 'naive-ui'
+// 引入函数
 import dayjs from 'dayjs'
-import { NotepadEdit20Regular } from '@vicons/fluent'
+import { h } from 'vue'
+import { useRouter } from 'vue-router'
+
+//引入组件
+import { NTag } from 'naive-ui'
+import { Icon } from '@/components'
+
+// 引入数据
 import { Todo } from '@/types/store'
 import { TagColorEnum, OperationEnum, ChartTypeEnum } from '@/enums'
 import { useTodoInfoStore, useStateStore } from '@/stores'
 
 const todoInfoStore = useTodoInfoStore()
 const stateStore = useStateStore()
-
-const makeColumn = () => {
+function makeColumn() {
+  const router = useRouter()
   return [
     {
       title: 'ID',
@@ -68,6 +74,23 @@ const makeColumn = () => {
           )
         })
         return dataLinks
+      }
+    },
+    {
+      title: '图表跳转',
+      key: 'dataChart',
+      render(row: Todo) {
+        return h(
+          'h5',
+          {
+            onclick: () => {
+              router.push({
+                name: row.chartLink
+              })
+            }
+          },
+          { default: () => row.chartLink }
+        )
       }
     },
     {
@@ -155,9 +178,10 @@ const makeColumn = () => {
       key: 'action',
       render(row: Todo) {
         return h(
-          NIcon,
+          Icon,
           {
             size: '25',
+            type: 'NoteEdit',
             style: {
               cursor: 'pointer'
             },
@@ -178,7 +202,7 @@ const makeColumn = () => {
               }
             }
           },
-          { default: () => h(NotepadEdit20Regular) }
+          {}
         )
       }
     }

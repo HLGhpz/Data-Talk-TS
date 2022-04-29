@@ -2,18 +2,19 @@
  * @Author: HLGhpz
  * @Date: 2022-04-13 21:47:48
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-23 22:15:19
+ * @LastEditTime: 2022-04-28 15:00:57
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
 -->
 
 <template>
+  <Header></Header>
   <n-space vertical :size="12" class="data-table">
     <n-data-table
       :bordered="true"
       :columns="columns"
-      :data="makeTodos"
+      :data="finishedTodos"
       :pagination="pagination"
       class="text-wrapper"
     >
@@ -22,28 +23,28 @@
   <n-modal v-model:show="editModel" :mask-closable="false" preset="dialog">
     <info-edit />
   </n-modal>
-  <n-modal v-model:show="deleteModel" :mask-closable="false" preset="dialog">
-    <template #header>
-      <div>是否确定删除</div>
-    </template>
-    <info-delete
-  /></n-modal>
   <edit-ball />
 </template>
 
 <script setup lang="ts">
+// 引入函数
 import { onMounted } from 'vue'
-// import { selectTodo } from '@/api/crud'
-import { makeColumn } from './makeConfig'
-import { useStateStore, useTodoStore } from '@/stores'
-import { InfoEdit, InfoDelete, EditBall } from './components'
 import { storeToRefs } from 'pinia'
 
-// const todoPath = 'api/todo'
+// 引入组件
+import { InfoEdit, EditBall } from './components'
+import { Header } from '@/components'
+
+// 引入表格数据
+import { makeColumn } from './finishedConfig'
+
+// 引入全局变量
+import { useStateStore, useTodoStore } from '@/stores'
+
 const stateStore = useStateStore()
 const todoStore = useTodoStore()
-const { editModel, deleteModel } = storeToRefs(stateStore)
-const { makeTodos } = storeToRefs(todoStore)
+const { editModel } = storeToRefs(stateStore)
+const { finishedTodos } = storeToRefs(todoStore)
 const columns = makeColumn()
 
 const pagination = {

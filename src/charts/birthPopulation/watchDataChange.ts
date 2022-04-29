@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 21:07:34
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-29 11:29:37
+ * @LastEditTime: 2022-04-29 11:29:21
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -29,7 +29,6 @@ watch(showDataChange, (newValue) => {
       chartDataStore.changeShowData(dataIndex, showDataLength)
       updatePictorialBarChart()
       dataIndex++
-      // updateLineChart()
     }, 1000)
   } else {
     clearInterval(chartInterval)

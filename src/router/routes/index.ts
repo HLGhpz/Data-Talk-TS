@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 19:34:53
+ * @LastEditTime: 2022-04-28 15:25:00
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -22,17 +22,9 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ '@views/home.vue'),
+    component: () => import('@views/home.vue'),
     meta: {
       title: 'Home'
-    }
-  },
-  {
-    path: '/table',
-    name: 'table',
-    component: () => import('@views/Table/index.vue'),
-    meta: {
-      title: 'Table'
     }
   },
   {
@@ -41,6 +33,22 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@views/Animation/index.vue'),
     meta: {
       title: 'Animation'
+    }
+  },
+  {
+    path: '/todo',
+    name: 'todo',
+    component: () => import('@/views/TodoTable/index.vue'),
+    meta: {
+      title: 'TodoTable'
+    }
+  },
+  {
+    path: '/finish',
+    name: 'finish',
+    component: () => import('@/views/FinishTable/index.vue'),
+    meta: {
+      title: 'FinishTable'
     }
   },
   {
