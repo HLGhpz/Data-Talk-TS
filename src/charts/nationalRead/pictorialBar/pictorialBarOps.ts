@@ -2,7 +2,7 @@ import { EChartsOption } from 'echarts'
 import { useChartDataStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import * as echarts from 'echarts'
-import Funding from '@/assets/icons/Funding.png'
+import { PBook, EBook, Magazine, Newspaper } from '@/assets/icons'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -12,7 +12,10 @@ let chart: any = null
 
 // 柱状图图标
 const pathSymbols = {
-  Funding: `image://${Funding}`
+  PBook: `image://${PBook}`,
+  EBook: `image://${EBook}`,
+  Magazine: `image://${Magazine}`,
+  Newspaper: `image://${Newspaper}`
 }
 
 // 标签配置
@@ -20,10 +23,10 @@ const labelSetting = {
   show: true,
   position: 'right',
   offset: [10, 0],
-  fontSize: 30,
-  formatter: (params: any) => {
-    return `${params.data['2022Budget']} 亿元`
-  }
+  fontSize: 30
+  // formatter: (params: any) => {
+  //   return `${params.data['2022Budget']} 亿元`
+  // }
 }
 
 // 初始化配置
@@ -33,7 +36,7 @@ const initOption: EChartsOption = {
     left: '15%'
   },
   xAxis: {
-    max: 370,
+    max: 120,
     splitLine: { show: false },
     axisLabel: { show: false },
     axisTick: { show: false },
@@ -51,13 +54,47 @@ const initOption: EChartsOption = {
   },
   series: [
     {
-      name: '预算经费',
+      name: '报纸',
       type: 'pictorialBar',
-      label: labelSetting as any,
-      symbol: pathSymbols.Funding,
-      symbolRepeat: true,
-      symbolClip: true,
-      symbolSize: [30, 30],
+      stack: 'total',
+      // label: labelSetting as any,
+      // symbol: pathSymbols.Newspaper,
+      // symbolRepeat: true,
+      // symbolClip: true,
+      // symbolSize: [30, 30],
+      barWidth: 30
+    },
+    {
+      name: '期刊',
+      type: 'pictorialBar',
+      stack: 'total',
+      // label: labelSetting as any,
+      // symbol: pathSymbols.Magazine,
+      // symbolRepeat: true,
+      // symbolClip: true,
+      // symbolSize: [30, 30],
+      barWidth: 30
+    },
+    {
+      name: '电子书',
+      type: 'pictorialBar',
+      stack: 'total',
+      // label: labelSetting as any,
+      // symbol: pathSymbols.EBook,
+      // symbolRepeat: true,
+      // symbolClip: true,
+      // symbolSize: [30, 30],
+      barWidth: 30
+    },
+    {
+      name: '实体书',
+      type: 'pictorialBar',
+      stack: 'total',
+      // label: labelSetting as any,
+      // symbol: pathSymbols.PBook,
+      // symbolRepeat: true,
+      // symbolClip: true,
+      // symbolSize: [30, 30],
       barWidth: 30
     }
   ]
@@ -88,35 +125,53 @@ function updateChart() {
     series: [
       {
         encode: {
-          x: '2022Budget',
-          y: 'School'
+          x: 'Newspaper',
+          y: 'Year'
+        }
+      },
+      {
+        encode: {
+          x: 'Magazine',
+          y: 'Year'
+        }
+      },
+      {
+        encode: {
+          x: 'EBook',
+          y: 'Year'
+        }
+      },
+      {
+        encode: {
+          x: 'PBook',
+          y: 'Year'
         }
       }
-    ],
-    graphic: {
-      elements: [
-        {
-          type: 'text',
-          right: 200,
-          bottom: 250,
-          style: {
-            text: `${latestData.value.School}：${latestData.value['2022Budget']} 亿元`,
-            font: 'bold 60px Microsoft YaHei',
-            fill: 'rgba(100,100,100,1)'
-          }
-        },
-        {
-          type: 'text',
-          right: 200,
-          bottom: 100,
-          style: {
-            text: `排名：${latestData.value.Index}`,
-            font: 'bold 60px Microsoft YaHei',
-            fill: 'rgba(241,147,156,1)'
-          }
-        }
-      ]
-    }
+    ]
+    // graphic: {
+    //   elements: [
+    //     {
+    //       type: 'text',
+    //       right: 200,
+    //       bottom: 250,
+    //       style: {
+    //         text: `${latestData.value.School}：${latestData.value['2022Budget']} 亿元`,
+    //         font: 'bold 60px Microsoft YaHei',
+    //         fill: 'rgba(100,100,100,1)'
+    //       }
+    //     },
+    //     {
+    //       type: 'text',
+    //       right: 200,
+    //       bottom: 100,
+    //       style: {
+    //         text: `排名：${latestData.value.Index}`,
+    //         font: 'bold 60px Microsoft YaHei',
+    //         fill: 'rgba(241,147,156,1)'
+    //       }
+    //     }
+    //   ]
+    // }
   }
   chart.setOption(dataOption)
 }

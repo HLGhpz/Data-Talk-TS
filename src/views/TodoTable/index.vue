@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-13 21:47:48
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-28 15:00:48
+ * @LastEditTime: 2022-04-29 15:51:12
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -14,7 +14,7 @@
     <n-data-table
       :bordered="true"
       :columns="columns"
-      :data="makeTodos"
+      :data="todos"
       :pagination="pagination"
       class="text-wrapper"
     >
@@ -50,7 +50,7 @@ import { useStateStore, useTodoStore } from '@/stores'
 const stateStore = useStateStore()
 const todoStore = useTodoStore()
 const { editModel, deleteModel } = storeToRefs(stateStore)
-const { makeTodos } = storeToRefs(todoStore)
+const { todos } = storeToRefs(todoStore)
 const columns = makeColumn()
 
 const pagination = {

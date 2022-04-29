@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-23 22:18:34
+ * @LastEditTime: 2022-04-29 16:14:23
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -10,39 +10,35 @@
 import { defineStore } from 'pinia'
 import { selectTodo, updateTodo, createTodo, deleteTodo } from '@/api/crud'
 import { Todo, TodoInfo } from '@/types/store'
+import { useFinishStore } from '../finish/finishes'
+const finishStore = useFinishStore()
 
 export const useTodoStore = defineStore('todos', {
   state: () => ({
     todos: [] as Todo[]
   }),
-  getters: {
-    makeTodos(state) {
-      return state.todos.filter((todo: Todo) =>
-        ['Project', 'Collect', 'Make', 'Pause'].includes(
-          todo.tag as unknown as string
-        )
-      )
-    },
-    finishedTodos(state) {
-      return state.todos.filter((todo: Todo) =>
-        ['Achieve', 'Abolish'].includes(todo.tag as unknown as string)
-      )
-    }
-  },
+  getters: {},
   actions: {
     async create(todoInfo: TodoInfo) {
-      const msg = await createTodo('api/todo', todoInfo)
-      this.$state.todos.push(msg.data)
+      const todo = (await createTodo('api/todo', todoInfo)).data
+      this.$state.todos.push(todo)
     },
     async select() {
-      const todoList = await selectTodo('api/todo')
-      const todos = todoList.data
+      const todos = (await selectTodo('api/todo')).data
       this.todos = todos
     },
     async update(todoInfo: TodoInfo) {
-      const msg = await updateTodo('api/todo', todoInfo)
-      if (msg.status === 200) {
+      if (
+        (todoInfo.tag as any) === 'Achieve' ||
+        (todoInfo.tag as any) === 'Abolish'
+      ) {
+        await finishStore.create(todoInfo)
         this.select()
+      } else {
+        const msg = await updateTodo('api/todo', todoInfo)
+        if (msg.status === 200) {
+          this.select()
+        }
       }
     },
     async delete(id: number) {

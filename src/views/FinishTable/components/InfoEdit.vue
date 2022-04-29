@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 18:59:02
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-27 21:55:33
+ * @LastEditTime: 2022-04-29 15:03:14
  * @Description: 表格编辑
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -11,6 +11,17 @@
   <n-form :model="model" :rules="rules">
     <n-form-item label="任务" path="title">
       <n-input v-model:value="model.title" placeholder="任务" disabled />
+    </n-form-item>
+    <n-form-item label="备注">
+      <n-input
+        v-model:value="model.note"
+        placeholder="请输入备注"
+        type="textarea"
+        :autosize="{
+          minRows: 2,
+          maxRows: 3
+        }"
+      />
     </n-form-item>
     <n-form-item label="点赞" path="like">
       <n-input-number v-model:value="model.like" placeholder="点赞" />
@@ -31,16 +42,16 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { TodoInfo } from '@/types/store'
-import { useStateStore, useTodoStore, useTodoInfoStore } from '@/stores'
+import { FinishInfo } from '@/types/store'
+import { useStateStore, useFinishStore, useFinishInfoStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 
 const stateStore = useStateStore()
-const todoInfoStore = useTodoInfoStore()
-const todoStore = useTodoStore()
+const finishInfoStore = useFinishInfoStore()
+const finishStore = useFinishStore()
 const { editModel } = storeToRefs(stateStore)
 
-const model = ref({} as TodoInfo)
+const model = ref({} as FinishInfo)
 
 let rules = {
   title: {
@@ -69,7 +80,7 @@ let rules = {
 }
 
 function handleSubmit() {
-  todoStore.update(model.value)
+  finishStore.update(model.value)
   editModel.value = false
 }
 
@@ -78,6 +89,6 @@ function handleCancel() {
 }
 
 onMounted(() => {
-  model.value = todoInfoStore.$state
+  model.value = finishInfoStore.$state
 })
 </script>

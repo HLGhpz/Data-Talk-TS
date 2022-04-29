@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-19 18:25:53
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-28 22:43:00
+ * @LastEditTime: 2022-04-29 16:25:31
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,14 +17,14 @@ import { NTag } from 'naive-ui'
 import { Icon } from '@/components'
 
 // 引入数据
-import { Todo } from '@/types/store'
-import { TagColorEnum, OperationEnum, ChartTypeEnum, TagEnum } from '@/enums'
-import { useTodoInfoStore, useStateStore } from '@/stores'
+import { Finish } from '@/types/store'
+import { TagColorEnum, OperationEnum, ChartTypeEnum } from '@/enums'
+import { useFinishInfoStore, useStateStore } from '@/stores'
 
 // 引入图标
 import { Coin, Like, Star } from '@/assets/icons'
 
-const todoInfoStore = useTodoInfoStore()
+const finishInfoStore = useFinishInfoStore()
 const stateStore = useStateStore()
 
 function makeColumn() {
@@ -32,7 +32,7 @@ function makeColumn() {
     {
       title: 'ID',
       key: 'id',
-      render(row: Todo) {
+      render(row: Finish) {
         return h('h3', {}, { default: () => row.id })
       }
     },
@@ -43,7 +43,7 @@ function makeColumn() {
     {
       title: '数据类型',
       key: 'dataType',
-      render(row: Todo) {
+      render(row: Finish) {
         return h(
           NTag,
           {
@@ -57,7 +57,7 @@ function makeColumn() {
     {
       title: '图表类型',
       key: 'chartType',
-      render(row: Todo) {
+      render(row: Finish) {
         const chartTypes = row.chartType?.split('&').map((type) => {
           return h(
             NTag,
@@ -78,8 +78,7 @@ function makeColumn() {
     {
       title: '进度',
       key: 'tag',
-      // sorter: (a, b) => TagEnum[a.tag] - TagEnum[b.tag],
-      render(row: Todo) {
+      render(row: Finish) {
         return h(
           NTag,
           {
@@ -96,14 +95,31 @@ function makeColumn() {
     },
     {
       title: '完成时间',
-      key: 'updatedAt',
-      sorter: (a: Todo, b: Todo) =>
-        new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime(),
-      render(row: Todo) {
+      key: 'createdAt',
+      sorter: (a: Finish, b: Finish) =>
+        new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+      render(row: Finish) {
         return h(
           'h3',
           {},
-          { default: () => dayjs(row.updatedAt).format('YY-MM-DD') }
+          { default: () => dayjs(row.createdAt).format('YY-MM-DD') }
+        )
+      }
+    },
+    {
+      title: '制作时长',
+      key: 'createDays',
+      sorter: (a: Finish, b: Finish) =>
+        new Date(a.createDays).getTime() - new Date(b.createDays).getTime(),
+      render(row: Finish) {
+        return h(
+          'span',
+          {
+            style: {
+              'text-align': 'center'
+            }
+          },
+          { default: () => row.createDays }
         )
       }
     },
@@ -152,7 +168,7 @@ function makeColumn() {
     {
       title: '编辑',
       key: 'action',
-      render(row: Todo) {
+      render(row: Finish) {
         if ((row.tag as any) === 'Achieve') {
           return h(
             Icon,
@@ -165,17 +181,13 @@ function makeColumn() {
               onClick: () => {
                 stateStore.editModel = true
                 stateStore.editType = OperationEnum.Update
-                todoInfoStore.$state = {
+                finishInfoStore.$state = {
                   id: row.id,
                   title: row.title,
-                  abstract: row.abstract,
-                  dataLink: row.dataLink,
-                  dataType: row.dataType,
-                  chartLink: row.chartLink,
-                  chartTypes: row.chartType?.split(
-                    '&'
-                  ) as unknown as ChartTypeEnum[],
-                  tag: row.tag
+                  like: row.like,
+                  coin: row.coin,
+                  star: row.star,
+                  note: row.note
                 }
               }
             },

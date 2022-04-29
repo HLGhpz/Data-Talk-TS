@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-29 11:19:35
+ * @LastEditTime: 2022-04-29 21:56:34
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -52,6 +52,14 @@ const chartRoutes: RouteRecordRaw[] = [
     component: () => import('@/charts/nationalRead/index.vue'),
     meta: {
       title: 'NationalRead'
+    }
+  },
+  {
+    path: 'provinceGDP',
+    name: 'provinceGDP',
+    component: () => import('@/charts/provinceGDP/index.vue'),
+    meta: {
+      title: 'ProvinceGDP'
     }
   }
 ]

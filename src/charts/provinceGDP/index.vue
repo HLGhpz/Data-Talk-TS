@@ -1,26 +1,26 @@
 <!--
  * @Author: HLGhpz
- * @Date: 2022-04-29 11:18:04
+ * @Date: 2022-04-21 20:44:17
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-29 16:53:39
+ * @LastEditTime: 2022-04-29 21:45:43
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
 -->
 
 <template>
-  <PictorialBar></PictorialBar>
+  <bar></bar>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useChartDataStore } from '@/stores'
-import { PictorialBar } from './pictorialBar'
+import { bar } from './bar'
 
 import './watchDataChange'
 
 // 图表数据
-const fileName = 'NationalRead'
+const fileName = 'ProvinceGDP'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -30,4 +30,8 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.chart-wrapper {
+  background-image: url(@/assets/img/backGround-purple.png);
+}
+</style>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-13 21:47:48
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-28 15:00:57
+ * @LastEditTime: 2022-04-29 14:52:37
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -14,7 +14,7 @@
     <n-data-table
       :bordered="true"
       :columns="columns"
-      :data="finishedTodos"
+      :data="finishes"
       :pagination="pagination"
       class="text-wrapper"
     >
@@ -39,12 +39,14 @@ import { Header } from '@/components'
 import { makeColumn } from './finishedConfig'
 
 // 引入全局变量
-import { useStateStore, useTodoStore } from '@/stores'
+import { useFinishStore, useStateStore } from '@/stores'
 
 const stateStore = useStateStore()
-const todoStore = useTodoStore()
 const { editModel } = storeToRefs(stateStore)
-const { finishedTodos } = storeToRefs(todoStore)
+
+const finishStore = useFinishStore()
+const { finishes } = storeToRefs(finishStore)
+
 const columns = makeColumn()
 
 const pagination = {
@@ -52,7 +54,7 @@ const pagination = {
 }
 
 onMounted(async () => {
-  await todoStore.select()
+  await finishStore.select()
 })
 </script>
 

@@ -1,8 +1,8 @@
 <!--
  * @Author: HLGhpz
- * @Date: 2022-04-29 11:18:04
+ * @Date: 2022-04-21 20:44:09
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-29 16:55:05
+ * @LastEditTime: 2022-04-29 21:57:18
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -14,7 +14,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { initChart, adapterChart } from './pictorialBarOps'
+
+import { initChart, adapterChart } from './barOps'
 
 // 固定变量
 const chartDom = ref(null)
@@ -26,8 +27,4 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped>
-.chart-wrapper {
-  background-image: url(@/assets/img/backGround-orange.png);
-}
-</style>
+<style scoped></style>
