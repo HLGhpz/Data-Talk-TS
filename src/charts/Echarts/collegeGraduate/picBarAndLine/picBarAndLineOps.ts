@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 18:27:15
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 19:43:03
+ * @LastEditTime: 2022-04-28 21:04:26
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -14,8 +14,7 @@ import { storeToRefs } from 'pinia'
 import * as echarts from 'echarts'
 
 // 引入图标
-import CollegeStudent from '@/assets/icons/CollegeStudent.png'
-import PostGraduateStudent from '@/assets/icons/PostGraduateStudent.png'
+import { CollegeStudent, PostGraduateStudent } from '@/assets/icons'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -30,18 +29,32 @@ const pathSymbols = {
 }
 
 // 标签配置
-const labelSetting = {
+const GraduateLabelSetting = {
   show: true,
   position: 'right',
-  offset: [10, 0],
-  fontSize: 20
+  fontSize: 22,
+  color: '#0072FF',
+  formatter: (params: any) => {
+    return `   应届毕业生人数：${params.data['Graduate']} 万`
+  }
+}
+
+const KaoYanLabelSetting = {
+  show: true,
+  position: 'right',
+  fontSize: 22,
+  color: '#000',
+  formatter: (params: any) => {
+    return `   考研人数：${params.data['KaoYan']} 万`
+  }
 }
 
 // 初始化配置
 const initOption: EChartsOption = {
   grid: [
     {
-      bottom: '20%'
+      top: '13%',
+      bottom: '15%'
     },
     {
       top: '80%'
@@ -92,7 +105,7 @@ const initOption: EChartsOption = {
       type: 'pictorialBar',
       xAxisIndex: 0,
       yAxisIndex: 0,
-      label: labelSetting as any,
+      label: GraduateLabelSetting as any,
       symbol: pathSymbols.CollegeStudent,
       symbolRepeat: true,
       symbolSize: [40, 40],
@@ -103,7 +116,7 @@ const initOption: EChartsOption = {
       type: 'pictorialBar',
       xAxisIndex: 0,
       yAxisIndex: 0,
-      label: labelSetting as any,
+      label: KaoYanLabelSetting as any,
       symbol: pathSymbols.PostGraduateStudent,
       symbolRepeat: true,
       symbolSize: [40, 40],
@@ -127,11 +140,11 @@ const initOption: EChartsOption = {
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
           {
             offset: 0,
-            color: 'rgb(0, 221, 255)'
+            color: 'rgba(0, 221, 255, 0.5)'
           },
           {
             offset: 1,
-            color: 'rgb(77, 119, 255)'
+            color: 'rgba(77, 119, 255, 0.5)'
           }
         ])
       }
@@ -241,11 +254,7 @@ function adapterChart() {
       }
     },
     xAxis: [
-      {
-        // axisLabel: {
-        //   fontSize: titleFontSize * scaleSize
-        // }
-      },
+      {},
       {
         axisLabel: {
           fontSize: titleFontSize * scaleSize

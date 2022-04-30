@@ -2,18 +2,19 @@
  * @Author: HLGhpz
  * @Date: 2022-04-13 21:47:48
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-27 22:22:37
+ * @LastEditTime: 2022-04-30 23:10:13
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
 -->
 
 <template>
+  <Header></Header>
   <n-space vertical :size="12" class="data-table">
     <n-data-table
       :bordered="true"
       :columns="columns"
-      :data="finishedTodos"
+      :data="finishes"
       :pagination="pagination"
       class="text-wrapper"
     >
@@ -26,18 +27,26 @@
 </template>
 
 <script setup lang="ts">
+// 引入函数
 import { onMounted } from 'vue'
-// import { selectTodo } from '@/api/crud'
-import { makeColumn } from './finishedConfig'
-import { useStateStore, useTodoStore } from '@/stores'
-import { InfoEdit, EditBall } from './components'
 import { storeToRefs } from 'pinia'
 
-// const todoPath = 'api/todo'
+// 引入组件
+import { InfoEdit, EditBall } from './components'
+import { Header } from '@/components'
+
+// 引入表格数据
+import { makeColumn } from './finishedConfig'
+
+// 引入全局变量
+import { useFinishStore, useStateStore } from '@/stores'
+
 const stateStore = useStateStore()
-const todoStore = useTodoStore()
 const { editModel } = storeToRefs(stateStore)
-const { finishedTodos } = storeToRefs(todoStore)
+
+const finishStore = useFinishStore()
+const { finishes } = storeToRefs(finishStore)
+
 const columns = makeColumn()
 
 const pagination = {
@@ -45,7 +54,7 @@ const pagination = {
 }
 
 onMounted(async () => {
-  await todoStore.select()
+  await finishStore.select()
 })
 </script>
 

@@ -2,13 +2,12 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-27 17:28:51
+ * @LastEditTime: 2022-04-30 23:08:10
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
 import chartRoutes from './chartRoutes'
-import mainRoutes from './mainRoutes'
 
 import type { RouteRecordRaw } from 'vue-router'
 
@@ -22,10 +21,35 @@ const routes: RouteRecordRaw[] = [
    */
   {
     path: '/',
-    name: 'layout',
-    component: () => import('@/layout/index.vue'),
-    children: [...mainRoutes],
-    redirect: '/home'
+    name: 'home',
+    component: () => import('@views/home.vue'),
+    meta: {
+      title: 'Home'
+    }
+  },
+  {
+    path: '/animation',
+    name: 'animation',
+    component: () => import('@views/Animation/index.vue'),
+    meta: {
+      title: 'Animation'
+    }
+  },
+  {
+    path: '/todo',
+    name: 'todo',
+    component: () => import('@/views/TodoTable/index.vue'),
+    meta: {
+      title: 'TodoTable'
+    }
+  },
+  {
+    path: '/finish',
+    name: 'finish',
+    component: () => import('@/views/FinishTable/index.vue'),
+    meta: {
+      title: 'FinishTable'
+    }
   },
   {
     path: '/chart',
@@ -33,11 +57,6 @@ const routes: RouteRecordRaw[] = [
     component: () =>
       import(/* webpackChunkName: "chart" */ '@/charts/index.vue'),
     children: [...chartRoutes]
-  },
-  {
-    path: '/animation',
-    name: 'animation',
-    component: () => import('@/views/Animation/index.vue')
   }
 ]
 

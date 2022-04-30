@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 21:07:34
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 20:47:32
+ * @LastEditTime: 2022-04-29 11:29:41
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -18,7 +18,7 @@ const chartDataStore = useChartDataStore()
 
 const { showDataChange } = storeToRefs(stateStore)
 
-let dataIndex = 0
+let dataIndex = 1
 let showDataLength = 10
 let chartInterval: any = null
 
@@ -29,7 +29,6 @@ watch(showDataChange, (newValue) => {
       chartDataStore.changeShowData(dataIndex, showDataLength)
       updatePictorialBarChart()
       dataIndex++
-      // updateLineChart()
     }, 1000)
   } else {
     clearInterval(chartInterval)

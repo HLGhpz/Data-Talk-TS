@@ -1,8 +1,8 @@
 <!--
  * @Author: HLGhpz
- * @Date: 2022-04-27 15:04:07
+ * @Date: 2022-04-28 14:33:39
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-27 21:16:53
+ * @LastEditTime: 2022-04-30 23:06:13
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -19,11 +19,16 @@ import { NIcon } from 'naive-ui'
 
 import { LogoGithub as Github, Refresh } from '@vicons/ionicons5'
 import { NotepadEdit20Regular as NoteEdit } from '@vicons/fluent'
+import { AddTaskSharp as AddTask, TaskAltSharp as Task } from '@vicons/material'
+import { StopOutlined as Stop } from '@vicons/antd'
 
 const icons = {
   Github,
   Refresh,
-  NoteEdit
+  NoteEdit,
+  AddTask,
+  Task,
+  Stop
 }
 
 const props = defineProps({

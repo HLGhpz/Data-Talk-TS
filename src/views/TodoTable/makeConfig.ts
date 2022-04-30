@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 15:54:49
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-28 11:08:39
+ * @LastEditTime: 2022-04-30 23:09:36
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -81,13 +81,11 @@ function makeColumn() {
       key: 'dataChart',
       render(row: Todo) {
         return h(
-          'h3',
+          'h5',
           {
             onclick: () => {
-              console.log('row', row.chartLink)
-              console.log('router', router)
               router.push({
-                name: 'collegeGraduate'
+                name: row.chartLink
               })
             }
           },

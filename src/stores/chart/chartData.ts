@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 15:06:38
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-26 20:49:47
+ * @LastEditTime: 2022-04-29 12:17:23
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -30,11 +30,11 @@ export const useChartDataStore = defineStore('chartData', {
       let startToEndData = []
       let rowLength = this.rowData.length
       if (dataIndex < showDataLength) {
-        startToEndData = this.rowData.slice(0, dataIndex + 1)
-      } else if (dataIndex >= showDataLength && dataIndex <= rowLength) {
+        startToEndData = this.rowData.slice(0, dataIndex)
+      } else if (dataIndex >= showDataLength && dataIndex < rowLength) {
         startToEndData = this.rowData.slice(
           dataIndex - showDataLength,
-          dataIndex + 1
+          dataIndex
         )
       } else {
         startToEndData = this.rowData.slice(
@@ -43,9 +43,9 @@ export const useChartDataStore = defineStore('chartData', {
         )
         stateStore.showDataChange = false
       }
-      this.zeroToEndData = this.rowData.slice(0, dataIndex + 1)
+      this.zeroToEndData = this.rowData.slice(0, dataIndex)
       this.startToEndData = startToEndData
-      this.latestData = this.rowData[dataIndex]
+      this.latestData = this.rowData[dataIndex - 1]
     }
   }
 })
