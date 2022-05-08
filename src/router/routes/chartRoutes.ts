@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-30 23:08:03
+ * @LastEditTime: 2022-05-07 19:41:33
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -13,7 +13,7 @@ import type { RouteRecordRaw } from 'vue-router'
  * 路由配置
  * @description 所有路由都在这里集中管理
  */
-const echartRoutes: RouteRecordRaw[] = [
+export const echartRoutes: RouteRecordRaw[] = [
   {
     path: 'CNY_JPY',
     name: 'CNY_JPY',
@@ -64,8 +64,13 @@ const echartRoutes: RouteRecordRaw[] = [
   }
 ]
 
-const g2Routes: RouteRecordRaw[] = []
-
-const chartRoutes: RouteRecordRaw[] = [...echartRoutes, ...g2Routes]
-
-export default chartRoutes
+export const g2Routes: RouteRecordRaw[] = [
+  {
+    path: 'candle',
+    name: 'candle',
+    component: () => import('@/charts/G2/Candle/index.vue'),
+    meta: {
+      title: 'Candle'
+    }
+  }
+]

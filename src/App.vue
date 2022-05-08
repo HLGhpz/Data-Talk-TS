@@ -8,15 +8,12 @@
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
 -->
 <template>
-  <provider>
-    <router-view :key="key" />
-  </provider>
+  <router-view :key="key" />
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { Provider } from './components'
 
 const route = useRoute()
 const key = computed(() =>

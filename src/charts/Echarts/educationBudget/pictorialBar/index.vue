@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-25 11:38:52
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-28 16:29:18
+ * @LastEditTime: 2022-05-08 16:55:33
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -20,6 +20,7 @@ import { initChart, adapterChart } from './pictorialBarOps'
 const chartDom = ref(null)
 
 onMounted(async () => {
+  console.log('chartDom', chartDom.value)
   initChart(chartDom.value as unknown as HTMLDivElement)
   window.addEventListener('resize', adapterChart)
   adapterChart()

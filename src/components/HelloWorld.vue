@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-30 23:07:42
+ * @LastEditTime: 2022-05-07 20:23:07
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -12,20 +12,7 @@
   <h1><router-link :to="{ name: 'finish' }">Finish</router-link></h1>
   <ul>
     <li>
-      <router-link :to="{ name: 'animation' }">Animation</router-link>
-    </li>
-    <li>
-      <router-link :to="{ name: 'CNY_JPY' }">CNY_JPY</router-link>
-    </li>
-    <li>
-      <router-link :to="{ name: 'collegeGraduate' }"
-        >CollegeGraduate</router-link
-      >
-    </li>
-    <li>
-      <router-link :to="{ name: 'educationBudget' }"
-        >EducationBudget</router-link
-      >
+      <router-link :to="{ name: 'candle' }">Candle</router-link>
     </li>
   </ul>
 </template>

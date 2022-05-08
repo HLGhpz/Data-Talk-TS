@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-19 19:52:02
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-21 17:49:08
+ * @LastEditTime: 2022-05-07 20:23:03
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -70,7 +70,7 @@ function initChart() {
     },
     series: [
       {
-        type: 'candlestick'
+        type: 'candle'
       }
     ]
   }
