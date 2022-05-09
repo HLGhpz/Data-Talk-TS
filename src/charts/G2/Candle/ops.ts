@@ -2,33 +2,26 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-08 15:45:00
+ * @LastEditTime: 2022-05-09 23:14:22
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
 
-import { EChartsOption } from 'echarts'
+import { Chart } from '@antv/g2'
+import DataSet from '@antv/data-set'
 import { useChartDataStore } from '@/stores'
 import { storeToRefs } from 'pinia'
-import * as echarts from 'echarts'
-import Funding from '@/assets/icons/Funding.png'
+
+import moment from 'moment'
+moment.locale('zh-cn')
+
+// 图表变量
+let chart: any = null
 
 // 全局变量
 const chartDataStore = useChartDataStore()
-const { startToEndData, latestData } = storeToRefs(chartDataStore)
-
-let chart: any = null
-
-
-// 标签配置
-const labelSetting = {
-
-}
-
-// 初始化配置
-const initOption: EChartsOption = {
-}
+const { latestData } = storeToRefs(chartDataStore)
 
 /**
  * @description:初始化图表
@@ -36,7 +29,84 @@ const initOption: EChartsOption = {
  * @return {*}
  */
 function initChart(chartDom: HTMLDivElement) {
+  chart = new Chart({
+    container: chartDom as unknown as HTMLDivElement,
+    autoFit: true,
+    padding: [100, 100, 100, 100]
+  })
 
+  // 设置图表数据
+  chart.data(chartDataStore.rowData)
+
+  // 设置图表度量
+  chart.scale({
+    date: {
+      type: 'timeCat',
+      range: [0, 1],
+      tickCount: 5,
+      nice: true
+    },
+    trend: {
+      values: ['up', 'down']
+    },
+    range: {
+      alias: '卢布汇率',
+      nice: true
+    }
+  })
+
+  // 设置图表图例
+  chart.legend({
+    itemName: {
+      style: {
+        fontSize: 18,
+        fill: '#000'
+      }
+    },
+    offsetY: -10
+  })
+
+  // 设置坐标轴
+  chart.axis('Date', {
+    label: {
+      formatter: (val) => {
+        return moment(val, 'YYYY-MM-DD').format('MM月DD')
+      },
+      style: {
+        fontSize: 18,
+        fill: '#000'
+      },
+      offset: 30
+    }
+  })
+
+  chart.axis('range', {
+    label: {
+      style: {
+        fontSize: 18,
+        fill: '#000'
+      },
+      offset: 30
+    }
+  })
+
+  // 设置图表
+  chart
+    .schema()
+    .position('Date*range')
+    .color('trend', (val) => {
+      if (val === 'up') {
+        return '#f04864'
+      }
+
+      if (val === 'down') {
+        return '#2fc25b'
+      }
+    })
+    .size(6)
+    .shape('candle')
+
+  chart.render()
 }
 
 /**
@@ -45,79 +115,26 @@ function initChart(chartDom: HTMLDivElement) {
  * @return {*}
  */
 function updateChart() {
+  // 清除辅助标注
+  chart.annotation().clear(true)
+
+  // 设置辅助标注
+  chart.annotation().text({
+    position: ['5%', '10%'],
+    content: `时间：${latestData.value.Date}\n
+    开盘汇率：${latestData.value.Open}\n
+    收盘汇率：${latestData.value.Close}\n
+    最高汇率：${latestData.value.High}\n
+    最低汇率：${latestData.value.Low}`,
+    style: {
+      fontSize: 22,
+      textAlign: 'left',
+      fill: '#000'
+    }
+  })
+
   // 数据配置
-  const dataOption: EChartsOption = {
-    dataset: {
-      source: startToEndData.value
-    },
-    series: [
-      {
-        encode: {
-          x: '2022Budget',
-          y: 'School'
-        }
-      }
-    ],
-    graphic: {
-      elements: [
-        {
-          type: 'text',
-          right: 200,
-          bottom: 250,
-          style: {
-            text: `${latestData.value.School}：${latestData.value['2022Budget']} 亿元`,
-            font: 'bold 60px Microsoft YaHei',
-            fill: 'rgba(100,100,100,1)'
-          }
-        },
-        {
-          type: 'text',
-          right: 200,
-          bottom: 100,
-          style: {
-            text: `排名：${latestData.value.Index}`,
-            font: 'bold 60px Microsoft YaHei',
-            fill: 'rgba(241,147,156,1)'
-          }
-        }
-      ]
-    }
-  }
-  chart.setOption(dataOption)
+  chart.changeData(chartDataStore.zeroToEndData)
 }
 
-/**
- * @description:屏幕自适应
- * @param {*}
- * @return {*}
- */
-function adapterChart() {
-  let winHeight = window.innerHeight
-  let titleFontSize = (winHeight / 100) * 3.6
-  let scaleSize = 0.6
-  // 屏幕自适应配置
-  const adapterOption: EChartsOption = {
-    title: {
-      textStyle: {
-        fontSize: titleFontSize,
-        fontWeight: 'bold'
-      }
-    },
-    xAxis: {
-      axisLabel: {
-        fontSize: titleFontSize * scaleSize,
-        fontWeight: 'bold'
-      }
-    },
-    yAxis: {
-      axisLabel: {
-        fontSize: titleFontSize * scaleSize,
-        fontWeight: 'bold'
-      }
-    }
-  }
-  chart.setOption(adapterOption)
-  chart.resize()
-}
-
-export { initChart, updateChart, adapterChart }
+export { initChart, updateChart }

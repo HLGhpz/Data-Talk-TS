@@ -14,9 +14,9 @@ import { useStateStore } from '../state'
 
 export const useChartDataStore = defineStore('chartData', {
   state: () => ({
-    rowData: [],
-    startToEndData: [],
-    zeroToEndData: [],
+    rowData: [] as any[],
+    startToEndData: [] as any[],
+    zeroToEndData: [] as any[],
     latestData: {} as any
   }),
   getters: {},
