@@ -2,14 +2,13 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-09 23:14:22
+ * @LastEditTime: 2022-05-10 22:38:38
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
 
 import { Chart } from '@antv/g2'
-import DataSet from '@antv/data-set'
 import { useChartDataStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 

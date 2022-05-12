@@ -18,6 +18,7 @@ export enum DataTypeEnum {
   Science,
   CultureSport,
   Agriculture,
+  Military,
   Industry,
   Service,
   RealEstate,
