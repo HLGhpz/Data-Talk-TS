@@ -84,7 +84,6 @@ const initOption: EChartsOption = {
 function initChart(chartDom: HTMLDivElement) {
   chart = echarts.init(chartDom)
   chart.setOption(initOption)
-  console.log('初始化', chart.getOption())
 }
 
 /**

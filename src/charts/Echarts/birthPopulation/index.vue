@@ -26,7 +26,6 @@ const fileName = 'EducationBudget'
 const chartDataStore = useChartDataStore()
 
 onMounted(async () => {
-  console.log('onMounted EducationBudget')
   await chartDataStore.getChartData(fileName)
 })
 </script>

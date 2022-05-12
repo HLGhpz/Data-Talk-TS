@@ -42,7 +42,6 @@ const pagination = {
   pageSize: 10
 }
 onMounted(async () => {
-  console.log('onMounted TodoTable')
   await todoStore.select()
 })
 </script>

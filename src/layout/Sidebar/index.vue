@@ -46,7 +46,6 @@ const activeName = ref('/')
 const layoutOptions = ref(menuLink)
 const handleMenuSelect = (value) => {
   activeName.value = value
-  console.log('activeName', activeName.value)
   router.push({
     path: value
   })

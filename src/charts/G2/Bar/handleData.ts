@@ -26,7 +26,6 @@ function handleData(rowData: any) {
       return obj.Index <= 50
     }
   })
-  console.log('rows', dv.rows)
   return dv.rows
 }
 
