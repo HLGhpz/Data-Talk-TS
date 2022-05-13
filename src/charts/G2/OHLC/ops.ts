@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-13 21:45:07
+ * @LastEditTime: 2022-05-13 23:52:19
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -61,8 +61,8 @@ function initChart() {
       formatter: (date) => {
         return dayjs(date).format('DD日 HH:mm')
       },
-      range: [0, 1],
-      tickCount: 5,
+      // range: [0, 1],
+      // tickCount: 5,
       nice: true
     },
     trend: {
@@ -141,7 +141,7 @@ function updateChart() {
   annotation.innerHTML = `
   <div class="annotation">
   <P class="annotation-text">Date：${dayjs(annotationData.Date).format(
-    'DD日 HH:mm'
+    'DD 日 HH:mm 时'
   )}<br/>Open：${annotationData.Open.toFixed(5)} ＄
   <br/>High：${annotationData.High.toFixed(5)} ＄
   <br/>Low：${annotationData.Low.toFixed(5)} ＄

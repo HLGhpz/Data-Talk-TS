@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 15:54:49
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-30 23:09:36
+ * @LastEditTime: 2022-05-13 23:45:16
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -198,7 +198,9 @@ function makeColumn() {
                 chartTypes: row.chartType?.split(
                   '&'
                 ) as unknown as ChartTypeEnum[],
-                tag: row.tag
+                tag: row.tag,
+                createdAt: row.createdAt,
+                updatedAt: row.updatedAt
               }
             }
           },
