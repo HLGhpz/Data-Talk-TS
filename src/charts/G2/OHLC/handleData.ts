@@ -1,8 +1,8 @@
 /*
  * @Author: HLGhpz
- * @Date: 2022-05-10 21:14:55
+ * @Date: 2022-05-09 22:30:32
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-10 23:02:58
+ * @LastEditTime: 2022-05-13 21:24:34
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -19,11 +19,11 @@ function handleData(rowData: any) {
   const ds = new DataSet()
   const dv = ds.createView().source(rowData)
   dv.transform({
-    type: 'reverse'
-  }).transform({
-    type: 'filter',
+    type: 'map',
     callback: (obj) => {
-      return obj.Index <= 100
+      obj.trend = obj.Close - obj.Open > 0 ? 'up' : 'down'
+      obj.range = [obj.Open, obj.Close, obj.High, obj.Low]
+      return obj
     }
   })
   return dv.rows

@@ -80,5 +80,13 @@ export const g2Routes: RouteRecordRaw[] = [
     meta: {
       title: 'Bar'
     }
+  },
+  {
+    path: 'ohlc',
+    name: 'ohlc',
+    component: () => import('@/charts/G2/OHLC/index.vue'),
+    meta: {
+      title: 'OHLC'
+    }
   }
 ]

@@ -1,13 +1,3 @@
-/*
- * @Author: HLGhpz
- * @Date: 2022-05-08 15:27:29
- * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-13 20:20:57
- * @Description:
- *
- * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
- */
-
 import { Chart } from '@antv/g2'
 import { useChartDataStore } from '@/stores'
 import { storeToRefs } from 'pinia'
@@ -126,6 +116,16 @@ function updateChart() {
   <P class="annotation-text">排名：${annotationData.Index}</P>
   </div>
   `
+
+  // // 设置辅助标注
+  // chart.annotation().text({
+  //   position: ['50%', '85%'],
+  //   content: `${latestData.value.Zh}：${latestData.value.DefenseSpend}＄`,
+  //   style: {
+  //     fontSize: 50,
+  //     fill: '#8b8b8b'
+  //   }
+  // })
 
   // 数据配置
   chart.changeData(chartDataStore.startToEndData)
