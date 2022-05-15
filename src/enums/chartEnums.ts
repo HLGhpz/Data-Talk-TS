@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-20 22:13:44
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-07 20:23:09
+ * @LastEditTime: 2022-05-14 16:45:38
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -13,6 +13,7 @@ export enum ChartTypeEnum {
   bar,
   line,
   scatter,
+  calendar,
   effectScatter,
   radar,
   tree,
