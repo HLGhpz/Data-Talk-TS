@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-13 23:52:19
+ * @LastEditTime: 2022-05-16 13:37:02
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -48,7 +48,7 @@ function initChart() {
   chart = new Chart({
     container: 'chartDom',
     autoFit: true,
-    padding: [100, 100, 100, 100]
+    padding: [100, 150, 150, 100]
   })
 
   // 设置图表数据
@@ -69,7 +69,9 @@ function initChart() {
       values: ['up', 'down']
     },
     range: {
-      alias: '卢布汇率',
+      alias: 'Luna',
+      // min: 0,
+      // max: 80,
       nice: true
     }
   })
@@ -107,7 +109,10 @@ function initChart() {
         fill: '#000'
       },
       offset: 30
-    }
+    },
+    line: null,
+    tickLine: null,
+    grid: null
   })
 
   // 设置图表
@@ -138,14 +143,27 @@ function updateChart() {
   // 设置辅助标注
   const annotation = document.getElementById('annotation')
   const annotationData = latestData.value
+  let trendHtml = ''
+  if (annotationData.trend === 'up') {
+    trendHtml = `<br/><p class="annotation-text" style="color:#f04864">上扬：${(
+      annotationData.Close - annotationData.Open
+    ).toFixed(5)}＄</p>`
+  } else {
+    trendHtml = `<br/><p class="annotation-text" style="color:#2fc25b">下跌：${(
+      annotationData.Open - annotationData.Close
+    ).toFixed(5)}＄</p>`
+  }
   annotation.innerHTML = `
   <div class="annotation">
-  <P class="annotation-text">Date：${dayjs(annotationData.Date).format(
+  <P class="annotation-text">${dayjs(annotationData.Date).format(
     'DD 日 HH:mm 时'
-  )}<br/>Open：${annotationData.Open.toFixed(5)} ＄
-  <br/>High：${annotationData.High.toFixed(5)} ＄
-  <br/>Low：${annotationData.Low.toFixed(5)} ＄
-  <br/>Close：${annotationData.Close.toFixed(5)} ＄</P>
+  )}
+ <br/>开盘：${annotationData.Open.toFixed(5)} ＄
+  <br/>高点：${annotationData.High.toFixed(5)} ＄
+  <br/>低点：${annotationData.Low.toFixed(5)} ＄
+  <br/>关盘：${annotationData.Close.toFixed(5)} ＄
+  ${trendHtml}
+  </P>
   </div>
   `
 

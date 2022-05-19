@@ -1,3 +1,12 @@
+/*
+ * @Author: HLGhpz
+ * @Date: 2022-05-16 12:26:31
+ * @LastEditors: HLGhpz
+ * @LastEditTime: 2022-05-19 17:12:59
+ * @Description:
+ *
+ * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
+ */
 import { watch } from 'vue'
 import { useChartDataStore, useStateStore } from '@/stores'
 import { storeToRefs } from 'pinia'
@@ -16,10 +25,16 @@ watch(showDataChange, (newValue) => {
   if (newValue) {
     chartInterval = setInterval(() => {
       chartDataStore.changeShowData(dataIndex, showDataLength)
-      updateChart()
+      independentUpdate()
+      // updateChart()
       dataIndex++
     }, 1000)
   } else {
     clearInterval(chartInterval)
   }
 })
+
+function independentUpdate() {
+  console.log(chartDataStore.zeroToEndData)
+  // chartDataStore.independentData =
+}

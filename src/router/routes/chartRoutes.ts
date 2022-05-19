@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-14 23:05:53
+ * @LastEditTime: 2022-05-19 22:17:44
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -95,6 +95,17 @@ export const g2Routes: RouteRecordRaw[] = [
     component: () => import('@/charts/G2/Calendar/index.vue'),
     meta: {
       title: 'Calendar'
+    }
+  }
+]
+
+export const animationRoutes: RouteRecordRaw[] = [
+  {
+    path: 'card',
+    name: 'card',
+    component: () => import('@/charts/Animation/Card/index.vue'),
+    meta: {
+      title: 'Card'
     }
   }
 ]

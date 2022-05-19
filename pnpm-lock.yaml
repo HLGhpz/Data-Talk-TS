@@ -28,6 +28,7 @@ specifiers:
   eslint-plugin-prettier: ^4.0.0
   eslint-plugin-vue: ^8.5.0
   flag-icons: ^6.3.0
+  gsap: ^3.10.4
   husky: ^7.0.4
   insert-css: ^2.0.0
   less: ^4.1.2
@@ -66,6 +67,7 @@ dependencies:
   axios: registry.npmmirror.com/axios/0.26.1
   dayjs: registry.npmmirror.com/dayjs/1.11.1
   echarts: registry.npmmirror.com/echarts/5.3.2
+  gsap: registry.npmmirror.com/gsap/3.10.4
   insert-css: 2.0.0
   mitt: registry.npmmirror.com/mitt/3.0.0
   mockjs: registry.npmmirror.com/mockjs/1.1.0
@@ -4014,6 +4016,12 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  registry.npmmirror.com/gsap/3.10.4:
+    resolution: {integrity: sha512-6QatdkKxXCMfvCW4rM++0RqyLQAzFX5nwl3yHS0XPgkZBkiSEY3VZVbMltrdtsbER/xZonLtyHt684wRp4erlQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/gsap/-/gsap-3.10.4.tgz}
+    name: gsap
+    version: 3.10.4
+    dev: false
 
   registry.npmmirror.com/handlebars/4.7.7:
     resolution: {integrity: sha512-aAcXm5OAfE/8IXkcZvCepKU3VzW1/39Fb5ZuqMtgI/hT8X2YgoMvBY5dLhq/cpOvw7Lk1nK/UF71aLG/ZnVYRA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/handlebars/-/handlebars-4.7.7.tgz}

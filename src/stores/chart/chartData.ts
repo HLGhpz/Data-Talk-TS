@@ -17,6 +17,7 @@ export const useChartDataStore = defineStore('chartData', {
     rowData: [] as any[],
     startToEndData: [] as any[],
     zeroToEndData: [] as any[],
+    independentData: [] as any[],
     latestData: {} as any
   }),
   getters: {},

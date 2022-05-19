@@ -2,12 +2,12 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-07 19:36:50
+ * @LastEditTime: 2022-05-19 22:20:37
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
-import { echartRoutes, g2Routes } from './chartRoutes'
+import { echartRoutes, g2Routes, animationRoutes } from './chartRoutes'
 
 import type { RouteRecordRaw } from 'vue-router'
 
@@ -63,6 +63,12 @@ const routes: RouteRecordRaw[] = [
     name: 'g2',
     component: () => import('@/charts/index.vue'),
     children: [...g2Routes]
+  },
+  {
+    path: '/animation',
+    name: 'animation',
+    component: () => import('@/charts/index.vue'),
+    children: [...animationRoutes]
   }
 ]
 
