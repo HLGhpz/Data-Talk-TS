@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-10 21:14:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-10 23:02:58
+ * @LastEditTime: 2022-05-24 16:53:30
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -20,12 +20,8 @@ function handleData(rowData: any) {
   const dv = ds.createView().source(rowData)
   dv.transform({
     type: 'reverse'
-  }).transform({
-    type: 'filter',
-    callback: (obj) => {
-      return obj.Index <= 100
-    }
   })
+  console.log(dv.rows)
   return dv.rows
 }
 

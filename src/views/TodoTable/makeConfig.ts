@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-14 15:54:49
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-13 23:45:16
+ * @LastEditTime: 2022-05-24 18:46:05
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -30,6 +30,7 @@ function makeColumn() {
     {
       title: 'ID',
       key: 'id',
+      width: '5%',
       render(row: Todo) {
         return h(
           'h3',

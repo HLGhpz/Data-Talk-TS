@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-13 20:20:57
+ * @LastEditTime: 2022-05-24 20:58:44
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -24,15 +24,14 @@ inserCss(`
   .annotation {
     position: fixed;
     bottom: 150px;
-    right: 100px;
-    width: 600px;
+    right: 60px;
+    width: 500px;
     z-index: 9999;
   }
 
   .annotation-flag {
-    height: 90px;
-    width: 120px;
-    color: #757575;
+    height: 60px;
+    width: 80px;
   }
 
   .annotation-text {
@@ -40,6 +39,19 @@ inserCss(`
     color: #757575;
   }
 `)
+
+const colorMap = {
+  '🏀': '#FFD49B',
+  '⚽': '#FFE4DD',
+  '🥊': '#D8C8ED',
+  '🎾': '#E0F7C5',
+  '⛳': '#13A10E',
+  '🏈': '#FFB6AD',
+  '🏎️': '#97F3C5',
+  '🥋': '#FBF095',
+  '🏏': '#CFEB8C',
+  '⚾': '#D3F4F5'
+}
 
 /**
  * @description:初始化图表
@@ -58,22 +70,38 @@ function initChart() {
 
   // 设置图表度量
   chart.scale({
-    DefenseSpend: {
-      max: 8000,
+    Total: {
+      max: 130,
       min: 0
+    },
+    Sport: {
+      type: 'cat'
     }
   })
 
   // 设置图表图例
-  chart.legend(false)
+  chart.legend('Sport', {
+    position: 'bottom',
+    offsetY: -25,
+    marker: {
+      style: {
+        fontSize: 20
+      }
+    },
+    text: {
+      style: {
+        fontSize: 20
+      }
+    }
+  })
 
   // 设置坐标轴
   chart.coordinate().transpose()
 
-  chart.axis('Zh', {
+  chart.axis('Athlete', {
     label: {
       style: {
-        fontSize: 22,
+        fontSize: 20,
         fill: '#424242'
       }
     },
@@ -82,7 +110,7 @@ function initChart() {
     grid: null
   })
 
-  chart.axis('DefenseSpend', {
+  chart.axis('Total', {
     label: null,
     line: null,
     tickLine: null,
@@ -92,15 +120,28 @@ function initChart() {
   // 设置图表
   chart
     .interval()
-    .position('Zh*DefenseSpend')
-    .size(26)
-    .color('Zh')
-    .label('DefenseSpend', {
-      style: {
-        fill: '#424242',
-        fontSize: 22
-      }
+    .position('Athlete*Total')
+    .style({
+      radius: [20, 20, 0, 0]
     })
+    .size(20)
+    .color('Sport', (val: string) => {
+      return colorMap[val]
+    })
+    .label(
+      'Total',
+      (val: string) => {
+        return {
+          content: `$${val}M`
+        }
+      },
+      {
+        style: {
+          fill: '#424242',
+          fontSize: 22
+        }
+      }
+    )
 
   chart.render()
 }
@@ -119,11 +160,12 @@ function updateChart() {
   const annotationData = latestData.value
   annotation.innerHTML = `
   <div class="annotation">
-  <span class="annotation-flag fi fi-${annotationData.Short.toLowerCase()}"></span>
-  <P class="annotation-text">${annotationData.Zh}：${
-    annotationData.DefenseSpend
-  } 亿＄</P>
-  <P class="annotation-text">排名：${annotationData.Index}</P>
+  <p class="annotation-text">${annotationData.Sport}</p>
+  <p class="annotation-flag fi fi-${annotationData.Country.toLowerCase()}"></p>
+  <P class="annotation-text">${annotationData.Athlete}</P>
+  <P class="annotation-text">代言：$${annotationData.Endorsements}M</P>
+  <P class="annotation-text">薪酬：$${annotationData.Salary}M</P>
+  <P class="annotation-text">排名：${annotationData.Rank}</P>
   </div>
   `
 
