@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-19 22:20:37
+ * @LastEditTime: 2022-05-26 21:30:40
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -65,8 +65,8 @@ const routes: RouteRecordRaw[] = [
     children: [...g2Routes]
   },
   {
-    path: '/animation',
-    name: 'animation',
+    path: '/animationChart',
+    name: 'animationChart',
     component: () => import('@/charts/index.vue'),
     children: [...animationRoutes]
   }

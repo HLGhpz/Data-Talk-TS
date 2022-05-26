@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-19 22:17:44
+ * @LastEditTime: 2022-05-26 19:56:51
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -95,6 +95,14 @@ export const g2Routes: RouteRecordRaw[] = [
     component: () => import('@/charts/G2/Calendar/index.vue'),
     meta: {
       title: 'Calendar'
+    }
+  },
+  {
+    path: 'treeMap',
+    name: 'treeMap',
+    component: () => import('@/charts/G2/TreeMap/index.vue'),
+    meta: {
+      title: 'TreeMap'
     }
   }
 ]
