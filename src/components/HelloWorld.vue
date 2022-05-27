@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-26 19:59:48
+ * @LastEditTime: 2022-05-27 14:28:48
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -25,6 +25,14 @@
     </li>
     <li>
       <router-link :to="{ name: 'treeMap' }">TreeMap</router-link>
+    </li>
+    <li>
+      <router-link :to="{ name: 'nightingale' }">Nightingale</router-link>
+    </li>
+    <li>
+      <router-link :to="{ name: 'barAndNightingale' }"
+        >BarAndNightingale</router-link
+      >
     </li>
   </ul>
 </template>

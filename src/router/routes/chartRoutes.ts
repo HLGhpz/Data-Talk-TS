@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-26 19:56:51
+ * @LastEditTime: 2022-05-27 14:28:17
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -103,6 +103,22 @@ export const g2Routes: RouteRecordRaw[] = [
     component: () => import('@/charts/G2/TreeMap/index.vue'),
     meta: {
       title: 'TreeMap'
+    }
+  },
+  {
+    path: 'nightingale',
+    name: 'nightingale',
+    component: () => import('@/charts/G2/BarAndNightingale/index.vue'),
+    meta: {
+      title: 'Nightingale'
+    }
+  },
+  {
+    path: 'barAndNightingale',
+    name: 'barAndNightingale',
+    component: () => import('@/charts/G2/BarAndNightingale/index.vue'),
+    meta: {
+      title: 'BarAndNightingale'
     }
   }
 ]

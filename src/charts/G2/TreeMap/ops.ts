@@ -3,7 +3,6 @@ import { DataSet } from '@antv/data-set'
 import { useChartDataStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import inserCss from 'insert-css'
-import { Shape } from '.pnpm/registry.npmmirror.com+@antv+attr@0.3.3/node_modules/@antv/attr'
 
 // 图表变量
 let chart: any = null
@@ -46,7 +45,7 @@ function initChart() {
   chart = new Chart({
     container: 'chartDom',
     autoFit: true,
-    padding: [100, 400, 50, 50]
+    padding: [0, 0, 0, 0]
   })
 
   // 设置图表数据
