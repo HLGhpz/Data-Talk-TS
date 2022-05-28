@@ -1,17 +1,8 @@
 /*
  * @Author: HLGhpz
- * @Date: 2022-05-13 20:08:38
- * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-28 22:18:21
- * @Description:
- *
- * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
- */
-/*
- * @Author: HLGhpz
  * @Date: 2022-05-28 20:39:35
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-28 22:17:11
+ * @LastEditTime: 2022-05-28 22:34:02
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -29,10 +20,16 @@ function handleData(rowData: any) {
   return result
 }
 
-function initData(rowData: any) {
+function handleInitData(rowData: any) {
   let result = []
-  result = _.chain(rowData).filter({ Year: 1961 }).value()
-  return result
+  let assist = {}
+  result = _.chain(rowData).filter({ Year: 1961 }).drop(1).reverse().value()
+  assist = _.chain(rowData).filter({ Year: 1961, rank: 0 }).value()[0]
+
+  return {
+    initData: result,
+    assistData: assist
+  }
 }
 
-export { handleData, initData }
+export { handleData, handleInitData }

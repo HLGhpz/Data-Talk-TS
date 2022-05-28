@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 15:06:38
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-29 12:17:23
+ * @LastEditTime: 2022-05-28 22:12:43
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -11,13 +11,16 @@
 import { defineStore } from 'pinia'
 import { getData } from '@/api/request'
 import { useStateStore } from '../state'
+import _ from 'lodash'
 
 export const useChartDataStore = defineStore('chartData', {
   state: () => ({
     rowData: [] as any[],
+    initData: [] as any[],
     startToEndData: [] as any[],
     zeroToEndData: [] as any[],
-    independentData: [] as any[],
+    dynamicData: [] as any[],
+    assistData: {} as any,
     latestData: {} as any
   }),
   getters: {},
@@ -47,6 +50,16 @@ export const useChartDataStore = defineStore('chartData', {
       this.zeroToEndData = this.rowData.slice(0, dataIndex)
       this.startToEndData = startToEndData
       this.latestData = this.rowData[dataIndex - 1]
+    },
+    changeDynamicData(dataIndex: number, endIndex: number) {
+      const stateStore = useStateStore()
+      if (dataIndex < endIndex) {
+        let temp = _.filter(this.rowData, { Year: dataIndex })
+        this.dynamicData = _.chain(temp).drop(1).reverse().value()
+        this.latestData = _.head(temp)
+      } else {
+        stateStore.showDataChange = false
+      }
     }
   }
 })

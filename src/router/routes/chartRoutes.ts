@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-27 14:28:17
+ * @LastEditTime: 2022-05-28 20:58:23
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -119,6 +119,14 @@ export const g2Routes: RouteRecordRaw[] = [
     component: () => import('@/charts/G2/BarAndNightingale/index.vue'),
     meta: {
       title: 'BarAndNightingale'
+    }
+  },
+  {
+    path: 'dynamicBar',
+    name: 'dynamicBar',
+    component: () => import('@/charts/G2/DynamicBar/index.vue'),
+    meta: {
+      title: 'DynamicBar'
     }
   }
 ]

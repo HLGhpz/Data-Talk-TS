@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-28 20:39:35
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-28 22:17:31
+ * @LastEditTime: 2022-05-28 22:34:40
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,7 +17,7 @@ import { useChartDataStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 import { initChart } from './ops'
-import { handleData } from './handleData'
+import { handleData, handleInitData } from './handleData'
 import './watchDataChange'
 
 // 图表数据
@@ -25,12 +25,15 @@ const fileName = 'BeefProduction'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
-const { rowData, initData } = storeToRefs(chartDataStore)
+const { rowData, initData, assistData } = storeToRefs(chartDataStore)
 
 onMounted(async () => {
   await chartDataStore.getChartData(fileName)
   rowData.value = handleData(rowData.value)
-  initData.value = handleData(initData.value)
+  handleInitData(rowData.value)
+  initData.value = handleInitData(rowData.value).initData
+  assistData.value = handleInitData(rowData.value).assistData
+
   initChart()
 })
 </script>
