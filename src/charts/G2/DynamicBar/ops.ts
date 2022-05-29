@@ -1,10 +1,18 @@
-import { Chart } from '@antv/g2'
+import { Chart, registerShape } from '@antv/g2'
 import { useChartDataStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import inserCss from 'insert-css'
 
 // 图表变量
 let chart: any = null
+const padd = {
+  left: 200,
+  right: 200,
+  top: 100,
+  bottom: 100
+}
+const showDataLength = 20
+const barSize = 26
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -13,21 +21,21 @@ const chartDataStore = useChartDataStore()
 inserCss(`
   .annotation {
     position: fixed;
-    bottom: 150px;
-    right: 100px;
-    width: 600px;
+    height: 100%;
+    width: 100%;
     z-index: 9999;
   }
 
   .annotation-flag {
-    height: 90px;
-    width: 120px;
-    color: #757575;
+    position: fixed;
+    z-index: 9999;
+    height: 26px;
   }
 
   .annotation-text {
-    font-size: 50px;
+    font-size: 100px;
     color: #757575;
+    z-index: 9999;
   }
 `)
 
@@ -40,7 +48,7 @@ function initChart() {
   chart = new Chart({
     container: 'chartDom',
     autoFit: true,
-    padding: [100, 200, 100, 200]
+    padding: [padd.top, padd.right, padd.bottom, padd.left]
   })
 
   // 设置图表数据
@@ -80,7 +88,7 @@ function initChart() {
   chart
     .interval()
     .position('zhName*Production')
-    .size(26)
+    .size(barSize)
     .color('zhName')
     .label('Production', {
       style: {
@@ -89,6 +97,8 @@ function initChart() {
       }
     })
 
+  updateAnnotation()
+  chart.on('beforechangesize', updateAnnotation)
   chart.render()
 }
 
@@ -98,19 +108,35 @@ function initChart() {
  * @return {*}
  */
 function updateChart() {
-  // const annotation = document.getElementById('annotation')
-  // const annotationData = latestData.value
-  // annotation.innerHTML = `
-  // <div class="annotation">
-  // <span class="annotation-flag fi fi-${annotationData.Short.toLowerCase()}"></span>
-  // <P class="annotation-text">${annotationData.Zh}：${
-  //   annotationData.DefenseSpend
-  // } 亿＄</P>
-  // <P class="annotation-text">排名：${annotationData.Index}</P>
-  // </div>
-  // `
   // // 数据配置
+  updateAnnotation()
   chart.changeData(chartDataStore.dynamicData)
+}
+
+function updateAnnotation() {
+  let annotationData = []
+  if (!chartDataStore.dynamicData.length) {
+    annotationData = chartDataStore.initData
+  } else {
+    annotationData = chartDataStore.dynamicData
+  }
+  const annotation = document.getElementById('annotation')
+  const html: any = []
+  let winHeight = window.innerHeight
+  let gap = (winHeight - padd.top - padd.bottom) / showDataLength
+  for (let i = 1; i <= showDataLength; i++) {
+    let miny = padd.bottom + gap * i - gap / 2 - barSize / 2
+    html.push(
+      `<p class="annotation-flag fi fi-${annotationData[
+        showDataLength - i
+      ].iso2Code.toLowerCase()}" style="top: ${miny}px; left: ${
+        padd.left + 5
+      }px;"></p>`
+    )
+  }
+  let assistHtml = `<p class="annotation-text" style="bottom: 150px; right: 150px;">${chartDataStore.assistData.Year}</p>`
+  html.push(assistHtml)
+  annotation.innerHTML = html.join('')
 }
 
 export { initChart, updateChart }

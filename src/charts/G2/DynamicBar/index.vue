@@ -2,14 +2,14 @@
  * @Author: HLGhpz
  * @Date: 2022-05-28 20:39:35
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-28 22:34:40
+ * @LastEditTime: 2022-05-29 17:02:52
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
 -->
 <template>
   <div class="chart-wrapper" id="chartDom"></div>
-  <div id="annotation"></div>
+  <div id="annotation" class="annotation"></div>
 </template>
 
 <script setup lang="ts">
@@ -33,7 +33,6 @@ onMounted(async () => {
   handleInitData(rowData.value)
   initData.value = handleInitData(rowData.value).initData
   assistData.value = handleInitData(rowData.value).assistData
-
   initChart()
 })
 </script>
