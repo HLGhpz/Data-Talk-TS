@@ -11,8 +11,42 @@ const padd = {
   top: 100,
   bottom: 100
 }
-const showDataLength = 20
-const barSize = 26
+const showDataLength = 15
+const barSize = 30
+
+// 颜色映射
+const colorMap = {
+  UN: '#5EA4E0',
+  US: '#000066',
+  OWID_USS: '#E01F54',
+  DE: '#001852',
+  CN: '#E71B24',
+  PL: '#f5e8c8',
+  FR: '#b8d2c7',
+  GB: '#c6b38e',
+  DK: '#a4d8c2',
+  CA: '#f3d999',
+  BR: '#d3758f',
+  HU: '#dcc392',
+  OWID_YGS: '#2e4783',
+  OWID_CZS: '#82b6e9',
+  MX: '#ff6347',
+  IT: '#a092f1',
+  NL: '#0a915d',
+  AT: '#eaf889',
+  RO: '#6699FF',
+  VN: '#ff6666',
+  LU: '#3cb371',
+  JP: '#d5b158',
+  ES: '#38b6b6',
+  PH: '#E01F54',
+  RU: '#001852',
+  UA: '#f5e8c8',
+  KR: '#b8d2c7',
+  BE: '#c6b38e',
+  TH: '#a4d8c2',
+  MM: '#f3d999'
+}
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -29,12 +63,14 @@ inserCss(`
   .annotation-flag {
     position: fixed;
     z-index: 9999;
-    height: 26px;
+    height: ${barSize}px;
+    width: ${barSize}px;
   }
 
   .annotation-text {
-    font-size: 100px;
-    color: #757575;
+    position: fixed;
+    font-size: 300px;
+    color: #424242;
     z-index: 9999;
   }
 `)
@@ -78,10 +114,29 @@ function initChart() {
   })
 
   chart.axis('Production', {
-    label: null,
+    label: {
+      style: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        fill: '#b71c1c'
+      },
+      offset: 25,
+      formatter: (val: any) => {
+        return val / 10000
+      }
+    },
     line: null,
     tickLine: null,
-    grid: null
+    grid: {
+      line: {
+        style: {
+          type: 'line',
+          stroke: '#b71c1c',
+          lineDash: [4, 4],
+          strokeOpacity: 0.5
+        }
+      }
+    }
   })
 
   // 设置图表
@@ -89,11 +144,16 @@ function initChart() {
     .interval()
     .position('zhName*Production')
     .size(barSize)
-    .color('zhName')
+    .color('iso2Code', (val: string) => {
+      return colorMap[val]
+    })
     .label('Production', {
       style: {
         fill: '#424242',
         fontSize: 22
+      },
+      content: (obj) => {
+        return `${(obj.Production / 10000).toFixed(2)} 万吨`
       }
     })
 
@@ -111,6 +171,7 @@ function updateChart() {
   // // 数据配置
   updateAnnotation()
   chart.changeData(chartDataStore.dynamicData)
+  console.log('dynamicData', chartDataStore.dynamicData)
 }
 
 function updateAnnotation() {
@@ -134,7 +195,13 @@ function updateAnnotation() {
       }px;"></p>`
     )
   }
-  let assistHtml = `<p class="annotation-text" style="bottom: 150px; right: 150px;">${chartDataStore.assistData.Year}</p>`
+  console.log(chartDataStore.assistData.Year)
+  let assistHtml = `<p class="annotation-text" style="bottom: 150px; right: 150px;">${
+    chartDataStore.assistData.Year
+  }</p>
+  <p class="annotation-text" style="bottom: 130px; right: 160px; font-size: 25px;">世界猪肉总产量：${(
+    chartDataStore.assistData.Production / 10000
+  ).toFixed(2)} 万吨</p>`
   html.push(assistHtml)
   annotation.innerHTML = html.join('')
 }

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 15:06:38
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-28 22:12:43
+ * @LastEditTime: 2022-05-30 17:37:11
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -53,10 +53,10 @@ export const useChartDataStore = defineStore('chartData', {
     },
     changeDynamicData(dataIndex: number, endIndex: number) {
       const stateStore = useStateStore()
-      if (dataIndex < endIndex) {
+      if (dataIndex <= endIndex) {
         let temp = _.filter(this.rowData, { Year: dataIndex })
         this.dynamicData = _.chain(temp).drop(1).reverse().value()
-        this.latestData = _.head(temp)
+        this.assistData = _.head(temp)
       } else {
         stateStore.showDataChange = false
       }

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-28 20:39:35
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-29 17:02:52
+ * @LastEditTime: 2022-05-30 15:53:52
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,7 +21,7 @@ import { handleData, handleInitData } from './handleData'
 import './watchDataChange'
 
 // 图表数据
-const fileName = 'BeefProduction'
+const fileName = 'PigMeat'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -39,6 +39,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/backGround-red.png);
+  background-image: url(@/assets/img/pig.png);
 }
 </style>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-28 20:39:35
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-28 21:47:56
+ * @LastEditTime: 2022-05-30 15:07:47
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,7 +17,7 @@ const chartDataStore = useChartDataStore()
 const { showDataChange } = storeToRefs(stateStore)
 
 const startYear = 1961
-const endYear = 2018
+const endYear = 2020
 let yearIndex = startYear
 let chartInterval: any = null
 
