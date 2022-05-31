@@ -50,6 +50,7 @@ onMounted(async () => {
 .data-table {
   padding: 24px 24px 24px 24px;
 }
+
 .text-wrapper {
   white-space: pre-wrap;
 }

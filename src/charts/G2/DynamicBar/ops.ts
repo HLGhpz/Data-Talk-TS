@@ -1,6 +1,5 @@
-import { Chart, registerShape } from '@antv/g2'
+import { Chart } from '@antv/g2'
 import { useChartDataStore } from '@/stores'
-import { storeToRefs } from 'pinia'
 import inserCss from 'insert-css'
 
 // 图表变量
@@ -13,39 +12,42 @@ const padd = {
 }
 const showDataLength = 15
 const barSize = 30
-const topic = '鸡蛋'
+const topic = '菠萝'
+const defaultColor = '#ee2c79'
+const labelColor = '#33141e'
+const cityColor = '#3A4C3E'
 
 // 颜色映射
 const colorMap = {
   UN: '#5EA4E0',
   US: '#000066',
-  OWID_USS: '#C1232B',
+  NG: '#C1232B',
+  TH: '#27727B',
+  BR: '#FCCE10',
+  MX: '#E87C25',
   CN: '#E71B24',
-  JP: '#27727B',
-  GB: '#FCCE10',
-  DE: '#E87C25',
-  FR: '#B5C334',
-  IT: '#FE8463',
-  PL: '#9BCA63',
-  NL: '#FAD860',
-  CA: '#F3A43B',
-  ES: '#60C0DD',
-  BR: '#D7504B',
-  AR: '#C6E579',
-  LU: '#F4E001',
-  IN: '#F0805A',
-  MX: '#26C0C0',
-  RO: '#C1232B',
-  KR: '#27727B',
-  TH: '#FCCE10',
-  TR: '#E87C25',
-  RU: '#B5C334',
-  UA: '#FE8463',
-  ID: '#9BCA63',
-  IR: '#FAD860',
-  MY: '#F3A43B',
-  CO: '#60C0DD',
-  PK: '#D7504B'
+  MY: '#B5C334',
+  ZA: '#FE8463',
+  PH: '#9BCA63',
+  CD: '#FAD860',
+  IN: '#F3A43B',
+  AU: '#60C0DD',
+  CO: '#D7504B',
+  VN: '#C6E579',
+  PR: '#F4E001',
+  ID: '#F0805A',
+  JP: '#26C0C0',
+  CI: '#C1232B',
+  BD: '#27727B',
+  EC: '#FCCE10',
+  KE: '#E87C25',
+  CR: '#B5C334',
+  VE: '#FE8463',
+  GH: '#9BCA63',
+  PE: '#FAD860',
+  DO: '#F3A43B',
+  BJ: '#60C0DD',
+  AO: '#D7504B'
 }
 
 // 全局变量
@@ -70,7 +72,7 @@ inserCss(`
   .annotation-text {
     position: fixed;
     font-size: 300px;
-    color: #424242;
+    color: ${defaultColor};
     z-index: 9999;
   }
 `)
@@ -105,7 +107,7 @@ function initChart() {
     label: {
       style: {
         fontSize: 22,
-        fill: '#424242',
+        fill: `${cityColor}`,
         fontWeight: 'bold'
       }
     },
@@ -119,7 +121,7 @@ function initChart() {
       style: {
         fontSize: 22,
         fontWeight: 'bold',
-        fill: '#b71c1c'
+        fill: `${labelColor}`
       },
       offset: 25,
       formatter: (val: any) => {
@@ -132,7 +134,7 @@ function initChart() {
       line: {
         style: {
           type: 'line',
-          stroke: '#b71c1c',
+          stroke: `${labelColor}`,
           lineDash: [4, 4],
           strokeOpacity: 0.5
         }
@@ -150,7 +152,7 @@ function initChart() {
     })
     .label('Production', {
       style: {
-        fill: '#424242',
+        fill: `${defaultColor}`,
         fontSize: 22
       },
       content: (obj) => {

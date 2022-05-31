@@ -77,8 +77,8 @@ export default defineConfig({
       '~@less': resolve('src/assets/less'),
       '~@libs': resolve('src/libs'),
       '~@cp': resolve('src/components'),
-      '~@views': resolve('src/views'),
-    },
+      '~@views': resolve('src/views')
+    }
   },
 
   css: {
@@ -110,10 +110,10 @@ export default defineConfig({
         javascriptEnabled: true,
         modifyVars: {
           'primary-color': '#1890ff',
-          hack: `true; @import '@less/config.less'`,
-        },
-      },
-    },
+          hack: `true; @import '@less/config.less'`
+        }
+      }
+    }
   },
 
   plugins: [
@@ -137,6 +137,6 @@ export default defineConfig({
      */
     banner(
       `/**\n * name: ${pkg.name}\n * version: v${pkg.version}\n * description: v${pkg.description}\n * author: ${pkg.author}\n */`
-    ),
-  ],
+    )
+  ]
 })

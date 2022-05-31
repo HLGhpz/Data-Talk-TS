@@ -13,8 +13,6 @@
 
 <script setup lang="ts">
 import Flag from 'vue-flagpack'
-
-
 </script>
 
 <style scoped></style>
