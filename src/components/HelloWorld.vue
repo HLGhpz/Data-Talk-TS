@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-28 20:59:50
+ * @LastEditTime: 2022-05-30 22:15:42
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -10,7 +10,11 @@
 <template>
   <h1><router-link :to="{ name: 'todo' }">ToDo</router-link></h1>
   <h1><router-link :to="{ name: 'finish' }">Finish</router-link></h1>
+  <h1><router-link :to="{ name: 'animation' }">Animation</router-link></h1>
   <ul>
+    <li>
+      <router-link :to="{ name: 'card' }">Card</router-link>
+    </li>
     <li>
       <router-link :to="{ name: 'candle' }">Candle</router-link>
     </li>

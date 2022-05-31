@@ -13,39 +13,39 @@ const padd = {
 }
 const showDataLength = 15
 const barSize = 30
+const topic = '鸡蛋'
 
 // 颜色映射
 const colorMap = {
   UN: '#5EA4E0',
   US: '#000066',
-  OWID_USS: '#E01F54',
-  DE: '#001852',
+  OWID_USS: '#C1232B',
   CN: '#E71B24',
-  PL: '#f5e8c8',
-  FR: '#b8d2c7',
-  GB: '#c6b38e',
-  DK: '#a4d8c2',
-  CA: '#f3d999',
-  BR: '#d3758f',
-  HU: '#dcc392',
-  OWID_YGS: '#2e4783',
-  OWID_CZS: '#82b6e9',
-  MX: '#ff6347',
-  IT: '#a092f1',
-  NL: '#0a915d',
-  AT: '#eaf889',
-  RO: '#6699FF',
-  VN: '#ff6666',
-  LU: '#3cb371',
-  JP: '#d5b158',
-  ES: '#38b6b6',
-  PH: '#E01F54',
-  RU: '#001852',
-  UA: '#f5e8c8',
-  KR: '#b8d2c7',
-  BE: '#c6b38e',
-  TH: '#a4d8c2',
-  MM: '#f3d999'
+  JP: '#27727B',
+  GB: '#FCCE10',
+  DE: '#E87C25',
+  FR: '#B5C334',
+  IT: '#FE8463',
+  PL: '#9BCA63',
+  NL: '#FAD860',
+  CA: '#F3A43B',
+  ES: '#60C0DD',
+  BR: '#D7504B',
+  AR: '#C6E579',
+  LU: '#F4E001',
+  IN: '#F0805A',
+  MX: '#26C0C0',
+  RO: '#C1232B',
+  KR: '#27727B',
+  TH: '#FCCE10',
+  TR: '#E87C25',
+  RU: '#B5C334',
+  UA: '#FE8463',
+  ID: '#9BCA63',
+  IR: '#FAD860',
+  MY: '#F3A43B',
+  CO: '#60C0DD',
+  PK: '#D7504B'
 }
 
 // 全局变量
@@ -105,7 +105,8 @@ function initChart() {
     label: {
       style: {
         fontSize: 22,
-        fill: '#424242'
+        fill: '#424242',
+        fontWeight: 'bold'
       }
     },
     line: null,
@@ -199,7 +200,7 @@ function updateAnnotation() {
   let assistHtml = `<p class="annotation-text" style="bottom: 150px; right: 150px;">${
     chartDataStore.assistData.Year
   }</p>
-  <p class="annotation-text" style="bottom: 130px; right: 160px; font-size: 25px;">世界猪肉总产量：${(
+  <p class="annotation-text" style="bottom: 130px; right: 160px; font-size: 25px;">世界${topic}总产量：${(
     chartDataStore.assistData.Production / 10000
   ).toFixed(2)} 万吨</p>`
   html.push(assistHtml)

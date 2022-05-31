@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-28 20:39:35
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-30 15:53:52
+ * @LastEditTime: 2022-05-31 10:50:29
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,7 +21,7 @@ import { handleData, handleInitData } from './handleData'
 import './watchDataChange'
 
 // 图表数据
-const fileName = 'PigMeat'
+const fileName = 'HenEgg'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -39,6 +39,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/pig.png);
+  background-image: url(@/assets/img/egg.png);
 }
 </style>
