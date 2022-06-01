@@ -12,42 +12,38 @@ const padd = {
 }
 const showDataLength = 15
 const barSize = 30
-const topic = '菠萝'
-const defaultColor = '#ee2c79'
+const topic = '香蕉'
+const defaultColor = '#eef7f2'
 const labelColor = '#33141e'
-const cityColor = '#3A4C3E'
+const cityColor = '#f6cec1'
 
 // 颜色映射
 const colorMap = {
   UN: '#5EA4E0',
-  US: '#000066',
-  NG: '#C1232B',
-  TH: '#27727B',
-  BR: '#FCCE10',
-  MX: '#E87C25',
-  CN: '#E71B24',
-  MY: '#B5C334',
-  ZA: '#FE8463',
-  PH: '#9BCA63',
-  CD: '#FAD860',
-  IN: '#F3A43B',
-  AU: '#60C0DD',
+  BR: '#C1232B',
+  EC: '#27727B',
+  IN: '#FCCE10',
+  PH: '#E87C25',
+  BI: '#B5C334',
+  ID: '#FE8463',
+  VE: '#9BCA63',
+  HN: '#FAD860',
+  MX: '#F3A43B',
+  TH: '#60C0DD',
   CO: '#D7504B',
-  VN: '#C6E579',
-  PR: '#F4E001',
-  ID: '#F0805A',
-  JP: '#26C0C0',
-  CI: '#C1232B',
-  BD: '#27727B',
-  EC: '#FCCE10',
-  KE: '#E87C25',
-  CR: '#B5C334',
-  VE: '#FE8463',
-  GH: '#9BCA63',
-  PE: '#FAD860',
-  DO: '#F3A43B',
-  BJ: '#60C0DD',
-  AO: '#D7504B'
+  PA: '#C6E579',
+  BD: '#F4E001',
+  KE: '#F0805A',
+  CR: '#26C0C0',
+  CN: '#E71B24',
+  GT: '#C1232B',
+  VN: '#27727B',
+  RW: '#FCCE10',
+  CM: '#E87C25',
+  TZ: '#B5C334',
+  AO: '#FE8463',
+  PE: '#9BCA63',
+  EG: '#FAD860'
 }
 
 // 全局变量

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-26 15:38:43
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-31 21:13:15
+ * @LastEditTime: 2022-06-01 21:31:54
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -28,7 +28,7 @@ const initOption: EChartsOption = {
           lineDash: [0, 200],
           lineDashOffset: 0,
           fill: 'transparent',
-          stroke: '#ee3f4d',
+          stroke: '#eef7f2',
           lineWidth: 1,
           fontStyle: 'italic'
         },
@@ -47,7 +47,7 @@ const initOption: EChartsOption = {
             {
               percent: 1,
               style: {
-                fill: '#ee3f4d'
+                fill: '#eef7f2'
               }
             }
           ]
