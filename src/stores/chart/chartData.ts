@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 15:06:38
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-01 19:39:28
+ * @LastEditTime: 2022-06-02 15:03:26
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -20,7 +20,7 @@ export const useChartDataStore = defineStore('chartData', {
     startToEndData: [] as any[],
     zeroToEndData: [] as any[],
     dynamicData: [] as any[],
-    assistData: {} as any,
+    assistData: [] as any[],
     latestData: {} as any
   }),
   getters: {},
@@ -55,8 +55,17 @@ export const useChartDataStore = defineStore('chartData', {
       const stateStore = useStateStore()
       if (dataIndex <= endIndex) {
         let temp = _.filter(this.rowData, { Year: dataIndex })
-        this.dynamicData = _.chain(temp).drop(1).reverse().value()
-        this.assistData = _.head(temp)
+        this.dynamicData = _.chain(temp)
+          .filter((item) => {
+            return item.Country !== 'World'
+          })
+          .reverse()
+          .value()
+        this.assistData = _.chain(temp)
+          .filter((item) => {
+            return item.Country === 'World'
+          })
+          .value()
       } else {
         stateStore.showDataChange = false
       }

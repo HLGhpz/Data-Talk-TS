@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-30 21:36:04
+ * @LastEditTime: 2022-06-02 15:22:54
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -127,6 +127,14 @@ export const g2Routes: RouteRecordRaw[] = [
     component: () => import('@/charts/G2/DynamicBar/index.vue'),
     meta: {
       title: 'DynamicBar'
+    }
+  },
+  {
+    path: 'dynamicStackBar',
+    name: 'dynamicStackBar',
+    component: () => import('@/charts/G2/DynamicStackBar/index.vue'),
+    meta: {
+      title: 'DynamicStackBar'
     }
   }
 ]

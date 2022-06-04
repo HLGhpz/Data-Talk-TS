@@ -2,13 +2,14 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-09 22:41:32
+ * @LastEditTime: 2022-06-04 00:06:00
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
 -->
 <template>
   <div class="chart-wrapper" ref="chartDom"></div>
+  <div id="annotation" class="annotation"></div>
 </template>
 
 <script setup lang="ts">
@@ -38,6 +39,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/backGround-cyan.png);
+  background-image: url(@/assets/img/war.png);
 }
 </style>

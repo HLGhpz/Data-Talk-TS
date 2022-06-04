@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-05-30 22:15:42
+ * @LastEditTime: 2022-06-02 15:23:12
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -40,6 +40,11 @@
     </li>
     <li>
       <router-link :to="{ name: 'dynamicBar' }">DynamicBar</router-link>
+    </li>
+    <li>
+      <router-link :to="{ name: 'dynamicStackBar' }"
+        >DynamicStackBar</router-link
+      >
     </li>
   </ul>
 </template>

@@ -13,37 +13,38 @@ const padd = {
 const showDataLength = 15
 const barSize = 30
 const topic = '牛奶'
-const defaultColor = '#5e4b7e'
+const defaultColor = '#eef7f2'
 const labelColor = '#33141e'
-const cityColor = '#ed556a'
+const cityColor = '#f6cec1'
 
-// 颜色映射
-const colorMap = {
-  UN: '#5EA4E0',
-  OWID_USS: '#C1232B',
-  US: '#000066',
-  DE: '#27727B',
-  FR: '#FCCE10',
-  PL: '#E87C25',
-  GB: '#B5C334',
-  IT: '#FE8463',
-  IN: '#9BCA63',
-  CA: '#FAD860',
-  NL: '#F3A43B',
-  AU: '#60C0DD',
-  DK: '#D7504B',
-  BR: '#C6E579',
-  NZ: '#F4E001',
-  TR: '#F0805A',
-  OWID_CZS: '#26C0C0',
-  AR: '#C1232B',
-  MX: '#27727B',
-  JP: '#FCCE10',
-  RU: '#E87C25',
-  UA: '#B5C334',
-  CN: '#E71B24',
-  PK: '#FE8463'
-}
+// // 颜色映射
+// const colorMap = {
+//   UN: '#5EA4E0',
+//   BR: '#C1232B',
+//   EC: '#27727B',
+//   IN: '#FCCE10',
+//   PH: '#E87C25',
+//   BI: '#B5C334',
+//   ID: '#FE8463',
+//   VE: '#9BCA63',
+//   HN: '#FAD860',
+//   MX: '#F3A43B',
+//   TH: '#60C0DD',
+//   CO: '#D7504B',
+//   PA: '#C6E579',
+//   BD: '#F4E001',
+//   KE: '#F0805A',
+//   CR: '#26C0C0',
+//   CN: '#E71B24',
+//   GT: '#C1232B',
+//   VN: '#27727B',
+//   RW: '#FCCE10',
+//   CM: '#E87C25',
+//   TZ: '#B5C334',
+//   AO: '#FE8463',
+//   PE: '#9BCA63',
+//   EG: '#FAD860'
+// }
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -140,12 +141,16 @@ function initChart() {
   // 设置图表
   chart
     .interval()
+    .adjust('stack')
     .position('zhName*Production')
     .size(barSize)
-    .color('iso2Code', (val: string) => {
-      return colorMap[val]
-    })
+    .color('Type')
     .label('Production', {
+      // position: 'right',
+      offset: 20,
+      layout: {
+        type: 'fixed-overlap'
+      },
       style: {
         fill: `${defaultColor}`,
         fontSize: 22
@@ -169,6 +174,7 @@ function updateChart() {
   // // 数据配置
   updateAnnotation()
   chart.changeData(chartDataStore.dynamicData)
+  console.log('dynamicData', chartDataStore.dynamicData)
 }
 
 function updateAnnotation() {
@@ -195,7 +201,7 @@ function updateAnnotation() {
   let assistHtml = `<p class="annotation-text" style="bottom: 150px; right: 150px;">${
     chartDataStore.assistData[0].Year
   }</p>
-  <p class="annotation-text" style="bottom: 130px; right: 160px; font-size: 25px; font-weight: bold;">世界${topic}总产量：${(
+  <p class="annotation-text" style="bottom: 130px; right: 160px; font-size: 25px;">世界${topic}总产量：${(
     chartDataStore.assistData[0].Production / 10000
   ).toFixed(2)} 万吨</p>`
   html.push(assistHtml)
