@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-04 09:18:51
+ * @LastEditTime: 2022-06-05 22:19:45
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,34 +16,35 @@ import inserCss from 'insert-css'
 // 图表变量
 let chart: any = null
 const padd = {
-  left: 400,
-  right: 300,
+  left: 200,
+  right: 500,
   top: 100,
   bottom: 100
 }
-const defaultColor = '#2775b6'
-const colorMap = {
-  US: '#000066',
-  JP: '#C1232B',
-  FI: '#27727B',
-  CN: '#E71B24',
-  FR: '#FCCE10',
-  DE: '#E87C25',
-  IT: '#B5C334',
-  KR: '#FE8463',
-  SA: '#9BCA63',
-  RU: '#FAD860',
-  CH: '#F3A43B',
-  GB: '#60C0DD',
-  NL: '#D7504B',
-  LU: '#C6E579',
-  AU: '#F4E001',
-  BR: '#F0805A',
-  CA: '#26C0C0',
-  AE: '#C1232B',
-  CZ: '#27727B',
-  ES: '#FCCE10'
-}
+const defaultColor = '#fffef9'
+const labelColor = '#c6e6e8'
+// const colorMap = {
+//   US: '#000066',
+//   JP: '#C1232B',
+//   FI: '#27727B',
+//   CN: '#E71B24',
+//   FR: '#FCCE10',
+//   DE: '#E87C25',
+//   IT: '#B5C334',
+//   KR: '#FE8463',
+//   SA: '#9BCA63',
+//   RU: '#FAD860',
+//   CH: '#F3A43B',
+//   GB: '#60C0DD',
+//   NL: '#D7504B',
+//   LU: '#C6E579',
+//   AU: '#F4E001',
+//   BR: '#F0805A',
+//   CA: '#26C0C0',
+//   AE: '#C1232B',
+//   CZ: '#27727B',
+//   ES: '#FCCE10'
+// }
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -58,6 +59,7 @@ inserCss(`
 }
 
 .annotation-flag {
+  position: fixed;
   height: 90px;
   width: 120px;
 }
@@ -65,7 +67,7 @@ inserCss(`
 .annotation-text {
   position: fixed;
   color: ${defaultColor};
-  opacity: 0.5;
+  opacity: 0.9;
   z-index: 9999;
 }
 `)
@@ -82,58 +84,55 @@ function initChart() {
     padding: [padd.top, padd.right, padd.bottom, padd.left]
   })
   // 自定义样式
-  // chart.theme({
-  //   styleSheet: {
-  //     paletteQualitative10: [
-  //       '#E01F54',
-  //       '#001852',
-  //       '#f5e8c8',
-  //       '#b8d2c7',
-  //       '#c6b38e',
-  //       '#a4d8c2',
-  //       '#f3d999',
-  //       '#d3758f',
-  //       '#dcc392',
-  //       '#2e4783'
-  //     ],
-  //     paletteQualitative20: [
-  //       '#E01F54',
-  //       '#001852',
-  //       '#f5e8c8',
-  //       '#b8d2c7',
-  //       '#c6b38e',
-  //       '#a4d8c2',
-  //       '#f3d999',
-  //       '#d3758f',
-  //       '#dcc392',
-  //       '#2e4783',
-  //       '#82b6e9',
-  //       '#ff6347',
-  //       '#a092f1',
-  //       '#0a915d',
-  //       '#eaf889',
-  //       '#6699FF',
-  //       '#ff6666',
-  //       '#3cb371',
-  //       '#d5b158',
-  //       '#38b6b6'
-  //     ]
-  //   }
-  // })
+  chart.theme({
+    styleSheet: {
+      paletteQualitative10: [
+        '#E01F54',
+        '#001852',
+        '#f5e8c8',
+        '#b8d2c7',
+        '#c6b38e',
+        '#a4d8c2',
+        '#f3d999',
+        '#d3758f',
+        '#dcc392',
+        '#2e4783'
+      ],
+      paletteQualitative20: [
+        '#E01F54',
+        '#001852',
+        '#f5e8c8',
+        '#b8d2c7',
+        '#c6b38e',
+        '#a4d8c2',
+        '#f3d999',
+        '#d3758f',
+        '#dcc392',
+        '#2e4783',
+        '#82b6e9',
+        '#ff6347',
+        '#a092f1',
+        '#0a915d',
+        '#eaf889',
+        '#6699FF',
+        '#ff6666',
+        '#3cb371',
+        '#d5b158',
+        '#38b6b6'
+      ]
+    }
+  })
 
   // 设置图表数据
   chart.data(chartDataStore.rowData)
 
   // 设置图表度量
   chart.scale({
-    Rmax: {
+    ImportedValue: {
       // max: 130,
       min: 0
     },
-    Name: {
-      type: 'cat'
-    },
-    Computer: {
+    zhName: {
       type: 'cat'
     }
   })
@@ -144,11 +143,11 @@ function initChart() {
   chart.coordinate().transpose()
   // .rotate(Math.PI * -0.02)
 
-  chart.axis('Name', {
+  chart.axis('zhName', {
     label: {
       style: {
         fontSize: 28,
-        fill: '#ffd111',
+        fill: labelColor,
         fontWeight: 'bold'
       }
     },
@@ -157,7 +156,7 @@ function initChart() {
     grid: null
   })
 
-  chart.axis('Rmax', {
+  chart.axis('ImportedValue', {
     label: null,
     line: null,
     tickLine: null,
@@ -167,25 +166,23 @@ function initChart() {
   // 设置图表
   chart
     .interval()
-    .position('Name*Rmax')
+    .position('zhName*ImportedValue')
     .style({
       radius: [20, 20, 0, 0]
     })
     .size(35)
-    .color('iso2Code', (val) => {
-      return colorMap[val]
-    })
+    .color('zhName')
     .label(
-      'Rmax',
+      'ImportedValue',
       (val: string) => {
         return {
-          content: `${val} TFlop/s`
+          content: `${(val / 100000).toFixed(2)}亿美元`
         }
       },
       {
         style: {
           fontSize: 35,
-          fill: '#ffd111',
+          fill: labelColor,
           fontWeight: 'bold'
         }
       }
@@ -206,11 +203,15 @@ function updateChart() {
   const annotationData = latestData.value
   annotation.innerHTML = `
   <div class="annotation">
-  <p class="annotation-text" style="bottom: 50px;right: 50px; font-weight: bold;font-size: 60px">${annotationData.Name}</p>
-  <p class="annotation-text" style="bottom: 100px; right: 80px; font-size: 25px; font-weight: bold;">
-    最大值：${annotationData.Rmax}TFlop/s
-    峰值：${annotationData.Rmax}TFlop/s
-  </p>
+  <p class="annotation-flag fi fi-${annotationData.iso2Code.toLowerCase()}"
+  style="bottom: 350px;left: 1550px"></p>
+  <p class="annotation-text" style="bottom: 120px;left: 1550px; font-weight: bold;font-size: 24px">
+  国家：${annotationData.zhName}</br>排行：${annotationData.Index}</br>
+  进口额：${(annotationData.ImportedValue / 100000).toFixed(
+    2
+  )} 亿美元</br>贸易顺差：${(annotationData.TradeBalance / 100000).toFixed(
+    2
+  )} 亿美元</br>世界占比：${annotationData.WorldShare} %</p>
   </div>
   `
 

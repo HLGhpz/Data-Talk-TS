@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-10 21:14:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-04 08:31:07
+ * @LastEditTime: 2022-06-05 16:53:10
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -23,7 +23,9 @@ function handleData(rowData: any) {
   //   type: 'reverse'
   // })
   const data = _.chain(dv.rows)
-    // .filter({ type: 'Exam' })
+    .filter((item) => {
+      return item.Index <= 100
+    })
     // .map((item) => {
     //   item.value = item.value * 1
     //   return item
