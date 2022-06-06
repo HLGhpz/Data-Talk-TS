@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-05 22:19:45
+ * @LastEditTime: 2022-06-06 20:21:01
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,12 +17,12 @@ import inserCss from 'insert-css'
 let chart: any = null
 const padd = {
   left: 200,
-  right: 500,
+  right: 600,
   top: 100,
   bottom: 100
 }
-const defaultColor = '#fffef9'
-const labelColor = '#c6e6e8'
+const defaultColor = '#ffffff'
+const labelColor = '#eef7f2'
 // const colorMap = {
 //   US: '#000066',
 //   JP: '#C1232B',
@@ -128,7 +128,7 @@ function initChart() {
 
   // 设置图表度量
   chart.scale({
-    ImportedValue: {
+    TradeValue: {
       // max: 130,
       min: 0
     },
@@ -146,7 +146,7 @@ function initChart() {
   chart.axis('zhName', {
     label: {
       style: {
-        fontSize: 28,
+        fontSize: 30,
         fill: labelColor,
         fontWeight: 'bold'
       }
@@ -156,7 +156,7 @@ function initChart() {
     grid: null
   })
 
-  chart.axis('ImportedValue', {
+  chart.axis('TradeValue', {
     label: null,
     line: null,
     tickLine: null,
@@ -166,14 +166,14 @@ function initChart() {
   // 设置图表
   chart
     .interval()
-    .position('zhName*ImportedValue')
+    .position('zhName*TradeValue')
     .style({
       radius: [20, 20, 0, 0]
     })
     .size(35)
     .color('zhName')
     .label(
-      'ImportedValue',
+      'TradeValue',
       (val: string) => {
         return {
           content: `${(val / 100000).toFixed(2)}亿美元`
@@ -201,17 +201,23 @@ function updateChart() {
   chart.annotation().clear(true)
   const annotation = document.getElementById('annotation')
   const annotationData = latestData.value
+  let tempWorldShare: any
+  if (annotationData.WorldShare === 0) {
+    tempWorldShare = '< 0.1'
+  } else {
+    tempWorldShare = annotationData.WorldShare
+  }
   annotation.innerHTML = `
   <div class="annotation">
   <p class="annotation-flag fi fi-${annotationData.iso2Code.toLowerCase()}"
   style="bottom: 350px;left: 1550px"></p>
-  <p class="annotation-text" style="bottom: 120px;left: 1550px; font-weight: bold;font-size: 24px">
+  <p class="annotation-text" style="bottom: 120px;left: 1550px; font-weight: bold;font-size: 26px">
   国家：${annotationData.zhName}</br>排行：${annotationData.Index}</br>
-  进口额：${(annotationData.ImportedValue / 100000).toFixed(
+  出口额：${(annotationData.TradeValue / 100000).toFixed(
     2
   )} 亿美元</br>贸易顺差：${(annotationData.TradeBalance / 100000).toFixed(
     2
-  )} 亿美元</br>世界占比：${annotationData.WorldShare} %</p>
+  )} 亿美元</br>世界占比：${tempWorldShare} %</p>
   </div>
   `
 

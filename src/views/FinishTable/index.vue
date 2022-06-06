@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-13 21:47:48
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-04-30 23:10:13
+ * @LastEditTime: 2022-06-06 17:11:08
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 // 引入函数
-import { onMounted } from 'vue'
+import { onMounted, reactive } from 'vue'
 import { storeToRefs } from 'pinia'
 
 // 引入组件
@@ -39,7 +39,7 @@ import { Header } from '@/components'
 import { makeColumn } from './finishedConfig'
 
 // 引入全局变量
-import { useFinishStore, useStateStore } from '@/stores'
+import { useFinishStore, useStateStore, useStatisticalStore } from '@/stores'
 
 const stateStore = useStateStore()
 const { editModel } = storeToRefs(stateStore)
@@ -47,14 +47,27 @@ const { editModel } = storeToRefs(stateStore)
 const finishStore = useFinishStore()
 const { finishes } = storeToRefs(finishStore)
 
+const statisticalStore = useStatisticalStore()
+const { count } = storeToRefs(statisticalStore)
+
 const columns = makeColumn()
 
-const pagination = {
-  pageSize: 10
-}
+const pagination = reactive({
+  pageSize: 10,
+  pageCount: 10,
+  pageSizes: [10, 20, 30]
+})
 
 onMounted(async () => {
-  await finishStore.select()
+  pagination.pageSize = 8
+  await finishStore.select({
+    page: 1,
+    pageSize: pagination.pageSize
+  })
+  pagination.pageCount = Math.ceil(count.value / pagination.pageSize)
+  pagination.pageSize = 6
+  console.log(count.value)
+  console.log(pagination)
 })
 </script>
 
