@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-13 21:47:48
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-06 17:11:08
+ * @LastEditTime: 2022-06-13 15:35:10
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -53,19 +53,19 @@ const { count } = storeToRefs(statisticalStore)
 const columns = makeColumn()
 
 const pagination = reactive({
-  pageSize: 10,
+  pageSize: 50,
   pageCount: 10,
   pageSizes: [10, 20, 30]
 })
 
 onMounted(async () => {
-  pagination.pageSize = 8
+  pagination.pageSize = 50
   await finishStore.select({
     page: 1,
     pageSize: pagination.pageSize
   })
   pagination.pageCount = Math.ceil(count.value / pagination.pageSize)
-  pagination.pageSize = 6
+  pagination.pageSize = 10
   console.log(count.value)
   console.log(pagination)
 })

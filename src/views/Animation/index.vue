@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-26 15:37:13
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-04 01:36:40
+ * @LastEditTime: 2022-06-13 21:02:54
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -20,6 +20,6 @@ import { TextStroke } from './textStroke'
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/gaokao.png);
+  background-image: url(@/assets/img/black.png);
 }
 </style>

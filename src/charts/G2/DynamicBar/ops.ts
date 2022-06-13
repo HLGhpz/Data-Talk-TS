@@ -12,37 +12,38 @@ const padd = {
 }
 const showDataLength = 15
 const barSize = 30
-const topic = '牛奶'
-const defaultColor = '#5e4b7e'
-const labelColor = '#33141e'
-const cityColor = '#ed556a'
+const topic = '牛肉'
+const defaultColor = '#fff'
+const labelColor = '#fff'
+const cityColor = '#fff'
 
 // 颜色映射
 const colorMap = {
   UN: '#5EA4E0',
-  OWID_USS: '#C1232B',
   US: '#000066',
-  DE: '#27727B',
+  OWID_USS: '#C1232B',
+  AR: '#27727B',
   FR: '#FCCE10',
-  PL: '#E87C25',
-  GB: '#B5C334',
-  IT: '#FE8463',
-  IN: '#9BCA63',
+  BR: '#E87C25',
+  DE: '#B5C334',
+  GB: '#FE8463',
+  IT: '#9BCA63',
   CA: '#FAD860',
-  NL: '#F3A43B',
-  AU: '#60C0DD',
-  DK: '#D7504B',
-  BR: '#C6E579',
-  NZ: '#F4E001',
-  TR: '#F0805A',
-  OWID_CZS: '#26C0C0',
-  AR: '#C1232B',
-  MX: '#27727B',
-  JP: '#FCCE10',
-  RU: '#E87C25',
-  UA: '#B5C334',
+  AU: '#F3A43B',
+  IN: '#60C0DD',
+  ZA: '#D7504B',
+  MX: '#C6E579',
+  PL: '#F4E001',
+  CO: '#F0805A',
+  NZ: '#26C0C0',
   CN: '#E71B24',
-  PK: '#FE8463'
+  RU: '#C1232B',
+  UA: '#27727B',
+  KZ: '#FCCE10',
+  ES: '#E87C25',
+  TR: '#B5C334',
+  PK: '#FE8463',
+  UZ: '#9BCA63'
 }
 
 // 全局变量
@@ -148,7 +149,8 @@ function initChart() {
     .label('Production', {
       style: {
         fill: `${defaultColor}`,
-        fontSize: 22
+        fontSize: 24,
+        fontWeight: 'bold'
       },
       content: (obj) => {
         return `${(obj.Production / 10000).toFixed(2)} 万吨`

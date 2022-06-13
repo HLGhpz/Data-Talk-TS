@@ -1,3 +1,12 @@
+<!--
+ * @Author: HLGhpz
+ * @Date: 2022-05-31 23:47:20
+ * @LastEditors: HLGhpz
+ * @LastEditTime: 2022-06-13 15:34:33
+ * @Description:
+ *
+ * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
+-->
 <template>
   <Header></Header>
   <n-space vertical :size="12" class="data-table">
@@ -39,7 +48,7 @@ const { editModel, deleteModel } = storeToRefs(stateStore)
 const { todos } = storeToRefs(todoStore)
 const columns = makeColumn()
 const pagination = {
-  pageSize: 10
+  pageSize: 50
 }
 onMounted(async () => {
   await todoStore.select()
