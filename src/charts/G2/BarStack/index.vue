@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-01 19:18:34
+ * @LastEditTime: 2022-06-14 20:04:59
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,7 +21,7 @@ import { handleData } from './handleData'
 import './watchDataChange'
 
 // 图表数据
-const fileName = 'GaoKao'
+const fileName = 'FoodProduct'
 
 // 全局变量
 const chartDataStore = useChartDataStore()

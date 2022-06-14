@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-01 19:21:19
+ * @LastEditTime: 2022-06-14 22:21:02
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -40,19 +40,6 @@ inserCss(`
   }
 `)
 
-// const colorMap = {
-//   '🏀': '#FFD49B',
-//   '⚽': '#FFE4DD',
-//   '🥊': '#D8C8ED',
-//   '🎾': '#E0F7C5',
-//   '⛳': '#13A10E',
-//   '🏈': '#FFB6AD',
-//   '🏎️': '#97F3C5',
-//   '🥋': '#FBF095',
-//   '🏏': '#CFEB8C',
-//   '⚾': '#D3F4F5'
-// }
-
 /**
  * @description:初始化图表
  * @param {*} option
@@ -70,7 +57,7 @@ function initChart() {
 
   // 设置图表度量
   chart.scale({
-    value: {
+    Product: {
       // max: 130,
       // min: 0
     },
@@ -98,34 +85,35 @@ function initChart() {
   // 设置坐标轴
   chart.coordinate().transpose()
 
-  chart.axis('Year', {
-    label: {
-      style: {
-        fontSize: 20,
-        fill: '#424242'
-      }
-    },
-    line: null,
-    tickLine: null,
-    grid: null
-  })
+  // chart.axis('Year', {
+  //   label: {
+  //     style: {
+  //       fontSize: 20,
+  //       fill: '#424242'
+  //     }
+  //   },
+  //   line: null,
+  //   tickLine: null,
+  //   grid: null
+  // })
 
-  chart.axis('value', {
-    label: null,
-    line: null,
-    tickLine: null,
-    grid: null
-  })
+  // chart.axis('value', {
+  //   label: null,
+  //   line: null,
+  //   tickLine: null,
+  //   grid: null
+  // })
 
   // 设置图表
   chart
     .interval()
-    .position('Year*value')
+    .adjust('stack')
+    .position('Year*Product')
     .style({
       radius: [20, 20, 0, 0]
     })
     .size(20)
-    .color('type')
+    .color('Category')
     .label(
       'value',
       (val: string) => {
@@ -166,7 +154,7 @@ function updateChart() {
   // `
 
   // 数据配置
-  chart.changeData(chartDataStore.startToEndData)
+  chart.changeData(chartDataStore.dynamicData)
 }
 
 export { initChart, updateChart }

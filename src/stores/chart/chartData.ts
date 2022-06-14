@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 15:06:38
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-02 15:03:26
+ * @LastEditTime: 2022-06-14 22:41:07
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -50,6 +50,55 @@ export const useChartDataStore = defineStore('chartData', {
       this.zeroToEndData = this.rowData.slice(0, dataIndex)
       this.startToEndData = startToEndData
       this.latestData = this.rowData[dataIndex - 1]
+    },
+    changeStackData(
+      dataIndex: number,
+      startIndex: number,
+      endIndex: number,
+      showDataLength: number
+    ) {
+      const stateStore = useStateStore()
+      this.rowData = _.chain(this.rowData)
+        .filter((item) => {
+          return item.Category === 'Food'
+        })
+        .value()
+      if (dataIndex < showDataLength) {
+        this.dynamicData = _.chain(this.rowData)
+          .filter((item) => {
+            return item.Year < dataIndex + startIndex + 1
+          })
+          .value()
+      } else if (
+        dataIndex >= showDataLength &&
+        dataIndex < endIndex - startIndex
+      ) {
+        console.log('第二类')
+        this.dynamicData = _.chain(this.rowData)
+          .filter((item) => {
+            return (
+              item.Year > dataIndex + startIndex - showDataLength &&
+              item.Year <= dataIndex + startIndex
+            )
+          })
+          .value()
+      } else {
+        console.log('第三类')
+        this.dynamicData = _.chain(this.rowData)
+          .filter((item) => {
+            return (
+              item.Year > endIndex - showDataLength && item.Year <= endIndex
+            )
+          })
+          .value()
+        stateStore.showDataChange = false
+      }
+      // this.dynamicData = _.chain(
+      //   this.dynamicData.filter((item) => {
+      //     return item.Category !== 'Food'
+      //   })
+      // ).value()
+      console.log(this.dynamicData)
     },
     changeDynamicData(dataIndex: number, endIndex: number) {
       const stateStore = useStateStore()
