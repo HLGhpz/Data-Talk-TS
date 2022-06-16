@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-06 20:21:01
+ * @LastEditTime: 2022-06-16 15:51:40
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -19,10 +19,11 @@ const padd = {
   left: 200,
   right: 600,
   top: 100,
-  bottom: 100
+  bottom: 70
 }
 const defaultColor = '#ffffff'
 const labelColor = '#eef7f2'
+const barSize = 36
 // const colorMap = {
 //   US: '#000066',
 //   JP: '#C1232B',
@@ -128,7 +129,7 @@ function initChart() {
 
   // 设置图表度量
   chart.scale({
-    TradeValue: {
+    MS: {
       // max: 130,
       min: 0
     },
@@ -156,7 +157,7 @@ function initChart() {
     grid: null
   })
 
-  chart.axis('TradeValue', {
+  chart.axis('MS', {
     label: null,
     line: null,
     tickLine: null,
@@ -166,17 +167,17 @@ function initChart() {
   // 设置图表
   chart
     .interval()
-    .position('zhName*TradeValue')
+    .position('zhName*MS')
     .style({
       radius: [20, 20, 0, 0]
     })
-    .size(35)
+    .size(barSize)
     .color('zhName')
     .label(
-      'TradeValue',
+      'MS',
       (val: string) => {
         return {
-          content: `${(val / 100000).toFixed(2)}亿美元`
+          content: `${val} Km/h`
         }
       },
       {
@@ -201,23 +202,19 @@ function updateChart() {
   chart.annotation().clear(true)
   const annotation = document.getElementById('annotation')
   const annotationData = latestData.value
-  let tempWorldShare: any
-  if (annotationData.WorldShare === 0) {
-    tempWorldShare = '< 0.1'
-  } else {
-    tempWorldShare = annotationData.WorldShare
-  }
+  // let tempWorldShare: any
+  // if (annotationData.WorldShare === 0) {
+  //   tempWorldShare = '< 0.1'
+  // } else {
+  //   tempWorldShare = annotationData.WorldShare
+  // }
   annotation.innerHTML = `
   <div class="annotation">
   <p class="annotation-flag fi fi-${annotationData.iso2Code.toLowerCase()}"
-  style="bottom: 350px;left: 1550px"></p>
-  <p class="annotation-text" style="bottom: 120px;left: 1550px; font-weight: bold;font-size: 26px">
+  style="bottom: 300px;left: 1550px"></p>
+  <p class="annotation-text" style="bottom: 120px;left: 1550px; font-weight: bold;font-size: 28px">
   国家：${annotationData.zhName}</br>排行：${annotationData.Index}</br>
-  出口额：${(annotationData.TradeValue / 100000).toFixed(
-    2
-  )} 亿美元</br>贸易顺差：${(annotationData.TradeBalance / 100000).toFixed(
-    2
-  )} 亿美元</br>世界占比：${tempWorldShare} %</p>
+  平均速度：${annotationData.MS} Km/h</p>
   </div>
   `
 

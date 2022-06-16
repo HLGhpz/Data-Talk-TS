@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-14 22:21:02
+ * @LastEditTime: 2022-06-15 21:34:40
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -15,28 +15,42 @@ import inserCss from 'insert-css'
 
 // 图表变量
 let chart: any = null
+const padd = {
+  left: 150,
+  right: 200,
+  top: 100,
+  bottom: 50
+}
+// const showDataLength = 15
+const barSize = 36
+// const topic = '牛肉'
+const defaultColor = '#fff'
+const labelColor = '#fff'
+const yLableColor = '#424242'
+
+// 颜色映射
+const colorMap = {
+  SummerGrain: '#28afea',
+  AutumnGrain: '#fcd217',
+  EarlyGrain: '#ee3f4d'
+}
 
 // 全局变量
 const chartDataStore = useChartDataStore()
-const { latestData } = storeToRefs(chartDataStore)
 
 inserCss(`
   .annotation {
     position: fixed;
-    bottom: 150px;
-    right: 60px;
-    width: 500px;
+    height: 100%;
+    width: 100%;
     z-index: 9999;
   }
-
-  .annotation-flag {
-    height: 60px;
-    width: 80px;
-  }
-
   .annotation-text {
-    font-size: 50px;
-    color: #757575;
+    position: fixed;
+    font-size: 160px;
+    font-weight: bold;
+    color: ${defaultColor};
+    z-index: 9999;
   }
 `)
 
@@ -49,7 +63,7 @@ function initChart() {
   chart = new Chart({
     container: 'chartDom',
     autoFit: true,
-    padding: [100, 100, 100, 200]
+    padding: [padd.top, padd.right, padd.bottom, padd.left]
   })
 
   // 设置图表数据
@@ -57,12 +71,15 @@ function initChart() {
 
   // 设置图表度量
   chart.scale({
-    Product: {
-      // max: 130,
-      // min: 0
-    },
+    // Product: {
+    //   nice: true
+    // }
     Year: {
-      type: 'cat'
+      type: 'timeCat',
+      formatter: (value: any) => {
+        return value
+      },
+      tickCount: 15
     }
   })
 
@@ -85,37 +102,37 @@ function initChart() {
   // 设置坐标轴
   chart.coordinate().transpose()
 
-  // chart.axis('Year', {
-  //   label: {
-  //     style: {
-  //       fontSize: 20,
-  //       fill: '#424242'
-  //     }
-  //   },
-  //   line: null,
-  //   tickLine: null,
-  //   grid: null
-  // })
+  chart.axis('Year', {
+    label: {
+      style: {
+        fontSize: 22,
+        fill: `${yLableColor}`,
+        fontWeight: 'bold'
+      }
+    },
+    line: null,
+    tickLine: null,
+    grid: null
+  })
 
-  // chart.axis('value', {
-  //   label: null,
-  //   line: null,
-  //   tickLine: null,
-  //   grid: null
-  // })
+  chart.axis('Product', {
+    label: null,
+    line: null,
+    tickLine: null,
+    grid: null
+  })
 
   // 设置图表
   chart
     .interval()
     .adjust('stack')
     .position('Year*Product')
-    .style({
-      radius: [20, 20, 0, 0]
+    .size(barSize)
+    .color('Category', (val) => {
+      return colorMap[val]
     })
-    .size(20)
-    .color('Category')
     .label(
-      'value',
+      'Product',
       (val: string) => {
         return {
           content: `${val}`
@@ -123,9 +140,11 @@ function initChart() {
       },
       {
         style: {
-          fill: '#424242',
-          fontSize: 22
-        }
+          fill: '#fff',
+          fontSize: 25,
+          fontWeight: 'bold'
+        },
+        position: 'middle'
       }
     )
 
@@ -140,18 +159,18 @@ function initChart() {
 function updateChart() {
   // 清除辅助标注
 
-  // const annotation = document.getElementById('annotation')
-  // const annotationData = latestData.value
-  // annotation.innerHTML = `
-  // <div class="annotation">
-  // <p class="annotation-text">${annotationData.Sport}</p>
-  // <p class="annotation-flag fi fi-${annotationData.Country.toLowerCase()}"></p>
-  // <P class="annotation-text">${annotationData.Athlete}</P>
-  // <P class="annotation-text">代言：$${annotationData.Endorsements}M</P>
-  // <P class="annotation-text">薪酬：$${annotationData.Salary}M</P>
-  // <P class="annotation-text">排名：${annotationData.Rank}</P>
-  // </div>
-  // `
+  const annotation = document.getElementById('annotation')
+  const annotationData = chartDataStore.assistData
+  console.log('annotationData', annotationData)
+  annotation.innerHTML = `<p class="annotation-text" style="bottom:200px; right: 150px;">
+    ${annotationData[0].Year}
+  </p>
+  <p class="annotation-text" style="bottom:80px; right: 230px;font-size: 24px">
+    粮食总产量：${annotationData[3].Product}万吨<br/>
+    早稻产量：${annotationData[0].Product}万吨<br/>
+    夏粮产量：${annotationData[1].Product}万吨<br/>
+    秋稻产量：${annotationData[2].Product}万吨<br/>
+  </p>`
 
   // 数据配置
   chart.changeData(chartDataStore.dynamicData)

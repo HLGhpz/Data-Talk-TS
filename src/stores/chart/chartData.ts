@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 15:06:38
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-14 22:41:07
+ * @LastEditTime: 2022-06-15 21:34:23
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -58,15 +58,17 @@ export const useChartDataStore = defineStore('chartData', {
       showDataLength: number
     ) {
       const stateStore = useStateStore()
-      this.rowData = _.chain(this.rowData)
-        .filter((item) => {
-          return item.Category === 'Food'
-        })
-        .value()
+      // this.rowData = _.chain(this.rowData)
+      //   .filter((item) => {
+      //     return item.Category === 'Food'
+      //   })
+      //   .value()
+      // console.log(this.rowData)
       if (dataIndex < showDataLength) {
+        console.log('第一类')
         this.dynamicData = _.chain(this.rowData)
           .filter((item) => {
-            return item.Year < dataIndex + startIndex + 1
+            return item.Year <= dataIndex + startIndex
           })
           .value()
       } else if (
@@ -83,7 +85,6 @@ export const useChartDataStore = defineStore('chartData', {
           })
           .value()
       } else {
-        console.log('第三类')
         this.dynamicData = _.chain(this.rowData)
           .filter((item) => {
             return (
@@ -93,12 +94,17 @@ export const useChartDataStore = defineStore('chartData', {
           .value()
         stateStore.showDataChange = false
       }
-      // this.dynamicData = _.chain(
-      //   this.dynamicData.filter((item) => {
-      //     return item.Category !== 'Food'
-      //   })
-      // ).value()
-      console.log(this.dynamicData)
+      this.dynamicData = _.chain(this.dynamicData)
+        .filter((item) => {
+          return item.Category !== 'Food'
+        })
+        .value()
+      // console.log(dataIndex + startIndex)
+      this.assistData = _.chain(this.rowData)
+        .filter((item) => {
+          return item.Year === dataIndex + startIndex
+        })
+        .value()
     },
     changeDynamicData(dataIndex: number, endIndex: number) {
       const stateStore = useStateStore()

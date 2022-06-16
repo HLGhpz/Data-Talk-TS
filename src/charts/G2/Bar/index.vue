@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-06 21:52:13
+ * @LastEditTime: 2022-06-16 15:27:03
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,7 +21,7 @@ import { handleData } from './handleData'
 import './watchDataChange'
 
 // 图表数据
-const fileName = 'ImportMap'
+const fileName = 'MeanSpeed'
 
 // 全局变量
 const chartDataStore = useChartDataStore()

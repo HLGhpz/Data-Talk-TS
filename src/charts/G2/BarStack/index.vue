@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-14 20:04:59
+ * @LastEditTime: 2022-06-15 21:35:08
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -36,6 +36,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/backGround-purple.png);
+  background-image: url(@/assets/img/greenScreen.png);
 }
 </style>

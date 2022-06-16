@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-28 20:39:35
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-13 20:38:42
+ * @LastEditTime: 2022-06-15 16:50:59
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -32,7 +32,6 @@ onMounted(async () => {
   rowData.value = handleData(rowData.value)
   handleInitData(rowData.value)
   initData.value = handleInitData(rowData.value).initData
-  console.log(initData.value)
   assistData.value = handleInitData(rowData.value).assistData
   initChart()
 })
