@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 15:06:38
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-15 21:34:23
+ * @LastEditTime: 2022-06-17 17:33:13
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -58,12 +58,6 @@ export const useChartDataStore = defineStore('chartData', {
       showDataLength: number
     ) {
       const stateStore = useStateStore()
-      // this.rowData = _.chain(this.rowData)
-      //   .filter((item) => {
-      //     return item.Category === 'Food'
-      //   })
-      //   .value()
-      // console.log(this.rowData)
       if (dataIndex < showDataLength) {
         console.log('第一类')
         this.dynamicData = _.chain(this.rowData)
@@ -105,6 +99,35 @@ export const useChartDataStore = defineStore('chartData', {
           return item.Year === dataIndex + startIndex
         })
         .value()
+    },
+    changeCategoryStackData(
+      dataIndex: number,
+      showDataLength: number,
+      category: number
+    ) {
+      const stateStore = useStateStore()
+      let rowLength = this.rowData.length / category
+      if (dataIndex < showDataLength) {
+        console.log('第一类')
+        this.dynamicData = this.rowData.slice(0, dataIndex * category)
+      } else if (dataIndex >= showDataLength && dataIndex < rowLength) {
+        console.log('第二类')
+        this.dynamicData = this.rowData.slice(
+          (dataIndex - showDataLength) * category,
+          dataIndex * category
+        )
+      } else {
+        console.log('第三类')
+        this.dynamicData = this.rowData.slice(
+          (rowLength - showDataLength) * category,
+          rowLength * category
+        )
+        stateStore.showDataChange = false
+      }
+      this.assistData = this.rowData.slice(
+        (dataIndex - 1) * category,
+        dataIndex * category
+      )
     },
     changeDynamicData(dataIndex: number, endIndex: number) {
       const stateStore = useStateStore()

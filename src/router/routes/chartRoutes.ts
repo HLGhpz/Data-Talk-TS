@@ -90,6 +90,14 @@ export const g2Routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: 'barStackProvince',
+    name: 'barStackProvince',
+    component: () => import('@/charts/G2/BarStackProvince/index.vue'),
+    meta: {
+      title: 'BarStackProvince'
+    }
+  },
+  {
     path: 'ohlc',
     name: 'ohlc',
     component: () => import('@/charts/G2/OHLC/index.vue'),

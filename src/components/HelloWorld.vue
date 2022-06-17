@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-14 20:38:36
+ * @LastEditTime: 2022-06-17 17:34:51
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -23,6 +23,11 @@
     </li>
     <li>
       <router-link :to="{ name: 'barStack' }">BarStack</router-link>
+    </li>
+    <li>
+      <router-link :to="{ name: 'barStackProvince' }"
+        >BarStackProvince</router-link
+      >
     </li>
     <li>
       <router-link :to="{ name: 'ohlc' }">OHLC</router-link>
