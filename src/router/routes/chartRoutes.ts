@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-14 20:37:19
+ * @LastEditTime: 2022-06-19 14:47:06
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -95,6 +95,14 @@ export const g2Routes: RouteRecordRaw[] = [
     component: () => import('@/charts/G2/BarStackProvince/index.vue'),
     meta: {
       title: 'BarStackProvince'
+    }
+  },
+  {
+    path: 'barStackFace',
+    name: 'barStackFace',
+    component: () => import('@/charts/G2/BarStackFace/index.vue'),
+    meta: {
+      title: 'BarStackFace'
     }
   },
   {

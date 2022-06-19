@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:24:57
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-19 22:37:34
+ * @LastEditTime: 2022-06-19 14:34:36
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -19,7 +19,7 @@ const { showDataChange } = storeToRefs(stateStore)
 
 let dataIndex = 1
 let showDataLength = 12
-let category = 3
+let category = 2
 let chartInterval: any = null
 
 // 监听图表数据变化

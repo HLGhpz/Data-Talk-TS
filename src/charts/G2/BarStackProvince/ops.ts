@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-17 22:31:00
+ * @LastEditTime: 2022-06-19 22:41:14
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,20 +17,21 @@ import inserCss from 'insert-css'
 let chart: any = null
 const padd = {
   left: 150,
-  right: 200,
+  right: 600,
   top: 100,
   bottom: 50
 }
 // const showDataLength = 15
-const barSize = 36
-const defaultColor = '#ed556a'
+const barSize = 42
+const defaultColor = '#fff'
 const labelColor = '#fff'
-const yLableColor = '#11659a'
+const yLableColor = '#fff'
 
 // 颜色映射
 const colorMap = {
-  Undergraduate: '#28afea',
-  CollegeStudent: '#ee3f4d'
+  PerCapitaManned: '#5EA4E0',
+  PerCapitaCargo: '#FCCE10',
+  PerCapitaOther: '#E71B24'
 }
 
 // 全局变量
@@ -78,12 +79,12 @@ function initChart() {
     // Product: {
     //   nice: true
     // }
-    short: {
+    Short: {
       type: 'cat',
-      formatter: (value: any) => {
-        return value
+      formatter: (Value: any) => {
+        return Value
       },
-      tickCount: 15
+      tickCount: 12
     }
   })
 
@@ -106,10 +107,10 @@ function initChart() {
   // 设置坐标轴
   chart.coordinate().transpose()
 
-  chart.axis('short', {
+  chart.axis('Short', {
     label: {
       style: {
-        fontSize: 22,
+        fontSize: 26,
         fill: `${yLableColor}`,
         fontWeight: 'bold'
       }
@@ -119,24 +120,27 @@ function initChart() {
     grid: null
   })
 
-  chart.axis('value', {
+  chart.axis('Value', {
     label: null,
     line: null,
     tickLine: null,
     grid: null
   })
 
+  // 设置图表序列
+  chart.legend(false)
+
   // 设置图表
   chart
     .interval()
     .adjust('stack')
-    .position('short*value')
+    .position('Short*Value')
     .size(barSize)
-    .color('Category', (value: any) => {
-      return colorMap[value]
+    .color('Category', (Value: any) => {
+      return colorMap[Value]
     })
     .label(
-      'value',
+      'Value',
       (val: string) => {
         return {
           content: `${val}`
@@ -168,16 +172,17 @@ function updateChart() {
 
   const annotation = document.getElementById('annotation')
   const annotationData = chartDataStore.assistData
-  // console.log(annotationData)
+  // // console.log(annotationData)
   annotation.innerHTML = `
     <div class="annotation">
     <p>
-      <img class="annotation-img" style="bottom: 300px;right: 200px;" src="../src/assets/province/${annotationData[0].short}.png"></img>
+      <img class="annotation-img" style="bottom: 350px;right: 200px;" src="../src/assets/province/${annotationData[0].Short}.png"></img>
     </p>
-    <P class="annotation-text" style="bottom: 100px;right: 150px;">${annotationData[0].short}<br/>
-    专科生人数：${annotationData[0].value} 万人<br/>
-    本科生人数：${annotationData[1].value} 万人<br/>
-  总人数：${annotationData[0].Total} 万人<br/>
+    <P class="annotation-text" style="bottom: 100px;right: 150px;">${annotationData[0].Short}<br/>
+    每百人汽车拥有量：${annotationData[0].PerCapita} 辆<br/>
+    排行：${annotationData[0].Index}<br/>
+    总汽车数：${annotationData[0]['Total']} 万辆<br/>
+  占比：${annotationData[0]['Scale']}
     </P>
     </div>
     `
