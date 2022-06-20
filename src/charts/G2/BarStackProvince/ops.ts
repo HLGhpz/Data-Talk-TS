@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-19 22:41:14
+ * @LastEditTime: 2022-06-20 16:56:04
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -29,9 +29,9 @@ const yLableColor = '#fff'
 
 // 颜色映射
 const colorMap = {
-  PerCapitaManned: '#5EA4E0',
-  PerCapitaCargo: '#FCCE10',
-  PerCapitaOther: '#E71B24'
+  PerInventionPatent: '#5EA4E0',
+  PerUtilityModelPatent: '#FCCE10',
+  PerDesignPatent: '#E71B24'
 }
 
 // 全局变量
@@ -179,9 +179,9 @@ function updateChart() {
       <img class="annotation-img" style="bottom: 350px;right: 200px;" src="../src/assets/province/${annotationData[0].Short}.png"></img>
     </p>
     <P class="annotation-text" style="bottom: 100px;right: 150px;">${annotationData[0].Short}<br/>
-    每百人汽车拥有量：${annotationData[0].PerCapita} 辆<br/>
+    每千人专利拥有量：${annotationData[0].PerCapita}<br/>
     排行：${annotationData[0].Index}<br/>
-    总汽车数：${annotationData[0]['Total']} 万辆<br/>
+    总专利数：${annotationData[0]['Total']}<br/>
   占比：${annotationData[0]['Scale']}
     </P>
     </div>
