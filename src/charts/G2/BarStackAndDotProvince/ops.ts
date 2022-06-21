@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-21 19:47:40
+ * @LastEditTime: 2022-06-21 22:05:24
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -12,27 +12,30 @@ import { Chart } from '@antv/g2'
 import { useChartDataStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import inserCss from 'insert-css'
+import _ from 'lodash'
 
 // 图表变量
 let chart: any = null
+let barView: any = null
+let dotView: any = null
+
 const padd = {
-  left: 150,
-  right: 600,
-  top: 100,
-  bottom: 50
+  left: 75,
+  right: 200,
+  top: 50,
+  bottom: 25
 }
+const dataRegion = {
+  min: 0,
+  max: 40
+}
+let kind = 'Meat'
+
 // const showDataLength = 15
 const barSize = 42
-const defaultColor = '#fce301'
+const defaultColor = '#c3d7df'
 const labelColor = '#fff'
-const yLableColor = '#ff2a1f'
-
-// // 颜色映射
-// const colorMap = {
-//   PerInventionPatent: '#5EA4E0',
-//   PerUtilityModelPatent: '#FCCE10',
-//   PerDesignPatent: '#E71B24'
-// }
+const yLableColor = '#fc5812'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -71,11 +74,29 @@ function initChart() {
     padding: [padd.top, padd.right, padd.bottom, padd.left]
   })
 
+  barView = chart.createView({
+    region: {
+      start: { x: 0, y: 0 },
+      end: { x: 1, y: 1 }
+    }
+  })
+
+  dotView = chart.createView({
+    region: {
+      start: { x: 0, y: 0 },
+      end: { x: 1, y: 1 }
+    }
+  })
+
   // 设置图表数据
-  chart.data(chartDataStore.rowData)
+  barView.data(
+    _.chain(chartDataStore.rowData)
+      .filter((item) => item.Category === kind)
+      .value()
+  )
 
   // 设置图表度量
-  chart.scale({
+  barView.scale({
     Short: {
       type: 'cat',
       formatter: (Value: any) => {
@@ -84,30 +105,15 @@ function initChart() {
       tickCount: 12
     },
     Value: {
-      min: 0
+      min: dataRegion.min,
+      max: dataRegion.max
     }
   })
 
-  // // 设置图表图例
-  // chart.legend('Sport', {
-  //   position: 'bottom',
-  //   offsetY: -25,
-  //   marker: {
-  //     style: {
-  //       fontSize: 20
-  //     }
-  //   },
-  //   text: {
-  //     style: {
-  //       fontSize: 20
-  //     }
-  //   }
-  // })
-
   // 设置坐标轴
-  chart.coordinate().transpose()
+  barView.coordinate().transpose()
 
-  chart.axis('Short', {
+  barView.axis('Short', {
     label: {
       style: {
         fontSize: 26,
@@ -120,7 +126,7 @@ function initChart() {
     grid: null
   })
 
-  chart.axis('Value', {
+  barView.axis('Value', {
     label: null,
     line: null,
     tickLine: null,
@@ -128,15 +134,18 @@ function initChart() {
   })
 
   // 设置图表序列
-  chart.legend(false)
+  barView.legend(false)
 
   // 设置图表
-  chart
+  barView
     .interval()
     .adjust('stack')
     .position('Short*Value')
     .size(barSize)
-    .color('Category', ['#5EA4E0', '#E71B24', '#5EA4E0', '#FCCE10'])
+    .color('Category', ['#5EA4E0'])
+    .style({
+      fillOpacity: 1
+    })
     .label(
       'Value',
       (val: string) => {
@@ -157,7 +166,44 @@ function initChart() {
       }
     )
 
+  dotView.data(
+    _.chain(chartDataStore.rowData)
+      .filter((item) => item.Category !== kind)
+      .value()
+  )
+
+  dotView.scale({
+    Short: {
+      type: 'cat'
+    },
+    Value: {
+      min: dataRegion.min,
+      max: dataRegion.max
+    }
+  })
+
+  dotView.coordinate().transpose()
+
+  dotView.legend(false)
+
+  dotView.axis('Short', false)
+  dotView.axis('Value', false)
+  dotView.legend(false)
+  dotView
+    .point()
+    .position('Short*Value')
+    .size(barSize / 5)
+    .color('Category', ['#E71B24', '#FCCE10'])
+    .style({
+      fillOpacity: 1,
+      lineWidth: 0.1
+    })
+    .shape('circle')
+
+  chart.legend(false)
   chart.render()
+
+  console.log(chart)
 }
 
 /**
@@ -171,23 +217,37 @@ function updateChart() {
   const annotation = document.getElementById('annotation')
   const annotationData = chartDataStore.assistData
   const unit = chartDataStore.unit
-  // // console.log(annotationData)
   annotation.innerHTML = `
     <div class="annotation">
     <p>
-      <img class="annotation-img" style="bottom: 350px;right: 200px;" src="../src/assets/province/${annotationData[0].Short}.png"></img>
+      <img class="annotation-img" style="bottom: 400px;right: 200px;" src="../src/assets/province/${
+        annotationData[0].Short
+      }.png"></img>
     </p>
-    <P class="annotation-text" style="bottom: 100px;right: 150px;">${annotationData[0].Short}<br/>
-    图书馆数：${annotationData[0].Value} ${unit.Total}<br/>
-    人均拥有公共图书：${annotationData[0].PerBook} ${unit.PerBook}<br/>
-    排行：${annotationData[0].Index}<br/>
-  占比：${annotationData[0].Scale}
+    <P class="annotation-text" style="bottom: 100px;right: 150px;">${
+      annotationData[0].Short
+    }<br/>
+    人均肉类消费量<br/>
+    全体居民：${annotationData[2].Value} ${unit[`${kind}`]}<br/>
+    城镇：${annotationData[1].Value} ${unit[`${kind}`]}<br/>
+    农村：${annotationData[0].Value} ${unit[`${kind}`]}<br/>
+    排行：${annotationData[0][`${kind}Index`]}<br/>
     </P>
     </div>
     `
 
   // 数据配置
-  chart.changeData(chartDataStore.dynamicData)
+  barView.changeData(
+    _.chain(chartDataStore.dynamicData)
+      .filter((item) => item.Category === kind)
+      .value()
+  )
+
+  dotView.changeData(
+    _.chain(chartDataStore.dynamicData)
+      .filter((item) => item.Category !== kind)
+      .value()
+  )
 }
 
 export { initChart, updateChart }

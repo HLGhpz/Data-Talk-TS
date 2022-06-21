@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-21 14:42:32
+ * @LastEditTime: 2022-06-21 22:04:41
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,7 +21,7 @@ import { handleData } from './handleData'
 import './watchDataChange'
 
 // 图表数据
-const fileName = 'ProvinceLibrary'
+const fileName = 'ProvinceFood'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -38,6 +38,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/library.png);
+  background-image: url(@/assets/img/meat3.png);
 }
 </style>
