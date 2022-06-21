@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-06-17 17:12:06
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-17 17:41:07
+ * @LastEditTime: 2022-06-20 23:33:18
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,9 +16,10 @@ import _ from 'lodash'
  */
 function handleData(rowData: any) {
   let result = []
-  result = _.chain(rowData).reverse().value()
+  let unit = _.chain(rowData).last().value()
+  result = _.chain(rowData).dropRight().reverse().value()
 
-  return result
+  return [result, unit]
 }
 
 export { handleData }

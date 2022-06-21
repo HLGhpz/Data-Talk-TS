@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-20 11:40:42
+ * @LastEditTime: 2022-06-20 23:36:11
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -25,11 +25,13 @@ const fileName = 'ProvincePatent'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
-const { rowData } = storeToRefs(chartDataStore)
+const { rowData, unit } = storeToRefs(chartDataStore)
 
 onMounted(async () => {
   await chartDataStore.getChartData(fileName)
-  rowData.value = handleData(rowData.value)
+  rowData.value = handleData(rowData.value)[0]
+  unit.value = handleData(rowData.value)[1]
+
   initChart()
 })
 </script>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 15:06:38
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-17 17:33:13
+ * @LastEditTime: 2022-06-20 23:34:29
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,7 +21,8 @@ export const useChartDataStore = defineStore('chartData', {
     zeroToEndData: [] as any[],
     dynamicData: [] as any[],
     assistData: [] as any[],
-    latestData: {} as any
+    latestData: {} as any,
+    unit: {} as any
   }),
   getters: {},
   actions: {
