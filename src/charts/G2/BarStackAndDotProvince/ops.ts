@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-21 22:05:24
+ * @LastEditTime: 2022-06-22 22:22:41
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -27,15 +27,16 @@ const padd = {
 }
 const dataRegion = {
   min: 0,
-  max: 40
+  max: 19
 }
-let kind = 'Meat'
+let kind = 'EdibleOil'
+let kindName = '食用油'
 
 // const showDataLength = 15
 const barSize = 42
-const defaultColor = '#c3d7df'
+const defaultColor = '#ee3f4d'
 const labelColor = '#fff'
-const yLableColor = '#fc5812'
+const yLableColor = '#2b1216'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -227,7 +228,7 @@ function updateChart() {
     <P class="annotation-text" style="bottom: 100px;right: 150px;">${
       annotationData[0].Short
     }<br/>
-    人均肉类消费量<br/>
+    人均${kindName}消费量<br/>
     全体居民：${annotationData[2].Value} ${unit[`${kind}`]}<br/>
     城镇：${annotationData[1].Value} ${unit[`${kind}`]}<br/>
     农村：${annotationData[0].Value} ${unit[`${kind}`]}<br/>

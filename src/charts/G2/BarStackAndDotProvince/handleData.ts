@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-06-17 17:12:06
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-21 21:39:22
+ * @LastEditTime: 2022-06-22 22:19:40
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,7 +16,7 @@ import _ from 'lodash'
  */
 function handleData(rowData: any) {
   let result = []
-  let kind = 'Meat'
+  let kind = 'EdibleOil'
   let unit = _.chain(rowData).last().value()
   result = _.chain(rowData)
     .dropRight()

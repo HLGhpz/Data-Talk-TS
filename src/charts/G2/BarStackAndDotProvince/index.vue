@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-21 22:04:41
+ * @LastEditTime: 2022-06-22 22:20:30
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -38,6 +38,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/meat3.png);
+  background-image: url(@/assets/img/oil.png);
 }
 </style>
