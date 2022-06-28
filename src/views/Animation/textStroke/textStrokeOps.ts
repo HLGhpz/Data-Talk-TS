@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-26 15:38:43
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-13 21:02:15
+ * @LastEditTime: 2022-06-26 18:44:11
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -22,8 +22,8 @@ const initOption: EChartsOption = {
         left: 'center',
         top: 'center',
         style: {
-          text: 'HLG   DATA',
-          fontSize: 150,
+          text: '小于  50  万',
+          fontSize: 240,
           fontWeight: 'bold',
           lineDash: [0, 200],
           lineDashOffset: 0,

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-26 15:37:13
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-13 21:02:54
+ * @LastEditTime: 2022-06-26 18:43:24
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -10,7 +10,7 @@
 
 <template>
   <div class="chart-wrapper">
-    <TextStroke msg="HLG DATA"></TextStroke>
+    <TextStroke msg="小于 50 万"></TextStroke>
   </div>
 </template>
 
@@ -20,6 +20,6 @@ import { TextStroke } from './textStroke'
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/black.png);
+  background-image: url(@/assets/img/people.png);
 }
 </style>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-22 22:20:30
+ * @LastEditTime: 2022-06-28 17:44:13
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -19,14 +19,11 @@ import { onMounted } from 'vue'
 import { initChart } from './ops'
 import { handleData } from './handleData'
 import './watchDataChange'
-
 // 图表数据
-const fileName = 'ProvinceFood'
-
+const fileName = 'ProvinceLifeExpectancy'
 // 全局变量
 const chartDataStore = useChartDataStore()
 const { rowData, unit } = storeToRefs(chartDataStore)
-
 onMounted(async () => {
   await chartDataStore.getChartData(fileName)
   let result = handleData(rowData.value)
@@ -38,6 +35,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/oil.png);
+  background-image: url(@/assets/img/life.png);
 }
 </style>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-22 22:22:41
+ * @LastEditTime: 2022-06-28 19:11:59
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -27,16 +27,16 @@ const padd = {
 }
 const dataRegion = {
   min: 0,
-  max: 19
+  max: 90
 }
-let kind = 'EdibleOil'
-let kindName = '食用油'
+let kind = 'Total'
+let kindName = '预期寿命'
 
 // const showDataLength = 15
 const barSize = 42
 const defaultColor = '#ee3f4d'
 const labelColor = '#fff'
-const yLableColor = '#2b1216'
+const yLableColor = '#813c85'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -48,12 +48,10 @@ inserCss(`
     width: 100%;
     z-index: 9999;
   }
-
   .annotation-img{
     position: fixed;
     width: 200px;
   }
-
   .annotation-text {
     position: fixed;
     font-size: 30px;
@@ -143,7 +141,7 @@ function initChart() {
     .adjust('stack')
     .position('Short*Value')
     .size(barSize)
-    .color('Category', ['#5EA4E0'])
+    .color('Category', ['#4f383e'])
     .style({
       fillOpacity: 1
     })
@@ -194,7 +192,7 @@ function initChart() {
     .point()
     .position('Short*Value')
     .size(barSize / 5)
-    .color('Category', ['#E71B24', '#FCCE10'])
+    .color('Category', ['#ed556a', '#5698c3'])
     .style({
       fillOpacity: 1,
       lineWidth: 0.1
@@ -222,17 +220,17 @@ function updateChart() {
     <div class="annotation">
     <p>
       <img class="annotation-img" style="bottom: 400px;right: 200px;" src="../src/assets/province/${
-        annotationData[0].Short
+        annotationData[0].ProvinceCode
       }.png"></img>
     </p>
     <P class="annotation-text" style="bottom: 100px;right: 150px;">${
       annotationData[0].Short
     }<br/>
-    人均${kindName}消费量<br/>
-    全体居民：${annotationData[2].Value} ${unit[`${kind}`]}<br/>
-    城镇：${annotationData[1].Value} ${unit[`${kind}`]}<br/>
-    农村：${annotationData[0].Value} ${unit[`${kind}`]}<br/>
-    排行：${annotationData[0][`${kind}Index`]}<br/>
+    人均${kindName}<br/>
+    全体居民：${annotationData[2].Value} 岁<br/>
+    男性：${annotationData[1].Value} 岁<br/>
+    女性：${annotationData[0].Value} 岁<br/>
+    排行：${annotationData[0][`Index`]}<br/>
     </P>
     </div>
     `

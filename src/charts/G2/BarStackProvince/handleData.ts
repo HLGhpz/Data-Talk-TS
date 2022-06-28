@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-06-17 17:12:06
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-21 17:42:27
+ * @LastEditTime: 2022-06-28 20:58:59
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -19,11 +19,17 @@ function handleData(rowData: any) {
   let unit = _.chain(rowData).last().value()
   result = _.chain(rowData)
     .dropRight()
+    .filter((item) => {
+      return item.Province !== '全国' && item.Category !== 'Total'
+    })
+    .sortBy('Index')
     .reverse()
     // .filter((item) => {
-    //   return _.includes(item.Category, 'Grain')
+    //   return item.Value >= 4000000
     // })
     .value()
+
+  console.log('result', result)
 
   return [result, unit]
 }

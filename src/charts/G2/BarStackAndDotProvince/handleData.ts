@@ -2,11 +2,12 @@
  * @Author: HLGhpz
  * @Date: 2022-06-17 17:12:06
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-22 22:19:40
+ * @LastEditTime: 2022-06-28 16:16:17
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
+
 import _ from 'lodash'
 
 /**
@@ -21,9 +22,12 @@ function handleData(rowData: any) {
   result = _.chain(rowData)
     .dropRight()
     .filter((item) => {
-      return _.includes(item.Category, kind)
+      return item.Province !== '全国'
     })
-    .sortBy(`${kind}Index`)
+    // .filter((item) => {
+    //   return _.includes(item.Category, kind)
+    // })
+    .sortBy(`Index`)
     .reverse()
     .value()
 
