@@ -168,6 +168,14 @@ export const g2Routes: RouteRecordRaw[] = [
     meta: {
       title: 'DynamicStackBar'
     }
+  },
+  {
+    path: 'lineAndBar',
+    name: 'lineAndBar',
+    component: () => import('@/charts/G2/LineAndBar/index.vue'),
+    meta: {
+      title: 'LineAndBar'
+    }
   }
 ]
 

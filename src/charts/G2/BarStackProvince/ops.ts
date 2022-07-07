@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-28 21:05:19
+ * @LastEditTime: 2022-07-04 14:01:22
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -25,12 +25,12 @@ const dataRegion = {
   min: 0,
   max: 19
 }
-let kind = 'Population'
+let kind = 'Foreign'
 let kindName = '人数'
 
 // const showDataLength = 15
 const barSize = 42
-const defaultColor = '#ed556a'
+const defaultColor = '#ee3f4d'
 const labelColor = '#fff'
 const yLableColor = '#142664'
 
@@ -114,7 +114,7 @@ function initChart() {
 
   // 设置图表度量
   chart.scale({
-    Province: {
+    Short: {
       type: 'cat',
       formatter: (Value: any) => {
         return Value
@@ -145,7 +145,7 @@ function initChart() {
   // 设置坐标轴
   chart.coordinate().transpose()
 
-  chart.axis('Province', {
+  chart.axis('Short', {
     label: {
       style: {
         fontSize: 26,
@@ -172,11 +172,22 @@ function initChart() {
   chart
     .interval()
     .adjust('stack')
-    .position('Province*Value')
+    .position('Short*Value')
     .size(barSize)
-    .color('Category', ['#fa983a', '#4a69bd', '#e55039'])
+    .color('Category', [
+      '#126e82',
+      '#78e08f',
+      '#45b787',
+      '#82CCDD',
+      '#4a69bd',
+      '#f2ce2b',
+      '#fa983a',
+      '#f0a1a8',
+      '#eb3c70',
+      '#813c85'
+    ])
     .style({
-      fillOpacity: 1
+      fillOpacity: 0.85
     })
     .label(
       'Value',
@@ -217,21 +228,14 @@ function updateChart() {
   annotation.innerHTML = `
     <div class="annotation">
     <p>
-      <img class="annotation-img" style="bottom: 400px;right: 200px;" src="../src/assets/province/${
+      <img class="annotation-img" style="bottom: 300px;right: 150px;" src="../src/assets/province/${
         annotationData[0].ProvinceCode
       }.png"></img>
     </p>
-    <P class="annotation-text" style="bottom: 100px;right: 150px;">
+    <P class="annotation-text" style="bottom: 100px;right: 100px;">
     ${annotationData[0].Short}<br/>
-    农业：${annotationData[0].Value}${unit.Total}<br/>
-    工业：${annotationData[1].Value}${unit.Total}<br/>
-    服务业：${annotationData[2].Value}${unit.Total}<br/>
-    合计：${
-      annotationData[0].Value +
-      annotationData[1].Value +
-      annotationData[2].Value
-    }${unit.Total}<br/>
-    排行：${annotationData[0].Index}
+    各地区外籍人口数：${annotationData[0].Value} 人<br/>
+    排行：${annotationData[0][`${kind}Index`]}
     </P>
     </div>
     `

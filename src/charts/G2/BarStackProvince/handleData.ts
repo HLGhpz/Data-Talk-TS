@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-06-17 17:12:06
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-28 20:58:59
+ * @LastEditTime: 2022-07-04 13:54:22
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,13 +16,22 @@ import _ from 'lodash'
  */
 function handleData(rowData: any) {
   let result = []
-  let unit = _.chain(rowData).last().value()
+  let kind = 'Foreign'
+  let unit = _.filter(rowData, (item) => {
+    return item.Province === 'Unit'
+  })
+  let remark = _.filter(rowData, (item) => {
+    return item.Province === 'Remark'
+  })
   result = _.chain(rowData)
-    .dropRight()
     .filter((item) => {
-      return item.Province !== '全国' && item.Category !== 'Total'
+      return item.Province !== 'Unit' && item.Province !== 'Remark'
     })
-    .sortBy('Index')
+    // .filter((item) => {
+    //   return item.Province !== '全国' && item.Category !== 'Total'
+    // })
+    .reverse()
+    .sortBy(`${kind}Index`)
     .reverse()
     // .filter((item) => {
     //   return item.Value >= 4000000

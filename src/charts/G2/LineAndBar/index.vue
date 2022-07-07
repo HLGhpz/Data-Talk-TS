@@ -1,8 +1,8 @@
 <!--
  * @Author: HLGhpz
- * @Date: 2022-05-06 20:41:55
+ * @Date: 2022-07-06 15:57:08
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-04 13:59:27
+ * @LastEditTime: 2022-07-06 15:59:22
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,23 +21,21 @@ import { handleData } from './handleData'
 import './watchDataChange'
 
 // 图表数据
-const fileName = 'F0201ProvinceOutlander'
+const fileName = 'GermanyTrade'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
-const { rowData, unit } = storeToRefs(chartDataStore)
+const { rowData } = storeToRefs(chartDataStore)
 
 onMounted(async () => {
   await chartDataStore.getChartData(fileName)
-  let result = handleData(rowData.value)
-  rowData.value = result[0]
-  unit.value = result[1]
+  rowData.value = handleData(rowData.value)
   initChart()
 })
 </script>
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/foreigner.png);
+  background-image: url(@/assets/img/city.png);
 }
 </style>
