@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-07-06 15:57:08
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-06 15:59:22
+ * @LastEditTime: 2022-07-08 11:09:12
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -36,6 +36,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/city.png);
+  background-image: url(@/assets/img/trade4.png);
 }
 </style>

@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-06-17 17:12:06
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-04 13:54:22
+ * @LastEditTime: 2022-07-09 18:49:36
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,20 +16,20 @@ import _ from 'lodash'
  */
 function handleData(rowData: any) {
   let result = []
-  let kind = 'Foreign'
+  let kind = '人数'
   let unit = _.filter(rowData, (item) => {
-    return item.Province === 'Unit'
+    return item.民族 === 'Unit'
   })
   let remark = _.filter(rowData, (item) => {
-    return item.Province === 'Remark'
+    return item.民族 === 'Remark'
   })
   result = _.chain(rowData)
     .filter((item) => {
-      return item.Province !== 'Unit' && item.Province !== 'Remark'
+      return item.民族 !== 'Unit' && item.民族 !== 'Remark'
     })
-    // .filter((item) => {
-    //   return item.Province !== '全国' && item.Category !== 'Total'
-    // })
+    .filter((item) => {
+      return item.民族 !== '总计' && item.Category !== 'Total'
+    })
     .reverse()
     .sortBy(`${kind}Index`)
     .reverse()

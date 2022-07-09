@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-04 13:59:27
+ * @LastEditTime: 2022-07-09 18:45:45
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,7 +21,7 @@ import { handleData } from './handleData'
 import './watchDataChange'
 
 // 图表数据
-const fileName = 'F0201ProvinceOutlander'
+const fileName = 'F0102中国人民解放军现役军人的民族构成'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -38,6 +38,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/foreigner.png);
+  background-image: url(@/assets/img/soldier.png);
 }
 </style>

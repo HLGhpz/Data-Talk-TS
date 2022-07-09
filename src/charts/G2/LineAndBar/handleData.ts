@@ -1,3 +1,12 @@
+/*
+ * @Author: HLGhpz
+ * @Date: 2022-07-06 15:57:08
+ * @LastEditors: HLGhpz
+ * @LastEditTime: 2022-07-08 11:01:15
+ * @Description:
+ *
+ * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
+ */
 import _ from 'lodash'
 
 /**
@@ -7,7 +16,9 @@ import _ from 'lodash'
  */
 function handleData(rowData: any) {
   let result = []
-  result = _.chain(rowData).reverse().value()
+  result = _.chain(rowData)
+    // .reverse()
+    .value()
 
   return result
 }

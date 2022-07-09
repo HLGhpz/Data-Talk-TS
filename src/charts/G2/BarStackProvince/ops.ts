@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-04 14:01:22
+ * @LastEditTime: 2022-07-09 18:50:35
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,7 +17,7 @@ import inserCss from 'insert-css'
 let chart: any = null
 const padd = {
   left: 150,
-  right: 600,
+  right: 500,
   top: 100,
   bottom: 50
 }
@@ -25,12 +25,12 @@ const dataRegion = {
   min: 0,
   max: 19
 }
-let kind = 'Foreign'
+let kind = '人数'
 let kindName = '人数'
 
 // const showDataLength = 15
 const barSize = 42
-const defaultColor = '#ee3f4d'
+const defaultColor = '#ebb10d'
 const labelColor = '#fff'
 const yLableColor = '#142664'
 
@@ -145,7 +145,7 @@ function initChart() {
   // 设置坐标轴
   chart.coordinate().transpose()
 
-  chart.axis('Short', {
+  chart.axis('民族', {
     label: {
       style: {
         fontSize: 26,
@@ -172,10 +172,14 @@ function initChart() {
   chart
     .interval()
     .adjust('stack')
-    .position('Short*Value')
+    .position('民族*Value')
     .size(barSize)
     .color('Category', [
-      '#126e82',
+      '#45b787',
+      '#4a69bd',
+      '#fa983a',
+      '#eb3c70',
+      '#813c85',
       '#78e08f',
       '#45b787',
       '#82CCDD',
@@ -187,7 +191,7 @@ function initChart() {
       '#813c85'
     ])
     .style({
-      fillOpacity: 0.85
+      fillOpacity: 1
     })
     .label(
       'Value',
@@ -223,18 +227,26 @@ function updateChart() {
   const annotation = document.getElementById('annotation')
   const annotationData = chartDataStore.assistData
   const unit = chartDataStore.unit
-  console.log(annotationData)
+
+  //   <p>
+  //   <img class="annotation-img" style="bottom: 300px;right: 150px;" src="../src/assets/province/${
+  //     annotationData[0].ProvinceCode
+  //   }.png"></img>
+  // </p>
+  let temp = ''
+  if (annotationData[0].比重 === 0) {
+    temp = '< 0.01'
+  } else {
+    temp = `${annotationData[0].比重}`
+  }
   // // console.log(annotationData)
   annotation.innerHTML = `
     <div class="annotation">
-    <p>
-      <img class="annotation-img" style="bottom: 300px;right: 150px;" src="../src/assets/province/${
-        annotationData[0].ProvinceCode
-      }.png"></img>
-    </p>
     <P class="annotation-text" style="bottom: 100px;right: 100px;">
-    ${annotationData[0].Short}<br/>
-    各地区外籍人口数：${annotationData[0].Value} 人<br/>
+    ${annotationData[0].民族}<br/>
+    中国人民解放军现役军人<br/>
+    人数：${annotationData[0].Value} <br/>
+    占比：${temp} %<br/>
     排行：${annotationData[0][`${kind}Index`]}
     </P>
     </div>

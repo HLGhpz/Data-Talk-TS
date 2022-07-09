@@ -8,7 +8,7 @@ let chart: any = null
 let lineView: any = null
 let barView: any = null
 const padd = {
-  left: 150,
+  left: 50,
   right: 50,
   top: 50,
   bottom: 50
@@ -17,6 +17,12 @@ const padd = {
 // 全局变量
 const chartDataStore = useChartDataStore()
 const { latestData } = storeToRefs(chartDataStore)
+
+// const showDataLength = 15
+const barSize = 42
+const defaultColor = '#ee3f4d'
+const labelColor = '#fff'
+const yLableColor = '#142664'
 
 inserCss(`
   .annotation {
@@ -98,7 +104,7 @@ function initChart() {
   lineView = chart.createView({
     region: {
       start: { x: 0, y: 0 },
-      end: { x: 1, y: 0.6 }
+      end: { x: 1, y: 0.8 }
     }
   })
 
@@ -107,11 +113,10 @@ function initChart() {
 
   // 设置图表度量
   lineView.scale({
-    Export: {
+    Value: {
       // max: 130,
       // min: 0
     },
-    Import: {},
     Year: {
       type: 'cat'
     }
@@ -120,9 +125,10 @@ function initChart() {
   lineView.legend(false)
 
   // 设置坐标轴
-  lineView.coordinate().transpose()
+  // lineView.coordinate().transpose()
+  lineView.coordinate()
 
-  lineView.axis('City', {
+  lineView.axis('Year', {
     label: {
       style: {
         fontSize: 20,
@@ -134,7 +140,7 @@ function initChart() {
     grid: null
   })
 
-  lineView.axis('PerGDP', {
+  lineView.axis('Value', {
     label: null,
     line: null,
     tickLine: null,
@@ -143,22 +149,35 @@ function initChart() {
 
   // 设置图表
   lineView
-    .interval()
-    .position('City*PerGDP')
+    .line()
+    .position('Year*Value')
     .style({
       radius: [20, 20, 0, 0]
     })
-    .size(20)
-    .color('City')
-    .label('PerGDP', {
-      style: {
-        fill: '#424242',
-        fontSize: 22
-      },
-      content: (obj) => {
-        return `${obj.PerGDP}￥- ${obj.PerGDPRank}`
-      }
+    // .size(20)
+    .color('Category')
+    .style({
+      fillOpacity: 0.85
     })
+  // .label(
+  //   'Value',
+  //   (val: string) => {
+  //     return {
+  //       content: `${val}`
+  //     }
+  //   },
+  //   {
+  //     style: {
+  //       fill: `${labelColor}`,
+  //       fontSize: 23,
+  //       fontWeight: 'bold'
+  //     },
+  //     position: 'middle',
+  //     layout: {
+  //       type: 'limit-in-shape'
+  //     }
+  //   }
+  // )
 
   // barView = chart.createView({
   //   region: {
