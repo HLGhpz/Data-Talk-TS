@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-11 18:37:15
+ * @LastEditTime: 2022-07-09 18:50:35
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,7 +17,7 @@ import inserCss from 'insert-css'
 let chart: any = null
 const padd = {
   left: 150,
-  right: 600,
+  right: 500,
   top: 100,
   bottom: 50
 }
@@ -25,12 +25,12 @@ const dataRegion = {
   min: 0,
   max: 19
 }
-let kind = '合计'
+let kind = '人数'
 let kindName = '人数'
 
 // const showDataLength = 15
 const barSize = 42
-const defaultColor = '#eb3c70'
+const defaultColor = '#ebb10d'
 const labelColor = '#fff'
 const yLableColor = '#142664'
 
@@ -145,7 +145,7 @@ function initChart() {
   // 设置坐标轴
   chart.coordinate().transpose()
 
-  chart.axis('Short', {
+  chart.axis('民族', {
     label: {
       style: {
         fontSize: 26,
@@ -172,14 +172,12 @@ function initChart() {
   chart
     .interval()
     .adjust('stack')
-    .position('Short*Value')
+    .position('民族*Value')
     .size(barSize)
     .color('Category', [
       '#45b787',
       '#4a69bd',
-      '#f2ce2b',
       '#fa983a',
-      '#f0a1a8',
       '#eb3c70',
       '#813c85',
       '#78e08f',
@@ -230,6 +228,11 @@ function updateChart() {
   const annotationData = chartDataStore.assistData
   const unit = chartDataStore.unit
 
+  //   <p>
+  //   <img class="annotation-img" style="bottom: 300px;right: 150px;" src="../src/assets/province/${
+  //     annotationData[0].ProvinceCode
+  //   }.png"></img>
+  // </p>
   let temp = ''
   if (annotationData[0].比重 === 0) {
     temp = '< 0.01'
@@ -239,23 +242,12 @@ function updateChart() {
   // // console.log(annotationData)
   annotation.innerHTML = `
     <div class="annotation">
-    <p>
-      <img class="annotation-img" style="bottom: 550px;right: 150px;" src="../src/assets/province/${
-        annotationData[0].ProvinceCode
-      }.png"></img>
-    </p>
     <P class="annotation-text" style="bottom: 100px;right: 100px;">
-    ${annotationData[0].Short}<br/>
-    按全部家用汽车总价分的家庭户<br/>
-    总户数：${annotationData[0].合计} 户<br/>
-    没有汽车：${annotationData[0].Value} 户<br/>
-    < 10万：${annotationData[1].Value} 户<br/>
-    10-20万：${annotationData[2].Value} 户<br/>
-    20-30万：${annotationData[3].Value} 户<br/>
-    30-50万：${annotationData[4].Value} 户<br/>
-    50-100万：${annotationData[5].Value} 户<br/>
-    > 100万：${annotationData[6].Value} 户<br/>
-    总户数排行：${annotationData[0][`${kind}Index`]}
+    ${annotationData[0].民族}<br/>
+    中国人民解放军现役军人<br/>
+    人数：${annotationData[0].Value} <br/>
+    占比：${temp} %<br/>
+    排行：${annotationData[0][`${kind}Index`]}
     </P>
     </div>
     `
