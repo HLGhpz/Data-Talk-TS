@@ -30,6 +30,11 @@
       >
     </li>
     <li>
+      <router-link :to="{ name: 'barKindProvince' }"
+        >BarKindProvince</router-link
+      >
+    </li>
+    <li>
       <router-link :to="{ name: 'barStackAndDotProvince' }"
         >BarStackAndDotProvince</router-link
       >
