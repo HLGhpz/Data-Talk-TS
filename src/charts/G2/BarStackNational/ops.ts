@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-09 18:50:35
+ * @LastEditTime: 2022-07-13 22:10:29
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -19,18 +19,18 @@ const padd = {
   left: 150,
   right: 500,
   top: 100,
-  bottom: 50
+  bottom: 30
 }
 const dataRegion = {
   min: 0,
   max: 19
 }
-let kind = '人数'
+let kind = '参军人数'
 let kindName = '人数'
 
 // const showDataLength = 15
 const barSize = 42
-const defaultColor = '#ebb10d'
+const defaultColor = '#2177b8'
 const labelColor = '#fff'
 const yLableColor = '#142664'
 
@@ -233,20 +233,28 @@ function updateChart() {
   //     annotationData[0].ProvinceCode
   //   }.png"></img>
   // </p>
-  let temp = ''
+  let temp2 = ''
+  let temp1 = ''
   if (annotationData[0].比重 === 0) {
-    temp = '< 0.01'
+    temp1 = '< 0.01'
   } else {
-    temp = `${annotationData[0].比重}`
+    temp1 = `${annotationData[0].比重}`
+  }
+
+  if (annotationData[0].参军比重 === 0) {
+    temp2 = '< 0.01'
+  } else {
+    temp2 = `${annotationData[0].参军比重}`
   }
   // // console.log(annotationData)
   annotation.innerHTML = `
     <div class="annotation">
     <P class="annotation-text" style="bottom: 100px;right: 100px;">
     ${annotationData[0].民族}<br/>
-    中国人民解放军现役军人<br/>
-    人数：${annotationData[0].Value} <br/>
-    占比：${temp} %<br/>
+    总人数：${annotationData[0].总人数}<br/>
+    参军人数：${annotationData[0].Value} <br/>
+    民族人口占比：${temp1} %<br/>
+    解放军中占比：${temp2} %<br/>
     排行：${annotationData[0][`${kind}Index`]}
     </P>
     </div>

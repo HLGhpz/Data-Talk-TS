@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-06-17 17:12:06
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-09 18:49:36
+ * @LastEditTime: 2022-07-13 22:05:27
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,7 +16,7 @@ import _ from 'lodash'
  */
 function handleData(rowData: any) {
   let result = []
-  let kind = '人数'
+  let kind = '参军人数'
   let unit = _.filter(rowData, (item) => {
     return item.民族 === 'Unit'
   })

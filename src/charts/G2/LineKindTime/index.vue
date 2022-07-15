@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-09 18:45:45
+ * @LastEditTime: 2022-07-13 20:01:57
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,23 +21,22 @@ import { handleData } from './handleData'
 import './watchDataChange'
 
 // 图表数据
-const fileName = 'F0102中国人民解放军现役军人的民族构成'
+const fileName = '货币汇率'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
-const { rowData, unit } = storeToRefs(chartDataStore)
+const { rowData } = storeToRefs(chartDataStore)
 
 onMounted(async () => {
   await chartDataStore.getChartData(fileName)
   let result = handleData(rowData.value)
-  rowData.value = result[0]
-  unit.value = result[1]
+  rowData.value = result
   initChart()
 })
 </script>
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/soldier.png);
+  background-image: url(@/assets/img/Exchange.png);
 }
 </style>

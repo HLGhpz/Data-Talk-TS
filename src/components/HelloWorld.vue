@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-07 21:36:42
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-08 10:42:48
+ * @LastEditTime: 2022-07-14 17:18:53
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -30,6 +30,11 @@
       >
     </li>
     <li>
+      <router-link :to="{ name: 'barStackNational' }"
+        >BarStackNational</router-link
+      >
+    </li>
+    <li>
       <router-link :to="{ name: 'barKindProvince' }"
         >BarKindProvince</router-link
       >
@@ -40,10 +45,16 @@
       >
     </li>
     <li>
+      <router-link :to="{ name: 'lineKindTime' }">lineKindTime</router-link>
+    </li>
+    <li>
       <router-link :to="{ name: 'lineAndBar' }">LineAndBar</router-link>
     </li>
     <li>
       <router-link :to="{ name: 'barStackFace' }">BarStackFace</router-link>
+    </li>
+    <li>
+      <router-link :to="{ name: 'country' }">Country</router-link>
     </li>
     <li>
       <router-link :to="{ name: 'ohlc' }">OHLC</router-link>

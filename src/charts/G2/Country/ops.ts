@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-09 18:50:35
+ * @LastEditTime: 2022-07-14 18:20:51
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,8 +16,8 @@ import inserCss from 'insert-css'
 // 图表变量
 let chart: any = null
 const padd = {
-  left: 150,
-  right: 500,
+  left: 200,
+  right: 450,
   top: 100,
   bottom: 50
 }
@@ -25,52 +25,13 @@ const dataRegion = {
   min: 0,
   max: 19
 }
-let kind = '人数'
-let kindName = '人数'
+let kind = '通货膨胀率'
 
 // const showDataLength = 15
 const barSize = 42
-const defaultColor = '#ebb10d'
+const defaultColor = '#eb3c70'
 const labelColor = '#fff'
 const yLableColor = '#142664'
-
-// 颜色映射
-const colorMap = {
-  北京: '#fad390',
-  天津: '#f8c291',
-  河北: '#6a89cc',
-  山西: '#82ccdd',
-  内蒙: '#b8e994',
-  辽宁: '#f6b93b',
-  吉林: '#e55039',
-  黑龙江: '#4a69bd',
-  上海: '#60a3bc',
-  江苏: '#78e08f',
-  浙江: '#fa983a',
-  安徽: '#eb2f06',
-  福建: '#1e3799',
-  江西: '#3c6382',
-  山东: '#38ada9',
-  河南: '#e58e26',
-  湖北: '#b71540',
-  湖南: '#0c2461',
-  广东: '#0a3d62',
-  广西: '#079992',
-  海南: '#FEA47F',
-  重庆: '#25CCF7',
-  四川: '#EAB543',
-  贵州: '#55E6C1',
-  云南: '#CAD3C8',
-  西藏: '#F97F51',
-  陕西: '#1B9CFC',
-  甘肃: '#F8EFBA',
-  青海: '#58B19F',
-  宁夏: '#2C3A47',
-  新疆: '#B33771',
-  澳门: '#3B3B98',
-  香港: '#FD7272',
-  台湾: '#9AECDB'
-}
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -86,6 +47,12 @@ inserCss(`
   .annotation-img{
     position: fixed;
     width: 200px;
+  }
+
+  .annotation-flag {
+    position: fixed;
+    height: 60px;
+    width: 80px;
   }
 
   .annotation-text {
@@ -114,16 +81,14 @@ function initChart() {
 
   // 设置图表度量
   chart.scale({
-    Short: {
+    国家: {
       type: 'cat',
       formatter: (Value: any) => {
         return Value
       },
       tickCount: 12
     },
-    Value: {
-      min: 0
-    }
+    Value: {}
   })
 
   // // 设置图表图例
@@ -145,7 +110,7 @@ function initChart() {
   // 设置坐标轴
   chart.coordinate().transpose()
 
-  chart.axis('民族', {
+  chart.axis('国家', {
     label: {
       style: {
         fontSize: 26,
@@ -171,25 +136,22 @@ function initChart() {
   // 设置图表
   chart
     .interval()
-    .adjust('stack')
-    .position('民族*Value')
+    .position('国家*Value')
     .size(barSize)
-    .color('Category', [
-      '#45b787',
-      '#4a69bd',
-      '#fa983a',
-      '#eb3c70',
-      '#813c85',
-      '#78e08f',
-      '#45b787',
-      '#82CCDD',
-      '#4a69bd',
-      '#f2ce2b',
-      '#fa983a',
-      '#f0a1a8',
-      '#eb3c70',
-      '#813c85'
-    ])
+    .color('Value', (item) => {
+      console.log(item)
+      if (item < 0) {
+        return '#66c18c'
+      } else if (item < 5) {
+        return '#eeb8c3'
+      } else if (item < 10) {
+        return '#ee4866'
+      } else if (item < 30) {
+        return '#cc163a'
+      } else {
+        return '#82111f'
+      }
+    })
     .style({
       fillOpacity: 1
     })
@@ -228,29 +190,30 @@ function updateChart() {
   const annotationData = chartDataStore.assistData
   const unit = chartDataStore.unit
 
-  //   <p>
-  //   <img class="annotation-img" style="bottom: 300px;right: 150px;" src="../src/assets/province/${
-  //     annotationData[0].ProvinceCode
-  //   }.png"></img>
-  // </p>
-  let temp = ''
-  if (annotationData[0].比重 === 0) {
-    temp = '< 0.01'
-  } else {
-    temp = `${annotationData[0].比重}`
-  }
+  console.log(annotationData[0].编码)
   // // console.log(annotationData)
   annotation.innerHTML = `
     <div class="annotation">
+    <p class="annotation-flag fi fi-${annotationData[0].编码.toLowerCase()}" style="bottom: 350px;right: 200px;"></p>
     <P class="annotation-text" style="bottom: 100px;right: 100px;">
-    ${annotationData[0].民族}<br/>
-    中国人民解放军现役军人<br/>
-    人数：${annotationData[0].Value} <br/>
-    占比：${temp} %<br/>
-    排行：${annotationData[0][`${kind}Index`]}
+    ${annotationData[0].国家}<br/>
+    通货膨胀率：${annotationData[0].Value} %<br/>
+    失业率：${annotationData[0].失业率} %<br/>
+    利率：${annotationData[0].利率} %<br/>
+    通货膨胀率排行：${annotationData[0][`${kind}Index`]}
     </P>
     </div>
     `
+
+  // annotation.innerHTML = `
+  // <div class="annotation">
+  // <p class="annotation-text">${annotationData.Sport}</p>
+  // <P class="annotation-text">${annotationData.Athlete}</P>
+  // <P class="annotation-text">代言：$${annotationData.Endorsements}M</P>
+  // <P class="annotation-text">薪酬：$${annotationData.Salary}M</P>
+  // <P class="annotation-text">排名：${annotationData.Rank}</P>
+  // </div>
+  // `
 
   // 数据配置
   chart.changeData(chartDataStore.dynamicData)

@@ -1,8 +1,8 @@
 /*
  * @Author: HLGhpz
- * @Date: 2022-06-17 17:12:06
+ * @Date: 2022-07-11 17:06:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-09 18:49:36
+ * @LastEditTime: 2022-07-14 17:22:37
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,26 +16,23 @@ import _ from 'lodash'
  */
 function handleData(rowData: any) {
   let result = []
-  let kind = '人数'
+  let kind = '通货膨胀率'
   let unit = _.filter(rowData, (item) => {
-    return item.民族 === 'Unit'
+    return item.Country === 'Unit'
   })
   let remark = _.filter(rowData, (item) => {
-    return item.民族 === 'Remark'
+    return item.Country === 'Remark'
   })
   result = _.chain(rowData)
     .filter((item) => {
-      return item.民族 !== 'Unit' && item.民族 !== 'Remark'
+      return item.Country !== 'Unit' && item.Country !== 'Remark'
     })
     .filter((item) => {
-      return item.民族 !== '总计' && item.Category !== 'Total'
+      return item.Country !== '总计' && item.Category !== 'Total'
     })
     .reverse()
     .sortBy(`${kind}Index`)
     .reverse()
-    // .filter((item) => {
-    //   return item.Value >= 4000000
-    // })
     .value()
 
   console.log('result', result)
