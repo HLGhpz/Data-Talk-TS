@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-11 17:56:58
+ * @LastEditTime: 2022-07-15 22:31:56
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,7 +21,7 @@ import { handleData } from './handleData'
 import './watchDataChange'
 
 // 图表数据
-const fileName = 'B0913各地区按拥有全部家用汽车总价分的家庭户户数'
+const fileName = '中国县域统计年鉴（县市）'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -38,6 +38,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/Car.png);
+  background-image: url(@/assets/img/Panda.png);
 }
 </style>

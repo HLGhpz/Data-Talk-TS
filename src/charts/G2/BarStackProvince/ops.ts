@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-11 18:37:15
+ * @LastEditTime: 2022-07-15 22:31:40
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,8 +16,8 @@ import inserCss from 'insert-css'
 // 图表变量
 let chart: any = null
 const padd = {
-  left: 150,
-  right: 600,
+  left: 200,
+  right: 500,
   top: 100,
   bottom: 50
 }
@@ -27,10 +27,13 @@ const dataRegion = {
 }
 let kind = '合计'
 let kindName = '人数'
+let catData = 'Area'
+let valueData = '地区生产总值'
+let province = '四川'
 
 // const showDataLength = 15
 const barSize = 42
-const defaultColor = '#eb3c70'
+const defaultColor = '#b63e40'
 const labelColor = '#fff'
 const yLableColor = '#142664'
 
@@ -114,14 +117,14 @@ function initChart() {
 
   // 设置图表度量
   chart.scale({
-    Short: {
+    catData: {
       type: 'cat',
       formatter: (Value: any) => {
         return Value
       },
       tickCount: 12
     },
-    Value: {
+    valueData: {
       min: 0
     }
   })
@@ -145,7 +148,7 @@ function initChart() {
   // 设置坐标轴
   chart.coordinate().transpose()
 
-  chart.axis('Short', {
+  chart.axis(`${catData}`, {
     label: {
       style: {
         fontSize: 26,
@@ -158,7 +161,7 @@ function initChart() {
     grid: null
   })
 
-  chart.axis('Value', {
+  chart.axis(`${valueData}`, {
     label: null,
     line: null,
     tickLine: null,
@@ -172,9 +175,9 @@ function initChart() {
   chart
     .interval()
     .adjust('stack')
-    .position('Short*Value')
+    .position(`${catData}*${valueData}`)
     .size(barSize)
-    .color('Category', [
+    .color(`${catData}`, [
       '#45b787',
       '#4a69bd',
       '#f2ce2b',
@@ -196,7 +199,7 @@ function initChart() {
       fillOpacity: 1
     })
     .label(
-      'Value',
+      `${valueData}`,
       (val: string) => {
         return {
           content: `${val}`
@@ -239,23 +242,15 @@ function updateChart() {
   // // console.log(annotationData)
   annotation.innerHTML = `
     <div class="annotation">
-    <p>
-      <img class="annotation-img" style="bottom: 550px;right: 150px;" src="../src/assets/province/${
-        annotationData[0].ProvinceCode
-      }.png"></img>
-    </p>
     <P class="annotation-text" style="bottom: 100px;right: 100px;">
-    ${annotationData[0].Short}<br/>
-    按全部家用汽车总价分的家庭户<br/>
-    总户数：${annotationData[0].合计} 户<br/>
-    没有汽车：${annotationData[0].Value} 户<br/>
-    < 10万：${annotationData[1].Value} 户<br/>
-    10-20万：${annotationData[2].Value} 户<br/>
-    20-30万：${annotationData[3].Value} 户<br/>
-    30-50万：${annotationData[4].Value} 户<br/>
-    50-100万：${annotationData[5].Value} 户<br/>
-    > 100万：${annotationData[6].Value} 户<br/>
-    总户数排行：${annotationData[0][`${kind}Index`]}
+    ${annotationData[0].Area}<br/>
+    行政区域面积：${annotationData[0].行政区域面积} 平方公里<br/>
+    户籍人口：${(annotationData[0].户籍人口 / 10000).toFixed(2)} 万人<br/>
+    规模以上工业企业：${annotationData[0].规模以上工业企业} 个<br/>
+    地区生产总值：${(annotationData[0].地区生产总值 / 10000).toFixed(
+      2
+    )} 亿元<br/>
+    ${province}县市GDP排行：${annotationData[0].index}<br/>
     </P>
     </div>
     `
