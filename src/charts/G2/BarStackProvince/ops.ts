@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:27:29
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-15 22:31:40
+ * @LastEditTime: 2022-07-18 14:26:47
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -16,7 +16,7 @@ import inserCss from 'insert-css'
 // 图表变量
 let chart: any = null
 const padd = {
-  left: 200,
+  left: 300,
   right: 500,
   top: 100,
   bottom: 50
@@ -29,7 +29,7 @@ let kind = '合计'
 let kindName = '人数'
 let catData = 'Area'
 let valueData = '地区生产总值'
-let province = '四川'
+let province = '辽宁'
 
 // const showDataLength = 15
 const barSize = 42
@@ -250,7 +250,7 @@ function updateChart() {
     地区生产总值：${(annotationData[0].地区生产总值 / 10000).toFixed(
       2
     )} 亿元<br/>
-    ${province}县市GDP排行：${annotationData[0].index}<br/>
+    ${province}县域GDP排行：${annotationData[0].index}<br/>
     </P>
     </div>
     `

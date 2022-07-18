@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-08 15:24:57
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-15 21:17:17
+ * @LastEditTime: 2022-07-17 13:51:04
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -33,7 +33,7 @@ watch(showDataChange, (newValue) => {
       )
       updateChart()
       dataIndex++
-    }, 2000)
+    }, 1000)
   } else {
     clearInterval(chartInterval)
   }

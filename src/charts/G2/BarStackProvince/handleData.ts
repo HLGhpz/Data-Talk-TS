@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-07-11 17:06:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-15 22:31:49
+ * @LastEditTime: 2022-07-18 14:15:53
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -17,7 +17,7 @@ import _ from 'lodash'
 function handleData(rowData: any) {
   let result = []
   let kind = '地区生产总值'
-  let province = '四川'
+  let province = '辽宁'
   let unit = _.filter(rowData, (item) => {
     return item.Area === 'Unit'
   })
