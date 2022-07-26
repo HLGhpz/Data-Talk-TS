@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-17 13:37:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-14 17:02:59
+ * @LastEditTime: 2022-07-25 14:38:35
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -215,6 +215,14 @@ export const g2Routes: RouteRecordRaw[] = [
     component: () => import('@/charts/G2/LineAndBar/index.vue'),
     meta: {
       title: 'LineAndBar'
+    }
+  },
+  {
+    path: 'time',
+    name: 'time',
+    component: () => import('@/charts/G2/Time/index.vue'),
+    meta: {
+      title: 'Time'
     }
   }
 ]

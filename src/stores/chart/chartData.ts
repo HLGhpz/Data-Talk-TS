@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-04-23 15:06:38
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-20 23:34:29
+ * @LastEditTime: 2022-07-25 15:20:56
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -60,7 +60,7 @@ export const useChartDataStore = defineStore('chartData', {
     ) {
       const stateStore = useStateStore()
       if (dataIndex < showDataLength) {
-        console.log('第一类')
+        // console.log('第一类')
         this.dynamicData = _.chain(this.rowData)
           .filter((item) => {
             return item.Year <= dataIndex + startIndex
@@ -70,7 +70,7 @@ export const useChartDataStore = defineStore('chartData', {
         dataIndex >= showDataLength &&
         dataIndex < endIndex - startIndex
       ) {
-        console.log('第二类')
+        // console.log('第二类')
         this.dynamicData = _.chain(this.rowData)
           .filter((item) => {
             return (
@@ -109,16 +109,16 @@ export const useChartDataStore = defineStore('chartData', {
       const stateStore = useStateStore()
       let rowLength = this.rowData.length / category
       if (dataIndex < showDataLength) {
-        console.log('第一类')
+        // console.log('第一类')
         this.dynamicData = this.rowData.slice(0, dataIndex * category)
       } else if (dataIndex >= showDataLength && dataIndex < rowLength) {
-        console.log('第二类')
+        // console.log('第二类')
         this.dynamicData = this.rowData.slice(
           (dataIndex - showDataLength) * category,
           dataIndex * category
         )
       } else {
-        console.log('第三类')
+        // console.log('第三类')
         this.dynamicData = this.rowData.slice(
           (rowLength - showDataLength) * category,
           rowLength * category

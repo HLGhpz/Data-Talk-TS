@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "DATA-TALK-TS",
+			"path": "."
+		},
+		{
+			"name": "DATA-SUPPLY-TS",
+			"path": "..\\DATA-SUPPLY-TS"
+		},
+		{
+			"name": "DATA-HANDLE-TS",
+			"path": "..\\DATA-HANDLE-TS"
+		}
+	]
+}
