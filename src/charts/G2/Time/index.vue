@@ -2,7 +2,7 @@
  * @Author: HLGhpz
  * @Date: 2022-05-06 20:41:55
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-07-26 18:42:54
+ * @LastEditTime: 2022-07-26 22:16:23
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
@@ -21,7 +21,7 @@ import { handleData } from './handleData'
 import './watchDataChange'
 
 // 图表数据
-const fileName = '16-8  货运量'
+const fileName = '4-2  按三次产业分就业人员数 (年底数)'
 
 // 全局变量
 const chartDataStore = useChartDataStore()
@@ -38,6 +38,6 @@ onMounted(async () => {
 
 <style scoped>
 .chart-wrapper {
-  background-image: url(@/assets/img/Freight2.png);
+  background-image: url(@/assets/img/Work.png);
 }
 </style>

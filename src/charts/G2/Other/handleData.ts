@@ -1,13 +1,12 @@
 /*
  * @Author: HLGhpz
- * @Date: 2022-06-17 17:12:06
+ * @Date: 2022-07-11 17:06:14
  * @LastEditors: HLGhpz
- * @LastEditTime: 2022-06-28 16:16:17
+ * @LastEditTime: 2022-07-27 19:05:54
  * @Description:
  *
  * Copyright (c) 2022 by HLGhpz, All Rights Reserved.
  */
-
 import _ from 'lodash'
 
 /**
@@ -17,21 +16,21 @@ import _ from 'lodash'
  */
 function handleData(rowData: any) {
   let result = []
-  let kind = 'EdibleOil'
-  let unit = _.chain(rowData).last().value()
+  let kind = '序号'
+  let unit = _.filter(rowData, (item) => {
+    return item[`${kind}`] === 'Unit'
+  })
+  let remark = _.filter(rowData, (item) => {
+    return item[`${kind}`] === 'Remark'
+  })
   result = _.chain(rowData)
-    .dropRight()
     .filter((item) => {
-      return item.Province !== '全国'
+      return item[`${kind}`] !== 'Unit' && item[`${kind}`] !== 'Remark'
     })
-    // .filter((item) => {
-    //   return _.includes(item.Category, kind)
-    // })
-    .sortBy(`Index`)
     .reverse()
     .value()
 
-  console.log(result)
+  console.log('result', result)
 
   return [result, unit]
 }
